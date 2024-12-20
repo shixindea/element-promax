@@ -42,6 +42,7 @@ declare module 'vue' {
     ElFooter: typeof import('element-plus')['ElFooter']
     ElForm: typeof import('element-plus')['ElForm']
     ElFormItem: typeof import('element-plus')['ElFormItem']
+    ElFormPro: typeof import('element-plus')['ElFormPro']
     ElHeader: typeof import('element-plus')['ElHeader']
     ElIcon: typeof import('element-plus')['ElIcon']
     ElImage: typeof import('element-plus')['ElImage']
