@@ -4,8 +4,8 @@ export interface FormSchema {
   label: string
   components: string
   modelValue: any
-  ifShow?: unknown | boolean
-  dynamicRules?: unknown
+  ifShow?: (formValues: any) => boolean
+  dynamicRules?: (formValues: any) => any
   message?: string
 }
 

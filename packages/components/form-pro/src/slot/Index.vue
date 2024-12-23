@@ -88,10 +88,10 @@ const theProps = defineProps({
   slotName: {
     type: String,
   },
-  ifShow: {
-    type: [Boolean, Function],
-    default: true,
-  },
+  // ifShow: {
+  //   type: Function,
+  //   default: () => true,
+  // },
   dynamicRules: {
     type: Function,
     default: () => {},
