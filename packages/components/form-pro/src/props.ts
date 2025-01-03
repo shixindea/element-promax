@@ -1,4 +1,4 @@
-import { FormProSchema } from './types/form'
+import type { FormProSchema } from './types/form'
 import type { PropType } from 'vue'
 
 export const formProProps: any = () => ({

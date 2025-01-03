@@ -51,8 +51,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { THE_COMP_TYPE } from '../conf'
-import CompEnd from './comp-end'
-import CompSlot from './comp-slot'
+import CompEnd from './comp-end.vue'
+import CompSlot from './comp-slot.vue'
 
 const theProps = defineProps({
   field: { type: String },
