@@ -1,55 +1,60 @@
 <!-- @format -->
 
 <template>
-  <!-- 纯文本 -->
-  <el-text v-if="theProps.components === THE_COMP_TYPE.TEXT">adfs</el-text>
+  <div>
+    <!-- 纯文本 -->
+    <el-text v-if="theProps.components === THE_COMP_TYPE.TEXT">adfs</el-text>
 
-  <!-- 输入框 -->
-  <template v-if="theProps.components === THE_COMP_TYPE.INPUT">
-    <el-input
-      v-bind="theProps.componentProps"
-      v-model="thePropsModelValue"
-      @input="($event:any) => onUpdateValue($event, theProps.components)"
-    />
-  </template>
-
-  <!-- 选择框 -->
-  <template v-if="theProps.components === THE_COMP_TYPE.SELECT">
-    <el-select
-      v-bind="theProps.componentProps"
-      v-model="thePropsModelValue"
-      clearable
-      @change="($event:any) => onUpdateValue($event, theProps.components)"
-    >
-      <el-option
-        v-for="item in theProps.componentProps.options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
+    <!-- 输入框 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.INPUT">
+      <el-input
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @input="($event:any) => onUpdateValue($event, theProps.components)"
       />
-    </el-select>
-  </template>
-  <!-- 插槽 -->
-  <template v-if="theProps.components === THE_COMP_TYPE.SLOT">
-    <CompSlot
-      :comp-info="theProps.slots"
-      :slot-name="theProps.slotName"
-      :model-value="thePropsModelValue"
-    />
-  </template>
+    </template>
 
-  <!-- end 函数 -->
-  <CompEnd v-if="!!theProps.end" :comp-info="theProps.end" />
+    <!-- 选择框 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.SELECT">
+      <el-select
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        clearable
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      >
+        <el-option
+          v-for="item in theProps.componentProps.options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </template>
+    <!-- 插槽 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.SLOT">
+      <CompSlot
+        :comp-info="theProps.slots"
+        :slot-name="theProps.slotName"
+        :model-value="thePropsModelValue"
+      />
+    </template>
 
-  <div v-if="theProps.message != ''">
-    <el-text class="mx-1" type="danger">
-      {{ theProps.message }}
-    </el-text>
+    <!-- end 函数 -->
+    <CompEnd v-if="!!theProps.end" :comp-info="theProps.end" />
+
+    <div v-if="theProps.message != ''">
+      <el-text class="mx-1" type="danger">
+        {{ theProps.message }}
+      </el-text>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import ElText from '@element-plus/components/text'
+import ElInput from '@element-plus/components/input'
+import ElSelect from '@element-plus/components/select'
 import { THE_COMP_TYPE } from '../conf'
 import CompEnd from './comp-end.vue'
 import CompSlot from './comp-slot.vue'
@@ -58,9 +63,12 @@ const theProps = defineProps({
   field: { type: String },
   label: { type: String },
   modelValue: {
-    type: [String, Number, Boolean, Array, Object],
+    type: null as any,
     default: '',
   },
+  // {
+  // definePropType<string | number | null | undefined>([String,  Number,Object,]),
+  // ,
   components: {
     type: String,
     default: THE_COMP_TYPE.INPUT,

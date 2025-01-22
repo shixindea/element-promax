@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 import message from '@element-plus/components/message/src/method'
+import { ElFormPro } from '@element-plus/components/form-pro'
 
 const theSchemaData = [
   {
@@ -17,7 +18,6 @@ const theSchemaData = [
     components: 'Input',
     label: '姓名',
     ifShow: (e: any, e2: any) => {
-      // console.log('ifShow ===>', e, e2)
       return true
     },
     dynamicRules: (ruleParams) => {
@@ -59,6 +59,8 @@ const theSchemaData = [
     components: 'Input',
     label: 'isShow',
     ifShow: (e: any, e2: any) => {
+      console.log('e.sex  ===>', e)
+
       return e.sex == 'B'
     },
   },

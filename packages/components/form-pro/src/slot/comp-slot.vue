@@ -1,4 +1,4 @@
-<script lang="tsx">
+<!-- <script lang="tsx">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -15,4 +15,9 @@ export default defineComponent({
     return () => {}
   },
 })
-</script>
+</script> -->
+
+<template>slot</template>
+
+<script setup lang="ts"></script>
+<style scoped></style>

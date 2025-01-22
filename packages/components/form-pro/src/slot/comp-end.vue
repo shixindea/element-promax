@@ -1,4 +1,4 @@
-<script lang="tsx">
+<!-- <script lang="tsx">
 import { defineComponent } from 'vue'
 export default defineComponent({
   props: {
@@ -10,4 +10,9 @@ export default defineComponent({
     return () => props.compInfo
   },
 })
-</script>
+</script> -->
+
+<template>end</template>
+
+<script setup lang="ts"></script>
+<style scoped></style>
