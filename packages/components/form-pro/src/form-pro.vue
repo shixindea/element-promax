@@ -1,20 +1,22 @@
 <template>
-  <div>
+  <ElSpace direction="vertical" fill style="width: 100%">
     <ElRow
       v-for="(theSchema, index) in thePropsSchemas.filter((res:any) => res.isShow)"
       :key="index"
-      class="form-pro-row"
+      style="display: flex; align-content: flex-start; align-items: flex-start"
+      v-bind="theProps.rowOptions"
     >
-      <ElCol :span="6">
+      <ElCol
+        v-bind="theProps.labelCol"
+        style="display: flex; justify-content: flex-end"
+      >
         <ElSpace style="line-height: 30px">
-          <span>*</span>
+          <span v-if="theSchema.isRequiredStar" style="color: red">*</span>
           {{ theSchema?.label }}
           <span>:</span>
         </ElSpace>
       </ElCol>
-      <ElCol :span="18">
-        <!-- <div>{theSchema.components}</div> -->
-        <!-- {{ theSchema.field }} -->
+      <ElCol v-bind="theProps.wrapperCol">
         <SlotComp
           :key="theSchema.field"
           v-bind="theSchema"
@@ -22,11 +24,15 @@
         />
       </ElCol>
     </ElRow>
-    <ElSpace>
-      <ElButton type="primary" @click="onSubmit"> 提交 </ElButton>
-      <ElButton @click="onClearValidate">清空校验</ElButton>
-    </ElSpace>
-  </div>
+    <ElRow v-if="theProps?.showFooter" v-bind="theProps.rowOptions">
+      <ElCol v-bind="theProps.actionColOptions">
+        <ElSpace>
+          <ElButton type="primary" @click="onSubmit"> 提交 </ElButton>
+          <ElButton @click="onClearValidate">清空校验</ElButton>
+        </ElSpace>
+      </ElCol>
+    </ElRow>
+  </ElSpace>
 </template>
 
 <script setup lang="ts">
@@ -59,7 +65,15 @@ const onGetModelValue = () => {
 
 const onSubmit = () => {
   onValidate()
-  theEmits('submit', onGetModelValue(), thePropsSchemas.value)
+  const theStatus = thePropsSchemas.value.some(
+    (theSchema: any) => theSchema.message == ''
+  )
+  theEmits('submit', {
+    type: theStatus ? 'success' : 'error',
+    message: theStatus ? '校验通过' : '校验不通过',
+    values: onGetModelValue(),
+    schemas: thePropsSchemas.value,
+  })
 }
 
 // 校验表单 start
@@ -96,30 +110,33 @@ const onClearValidate = () => {
   })
 }
 // 清除校验 end
+// 重新渲染数据 start
+const onRenderData = () => {
+  thePropsSchemas.value.forEach((theSchema: any) => {
+    theSchema.modelValue = thePropsSchemas.value.find(
+      (item: any) => item.field === theSchema.field
+    )?.modelValue
+    theSchema.isShow = theSchema?.ifShow
+      ? theSchema.ifShow(onGetModelValue(), thePropsSchemas.value, theSchema)
+      : true
+    theSchema.isRequiredStar = theSchema?.dynamicRules
+      ? theSchema.dynamicRules(thePropsSchemas.value).required
+      : false
+  })
+}
+// 重新渲染数据 end
 
 watch(
   () => thePropsSchemas.value,
-  (newValue) => {
-    thePropsSchemas.value.forEach((theSchema: any) => {
-      theSchema.modelValue = newValue.find(
-        (item: any) => item.field === theSchema.field
-      )?.modelValue
-      theSchema.isShow = theSchema.ifShow
-        ? typeof theSchema.ifShow == 'function'
-          ? theSchema.ifShow(
-              onGetModelValue(),
-              thePropsSchemas.value,
-              theSchema
-            )
-          : theSchema.ifShow
-        : true
-    })
+  () => {
+    onRenderData()
   },
   {
     deep: true,
     immediate: true,
   }
 )
-onMounted(() => {})
+onMounted(() => {
+  onRenderData()
+})
 </script>
-<style scoped></style>
