@@ -17,10 +17,9 @@
         </ElSpace>
       </ElCol>
       <ElCol v-bind="theProps.wrapperCol">
-        <!-- 兼容Element Plus 组件 -->
+        <!-- 兼容Element Plus 组件  :key="theSchema.field || theSchema.components + index"  -->
         <FormItem
           v-if="theSchema.components != THE_COMP_TYPE.SLOT"
-          :key="theSchema.field"
           v-bind="theSchema"
           v-model="theSchema.modelValue"
         />
