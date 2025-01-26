@@ -6,8 +6,9 @@ export enum THE_COMP_TYPE {
   SELECT = 'Select',
   TEXT = 'Text',
   SLOT = 'Slot',
-
   RADIO = 'Radio',
+
+  RADIOGROUP = 'RadioGroup',
   CHECKBOX = 'Checkbox',
   TEXTAREA = 'Textarea',
   DATEPICKER = 'DatePicker',

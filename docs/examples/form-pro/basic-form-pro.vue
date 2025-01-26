@@ -65,7 +65,7 @@ const [
     // updateSchema,
     // removeSchemaByFiled,
   },
-] = useForm({ aaa: 1 })
+] = useForm()
 
 // import type { FormProSchema } from '@element-plus/components/form-pro'
 
@@ -107,6 +107,32 @@ const theLayoutData = {
 const onGetSchemaData = () => {
   return {
     schemas: [
+      {
+        field: 'radio',
+        components: 'Radio',
+        label: 'radio组件',
+        componentProps: {
+          label: '男',
+          value: '1',
+        },
+      },
+      {
+        field: 'radioGroup',
+        components: 'RadioGroup',
+        label: 'radioGroup组件',
+        componentProps: {
+          options: [
+            {
+              label: '男',
+              value: '1',
+            },
+            {
+              label: '女',
+              value: '2',
+            },
+          ],
+        },
+      },
       {
         field: 'nickname',
         components: 'Input',

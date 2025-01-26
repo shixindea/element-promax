@@ -30,6 +30,32 @@
         />
       </el-select>
     </template>
+
+    <!-- Radio 组件 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.RADIO">
+      <el-radio
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+
+    <!-- RadioGroup 组件 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.RADIOGROUP">
+      <el-radio-group
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      >
+        <el-radio
+          v-for="item in theProps.componentProps.options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-radio-group>
+    </template>
+
     <!-- 插槽在form-pro.vue 文件中兼容 -->
 
     <!-- end 函数 -->
@@ -48,6 +74,7 @@ import { ref, watch } from 'vue'
 import ElText from '@element-plus/components/text'
 import ElInput from '@element-plus/components/input'
 import ElSelect from '@element-plus/components/select'
+import ElRadio, { ElRadioGroup } from '@element-plus/components/radio'
 import { THE_COMP_TYPE } from '../conf'
 import CompEnd from '../slot/comp-end.vue'
 

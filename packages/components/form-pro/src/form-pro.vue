@@ -17,12 +17,14 @@
         </ElSpace>
       </ElCol>
       <ElCol v-bind="theProps.wrapperCol">
+        <!-- 兼容Element Plus 组件 -->
         <FormItem
           v-if="theSchema.components != THE_COMP_TYPE.SLOT"
           :key="theSchema.field"
           v-bind="theSchema"
           v-model="theSchema.modelValue"
         />
+        <!-- 用户可自定义组件 -->
         <div v-if="theSchema.components == THE_COMP_TYPE.SLOT">
           <!-- {{ theSlots[theSchema.slotName] }} -->
           <slot
@@ -30,6 +32,16 @@
             v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
             :model="thePropsModelValue"
           />
+        </div>
+        <!-- 利用 h函数 组件 -->
+        <div v-if="!!theSchema.end">
+          <!-- {{ theSlots[theSchema.slotName] }} -->
+          end 利用 h函数 组件
+          <!-- <slot
+            :name="theSchema.slotName"
+            v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
+            :model="thePropsModelValue"
+          /> -->
         </div>
       </ElCol>
     </ElRow>
