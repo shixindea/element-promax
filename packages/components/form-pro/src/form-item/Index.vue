@@ -30,14 +30,7 @@
         />
       </el-select>
     </template>
-    <!-- 插槽 -->
-    <template v-if="theProps.components === THE_COMP_TYPE.SLOT">
-      <CompSlot
-        :comp-info="theProps.slots"
-        :slot-name="theProps.slotName"
-        :model-value="thePropsModelValue"
-      />
-    </template>
+    <!-- 插槽在form-pro.vue 文件中兼容 -->
 
     <!-- end 函数 -->
     <CompEnd v-if="!!theProps.end" :comp-info="theProps.end" />
@@ -51,13 +44,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import ElText from '@element-plus/components/text'
 import ElInput from '@element-plus/components/input'
 import ElSelect from '@element-plus/components/select'
 import { THE_COMP_TYPE } from '../conf'
-import CompEnd from './comp-end.vue'
-import CompSlot from './comp-slot.vue'
+import CompEnd from '../slot/comp-end.vue'
 
 const theProps = defineProps({
   field: { type: String },
@@ -109,6 +101,12 @@ const theProps = defineProps({
     default: '',
   },
 })
+watch(
+  () => theProps.modelValue,
+  (newValue: any) => {
+    thePropsModelValue.value = newValue
+  }
+)
 
 const thePropsModelValue = ref(theProps.modelValue)
 const theEmits = defineEmits(['update:modelValue'])

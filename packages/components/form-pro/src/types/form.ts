@@ -1,3 +1,6 @@
+import { Recordable } from './interface'
+import type { FormProProps } from '../props'
+
 export interface FormSchema {
   // Field name
   field: string
@@ -36,3 +39,26 @@ export interface FormProSchema {
    */
   actionColOptions?: object
 }
+
+export interface FormActionType {
+  // submit: () => Promise<void>;
+  setFieldsValue: <T>(values: T) => Promise<void>
+  resetFields: () => Promise<void>
+  getFieldsValue: (filterHidden?: boolean) => Recordable
+  // getChildrenFieldsValue: (filterHidden?: boolean) => Recordable;
+  // resetAllModel: () => Promise<void>;
+  clearValidate: (name?: string | string[]) => Promise<void>
+  // updateSchema: any;
+  setProps: (formProps: FormProProps) => Promise<void>
+  // removeSchemaByFiled: (field: string | string[]) => Promise<void>;
+  // appendSchemaByField: (
+  //   schema: FormProSchema,
+  //   prefixField: string | undefined,
+  //   first?: boolean | undefined,
+  // ) => Promise<void>;
+  // validateFields: (nameList?: NamePath[]) => Promise<any>;
+  // validate: (nameList?: NamePath[]) => Promise<any>;
+}
+export type FormRegisterFn = (formInstance: FormActionType) => void
+
+export type UseFormReturnType = [FormRegisterFn, FormActionType]

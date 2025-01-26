@@ -1,5 +1,5 @@
 import type { FormSchema } from './types/form'
-import type { PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 export const formProProps: any = () => ({
   // 表单配置规则
   schemas: {
@@ -39,3 +39,7 @@ export const formProProps: any = () => ({
     }),
   },
 })
+
+export type FormProProps = Partial<
+  ExtractPropTypes<ReturnType<typeof formProProps>>
+>
