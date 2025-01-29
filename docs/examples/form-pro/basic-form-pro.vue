@@ -8,6 +8,10 @@
         <div @click="model.nickname = '1'">
           插槽1[点击修改nickname值]{{ model }}
         </div>
+        <br />
+        <div @click="model.checkboxGroup = ['1']">
+          插槽3[点击修改checkboxGroup值]{{ model }}
+        </div>
       </template>
       <template #slotANode2>
         <div style="width: 100px; height: 100px; background-color: skyblue">
@@ -42,6 +46,7 @@ import { onMounted, ref } from 'vue'
 import ElFormPro, { useForm } from '@element-plus/components/form-pro'
 import ElSpace from '@element-plus/components/space'
 import ElButton from '@element-plus/components/button'
+import component from '../../../packages/element-plus/component'
 const [
   theFormPro,
   {
@@ -105,34 +110,19 @@ const theLayoutData = {
 }
 // 数据: FormProSchema
 const onGetSchemaData = () => {
+  const generateData = () => {
+    const data: any[] = []
+    for (let i = 1; i <= 15; i++) {
+      data.push({
+        key: i,
+        label: `Option ${i}`,
+        disabled: i % 4 === 0,
+      })
+    }
+    return data
+  }
   return {
     schemas: [
-      {
-        field: 'radio',
-        components: 'Radio',
-        label: 'radio组件',
-        componentProps: {
-          label: '男',
-          value: '1',
-        },
-      },
-      {
-        field: 'radioGroup',
-        components: 'RadioGroup',
-        label: 'radioGroup组件',
-        componentProps: {
-          options: [
-            {
-              label: '男',
-              value: '1',
-            },
-            {
-              label: '女',
-              value: '2',
-            },
-          ],
-        },
-      },
       {
         field: 'nickname',
         components: 'Input',
@@ -171,6 +161,52 @@ const onGetSchemaData = () => {
         },
       },
       {
+        field: 'textarea 输入框',
+        components: 'Input',
+        label: 'textarea',
+        componentProps: {
+          placeholder: '测试使用componentProps --  textarea',
+          type: 'textarea',
+        },
+      },
+      {
+        field: 'inputNumber 输入框',
+        components: 'InputNumber',
+        label: 'InputNumber',
+        componentProps: {
+          min: 10,
+          max: 20,
+        },
+      },
+      {
+        field: 'mention',
+        components: 'Mention',
+        label: 'Mention提及',
+        modelValue: '@',
+        componentProps: {
+          placeholder: 'componentProps -- Mention提及',
+          options: [
+            {
+              label: 'Fuphoenixes',
+              value: 'Fuphoenixes',
+            },
+            {
+              label: 'kooriookami',
+              value: 'kooriookami',
+            },
+            {
+              label: 'Jeremy',
+              value: 'Jeremy',
+            },
+            {
+              label: 'btea',
+              value: 'btea',
+            },
+          ],
+        },
+      },
+
+      {
         field: 'showComp',
         components: 'Select',
         label: '显示子组件',
@@ -207,6 +243,207 @@ const onGetSchemaData = () => {
         components: 'Slot',
         slotName: 'slotANode2',
         label: 'slot组件2',
+      },
+
+      {
+        field: 'radio',
+        components: 'Radio',
+        label: 'radio组件',
+        componentProps: {
+          label: '男',
+          value: '1',
+        },
+      },
+      {
+        field: 'radioGroup',
+        components: 'RadioGroup',
+        label: 'radioGroup组件',
+        componentProps: {
+          options: [
+            {
+              label: '男',
+              value: '1',
+            },
+            {
+              label: '女',
+              value: '2',
+            },
+          ],
+        },
+      },
+      {
+        field: 'RadioButton',
+        components: 'RadioButton',
+        label: 'radioButton组件',
+        componentProps: {
+          options: [
+            {
+              label: '男',
+              value: '1',
+            },
+            {
+              label: '女',
+              value: '2',
+            },
+          ],
+        },
+      },
+      {
+        field: 'checkbox',
+        components: 'Checkbox',
+        label: 'Checkbox组件',
+        componentProps: {
+          label: '男',
+          value: '1',
+        },
+      },
+      {
+        field: 'checkboxGroup',
+        components: 'CheckboxGroup',
+        label: 'CheckboxGroup组件',
+        componentProps: {
+          options: [
+            {
+              label: '男',
+              value: '1',
+            },
+            {
+              label: '女',
+              value: '1231232',
+            },
+          ],
+        },
+      },
+      {
+        field: 'CheckboxButton',
+        components: 'CheckboxButton',
+        label: 'CheckboxButton组件',
+        componentProps: {
+          options: [
+            {
+              label: '男',
+              value: '1',
+            },
+            {
+              label: '女',
+              value: '1231232',
+            },
+          ],
+        },
+      },
+      {
+        field: 'rate',
+        components: 'Rate',
+        label: 'Rate 评分',
+      },
+      {
+        field: 'slider',
+        components: 'Slider',
+        label: 'slider 滑块',
+        componentProps: {
+          showInput: true,
+        },
+      },
+      {
+        field: 'switch',
+        components: 'Switch',
+        label: 'Switch 开关',
+      },
+      {
+        field: 'transfer',
+        components: 'Transfer',
+        label: 'transfer 穿梭框',
+        componentProps: {
+          data: generateData(),
+        },
+      },
+      {
+        field: 'treeSelect',
+        components: 'TreeSelect',
+        label: 'TreeSelect 树型选择',
+        componentProps: {
+          'render-after-expand': false,
+          data: [
+            {
+              value: '1',
+              label: 'Level one 1',
+              children: [
+                {
+                  value: '1-1',
+                  label: 'Level two 1-1',
+                  children: [
+                    {
+                      value: '1-1-1',
+                      label: 'Level three 1-1-1',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              value: '2',
+              label: 'Level one 2',
+              children: [
+                {
+                  value: '2-1',
+                  label: 'Level two 2-1',
+                  children: [
+                    {
+                      value: '2-1-1',
+                      label: 'Level three 2-1-1',
+                    },
+                  ],
+                },
+                {
+                  value: '2-2',
+                  label: 'Level two 2-2',
+                  children: [
+                    {
+                      value: '2-2-1',
+                      label: 'Level three 2-2-1',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              value: '3',
+              label: 'Level one 3',
+              children: [
+                {
+                  value: '3-1',
+                  label: 'Level two 3-1',
+                  children: [
+                    {
+                      value: '3-1-1',
+                      label: 'Level three 3-1-1',
+                    },
+                  ],
+                },
+                {
+                  value: '3-2',
+                  label: 'Level two 3-2',
+                  children: [
+                    {
+                      value: '3-2-1',
+                      label: 'Level three 3-2-1',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        field: 'Avatar',
+        components: 'Avatar',
+        label: 'Avatar 头像',
+        componentProps: {
+          shape: 'square',
+          size: 'large',
+          src: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        },
       },
     ],
     showFooter: true,

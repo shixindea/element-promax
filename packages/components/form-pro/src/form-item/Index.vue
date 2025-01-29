@@ -13,6 +13,30 @@
         @input="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
+    <!-- 输入框 ElInputNumber -->
+    <template v-if="theProps.components === THE_COMP_TYPE.INPUTNUMBER">
+      <el-input-number
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @input="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+    <!-- 输入框 ElInputNumber -->
+    <!-- <template v-if="theProps.components === THE_COMP_TYPE.INPUTTAG">
+      <el-input-tag
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @input="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template> -->
+    <!-- 提及 mention  @someone -->
+    <template v-if="theProps.components === THE_COMP_TYPE.MENTION">
+      <el-mention
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @input="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
 
     <!-- 选择框 -->
     <template v-if="theProps.components === THE_COMP_TYPE.SELECT">
@@ -24,7 +48,7 @@
       >
         <el-option
           v-for="item in theProps.componentProps.options"
-          :key="item.value"
+          :key="item.label"
           :label="item.label"
           :value="item.value"
         />
@@ -49,11 +73,114 @@
       >
         <el-radio
           v-for="item in theProps.componentProps.options"
-          :key="item.value"
+          :key="item.label"
           :label="item.label"
           :value="item.value"
         />
       </el-radio-group>
+    </template>
+    <!-- RadioButton 组件 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.RADIOBUTTON">
+      <el-radio-group
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      >
+        <el-radio-button
+          v-for="item in theProps.componentProps.options"
+          :key="item.label"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-radio-group>
+    </template>
+    <!-- Checkbox 组件 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.CHECKBOX">
+      <el-checkbox
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+
+    <!-- RadioGroup 组件 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.CHECKBOXGROUP">
+      <el-checkbox-group
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      >
+        <el-checkbox
+          v-for="item in theProps.componentProps.options"
+          :key="item.label"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-checkbox-group>
+    </template>
+    <!-- CheckboxButton 组件 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.CHECKBOXBUTTON">
+      <el-checkbox-group
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      >
+        <el-checkbox-button
+          v-for="item in theProps.componentProps.options"
+          :key="item.label"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-checkbox-group>
+    </template>
+    <!-- RATE 评分 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.RATE">
+      <el-rate
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+    <!-- slider 滑块 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.SLIDER">
+      <el-slider
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+    <!-- SWITCH 开关 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.SWITCH">
+      <el-switch
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+    <!-- ElTransfer 穿梭框 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.TRANSFER">
+      <el-transfer
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+
+    <!-- TreeSelect 树形选择 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.TREESELECT">
+      <el-tree-select
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+    <!-- Avatar 头像 -->
+    <template v-if="theProps.components === THE_COMP_TYPE.AVATAR">
+      <el-avatar
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
     </template>
 
     <!-- 插槽在form-pro.vue 文件中兼容 -->
@@ -73,8 +200,24 @@
 import { ref, watch } from 'vue'
 import ElText from '@element-plus/components/text'
 import ElInput from '@element-plus/components/input'
+import ElInputNumber from '@element-plus/components/input-number'
+// import ElInputTag from '@element-plus/components/input-tag'
+import ElMention from '@element-plus/components/mention'
 import ElSelect from '@element-plus/components/select'
-import ElRadio, { ElRadioGroup } from '@element-plus/components/radio'
+import ElRate from '@element-plus/components/rate'
+import ElSwitch from '@element-plus/components/switch'
+import ElTransfer from '@element-plus/components/transfer'
+import ElTreeSelect from '@element-plus/components/tree-select'
+import ElAvatar from '@element-plus/components/avatar'
+
+import ElRadio, {
+  ElRadioButton,
+  ElRadioGroup,
+} from '@element-plus/components/radio'
+import ElCheckbox, {
+  ElCheckboxButton,
+  ElCheckboxGroup,
+} from '@element-plus/components/checkbox'
 import { THE_COMP_TYPE } from '../conf'
 import CompEnd from '../slot/comp-end.vue'
 
