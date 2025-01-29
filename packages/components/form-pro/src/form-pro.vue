@@ -48,12 +48,13 @@
       <ElCol v-bind="theProps.actionColOptions">
         <ElSpace>
           <ElButton type="primary" @click="onSubmit"> 提交 </ElButton>
-          <ElButton @click="onClearValidate">清空校验</ElButton>
+          <ElButton @click="onReset">重置</ElButton>
+          <!-- <ElButton @click="onClearValidate">清空校验</ElButton> -->
         </ElSpace>
       </ElCol>
     </ElRow>
 
-    {{ thePropsSchemas }}
+    <!-- {{ thePropsSchemas }} -->
   </ElSpace>
 </template>
 
@@ -76,7 +77,7 @@ defineOptions({
   name: COMPONENT_NAME,
 })
 const theProps = defineProps(formProProps())
-const theEmits = defineEmits(['submit', 'register'])
+const theEmits = defineEmits(['submit', 'submit-error', 'register', 'reset'])
 const thePropsSchemas: any = ref(theProps.schemas)
 // 获取schemas中的modelvalue值 start
 const onSetModelValue = () => {
@@ -108,12 +109,21 @@ const onSubmit = () => {
   const theStatus = thePropsSchemas.value.some(
     (theSchema: any) => theSchema.message == ''
   )
-  theEmits('submit', {
-    type: theStatus ? 'success' : 'error',
-    message: theStatus ? '校验通过' : '校验不通过',
-    values: onGetModelValue(),
-    schemas: thePropsSchemas.value,
-  })
+  if (theStatus) {
+    theEmits('submit', {
+      type: 'success',
+      message: '校验通过',
+      values: onGetModelValue(),
+      schemas: thePropsSchemas.value,
+    })
+  } else {
+    theEmits('submit-error', {
+      type: 'error',
+      message: '校验不通过',
+      values: onGetModelValue(),
+      schemas: thePropsSchemas.value,
+    })
+  }
 }
 
 // 校验表单 start
@@ -150,6 +160,19 @@ const onClearValidate = () => {
   })
 }
 // 清除校验 end
+
+// 重置 start
+const onReset = () => {
+  resetFields()
+  onClearValidate()
+  theEmits('reset', {
+    type: 'reset',
+    message: '重置成功',
+    values: onGetModelValue(),
+    schemas: thePropsSchemas.value,
+  })
+}
+// 重置 end
 // 重新渲染数据 start
 const onRenderData = () => {
   thePropsModelValue.value = onGetModelValue()

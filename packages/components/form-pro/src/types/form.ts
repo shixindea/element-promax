@@ -2,7 +2,6 @@ import { Recordable } from './interface'
 import type { FormProProps } from '../props'
 
 export interface FormSchema {
-  // Field name
   field: string
   label: string
   components: string
@@ -11,6 +10,8 @@ export interface FormSchema {
   dynamicRules?: (formValues: any) => any
   message?: string
   componentProps?: any
+  slotName: string
+  end: object
 }
 
 export interface FormProSchema {

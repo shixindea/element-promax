@@ -252,9 +252,6 @@ const theProps = defineProps({
     type: Object,
   },
 
-  slots: {
-    type: Object,
-  },
   slotName: {
     type: String,
   },

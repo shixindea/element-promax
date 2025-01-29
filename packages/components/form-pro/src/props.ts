@@ -6,6 +6,7 @@ export const formProProps: any = () => ({
     type: [Array] as PropType<FormSchema[]>,
     default: () => [],
   },
+  // 是否显示底部按钮
   showFooter: {
     type: Boolean,
     default: true,
