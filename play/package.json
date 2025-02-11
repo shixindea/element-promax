@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@shixinde/element-promax": "^0.0.22",
     "vue": "^3.2.37"
   },
   "devDependencies": {

@@ -6,5 +6,15 @@
     { "path": "./tsconfig.node.json" },
     { "path": "./tsconfig.vite-config.json" },
     { "path": "./tsconfig.vitest.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./es",
+    "emitDeclarationOnly": false,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["packages/*"]
+    }
+  }
 }

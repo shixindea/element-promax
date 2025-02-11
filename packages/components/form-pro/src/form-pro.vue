@@ -283,6 +283,13 @@ watch(
 )
 onMounted(() => {
   onRenderData()
-  theEmits('register', useForm())
+  theEmits('register', {
+    getFieldsValue,
+    setFieldsValue,
+    resetFields,
+    clearValidate,
+    validateFields,
+    setProps,
+  })
 })
 </script>

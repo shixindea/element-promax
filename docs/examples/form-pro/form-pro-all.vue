@@ -46,7 +46,6 @@ import { onMounted, ref } from 'vue'
 import ElFormPro, { useForm } from '@element-plus/components/form-pro'
 import ElSpace from '@element-plus/components/space'
 import ElButton from '@element-plus/components/button'
-import component from '../../../packages/element-plus/component'
 const [
   theFormPro,
   {
