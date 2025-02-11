@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form-pro @register="aaa" @submit="onHandleSubmit" />
+    <el-form-pro @register="theFormPro" @submit="onHandleSubmit" />
   </div>
 </template>
 
@@ -8,10 +8,6 @@
 import { onMounted } from 'vue'
 import ElFormPro, { useForm } from '@element-plus/components/form-pro'
 const [theFormPro, { setProps: setFormProProps }] = useForm()
-
-const aaa = (e) => {
-  console.log(e, 'eeeeeee')
-}
 // 数据: FormProSchema
 const onGetSchemaData = () => {
   return {
