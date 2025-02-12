@@ -10,7 +10,7 @@ const locale = computed(() => localeData[lang.value])
 
 const goHome = () => {
   if (!isClient) return
-  window.location.href = `/${lang.value}/`
+  window.location.href = `/element-promax-docs/${lang.value}/`
 }
 </script>
 

@@ -3,8 +3,8 @@ export const rightRichTextSponsors = []
 export const rightBigLogoSponsors = [
   {
     name: 'CRMEB',
-    img: '/images/CRMEB.png',
-    imgL: '/images/CRMEB-l.png',
+    img: '/element-promax-docs/CRMEB.png',
+    imgL: '/element-promax-docs/CRMEB-l.png',
     url: 'http://github.crmeb.net/u/Elementyouce',
     slogan: 'High-quality open source mall system',
     slogan_cn: '高品质开源商城系统 累计服务40W+开发者',
@@ -15,24 +15,24 @@ export const rightBigLogoSponsors = [
 export const rightLogoSmallSponsors = [
   {
     name: 'BuildAdmin',
-    img: '/images/buildadmin.png',
-    imgL: '/images/buildadmin-l.png',
+    img: '/element-promax-docs/buildadmin.png',
+    imgL: '/element-promax-docs/buildadmin-l.png',
     url: 'https://doc.buildadmin.com/?from=element-plus',
     slogan: 'Vue3 open source admin system',
     slogan_cn: 'Vue3企业级开源后台管理系统',
   },
   {
     name: '百搭云',
-    img: '/images/baidayun-logo.png',
-    imgL: '/images/baidayun.png',
+    img: '/element-promax-docs/baidayun-logo.png',
+    imgL: '/element-promax-docs/baidayun.png',
     url: 'http://www.i-renderer.love/home/index',
     slogan: 'Fast and elegant low-code dev platform',
     slogan_cn: '快速且优雅的低代码平台',
   },
   {
     name: 'bit',
-    img: '/images/bit.svg',
-    imgL: '/images/bit-l.png',
+    img: '/element-promax-docs/bit.svg',
+    imgL: '/element-promax-docs/bit-l.png',
     url: 'https://bit.dev/?from=element-ui',
     slogan: 'Share Code',
     isDark: true, // dark theme
@@ -41,29 +41,22 @@ export const rightLogoSmallSponsors = [
 
 export const leftCustomImgSponsors = [
   {
-    name: '美乐',
-    img: '/images/mele.png',
-    url: 'https://melecode.com/',
+    name: '袁果锅笔记',
+    img: 'https://shixindea.github.io/guoguo-notes/assets/logo-C3kglBc_.png',
+    url: 'https://shixindea.github.io/guoguo-notes/',
+    slogan: "Yuan Guoguo's Personal Notes",
+    slogan_cn: '袁果锅个人笔记',
+    banner_img:
+      'https://aliyxd.oss-cn-beijing.aliyuncs.com/guoguo-notes/guoguo_note_logo_banner.jpeg',
+  },
+  {
+    name: '广告位恰饭',
+    img: 'https://aliyxd.oss-cn-beijing.aliyuncs.com/guoguo-notes/element-promax-guanggaowei.png',
+    url: 'https://shixindea.github.io/guoguo-notes/',
     slogan: 'Enterprise-level low-code development platform',
-    slogan_cn: '企业级全栈低代码开发平台',
-    banner_img: '/images/mele-banner.png',
-  },
-  {
-    name: 'VForm',
-    img: '/images/vform.png',
-    url: 'https://vform666.com/',
-    slogan: 'Vue 2/3 Visual/Low-Code Forms',
-    slogan_cn: 'Vue 2/3 可视化低代码表单',
-    banner_img: '/images/vform-banner.png',
-  },
-  {
-    name: 'JNPF',
-    img: '/images/jnpf_index.png',
-    url: 'https://www.jnpfsoft.com/index.html?from=elementUI',
-    slogan: 'JNPF low code development platform to develop simple!',
-    slogan_cn: 'JNPF 低代码开发平台，让开发变得简单！',
-    className: 'jnpf',
-    banner_img: '/images/jnpfsoft.png',
+    slogan_cn: 'Advertising space is perfect for meals',
+    banner_img:
+      'https://aliyxd.oss-cn-beijing.aliyuncs.com/guoguo-notes/element-promax-guanggaowei.png',
   },
 ]
 

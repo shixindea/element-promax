@@ -13,8 +13,21 @@
     : defaultLang
   localStorage.setItem(cacheKey, language)
   userPreferredLang = language
-  if (!location.pathname.startsWith(`/${userPreferredLang}`)) {
-    const toPath = [`/${userPreferredLang}`]
+  // if (!location.pathname.startsWith(`/${userPreferredLang}`)) {
+  //   const toPath = [`/${userPreferredLang}`]
+  //     .concat(location.pathname.split('/').slice(2))
+  //     .join('/')
+  //   console.log(toPath, 'toPath')
+  //   location.pathname =
+  //     toPath.endsWith('.html') || toPath.endsWith('/')
+  //       ? toPath
+  //       : toPath.concat('/')
+  // }
+
+  if (
+    !location.pathname.startsWith(`/element-promax-docs/${userPreferredLang}`)
+  ) {
+    const toPath = [`/element-promax-docs/${userPreferredLang}`]
       .concat(location.pathname.split('/').slice(2))
       .join('/')
     location.pathname =

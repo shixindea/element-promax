@@ -88,13 +88,13 @@ export const head: HeadConfig[] = [
   ],
 
   ['script', {}, fs.readFileSync(path.resolve(vpRoot, 'lang.js'), 'utf-8')],
-  [
-    'script',
-    {
-      async: 'true',
-      src: 'https://www.googletagmanager.com/gtag/js?id=UA-175337989-1',
-    },
-  ],
+  // [
+  //   'script',
+  //   {
+  //     async: 'true',
+  //     src: 'https://www.googletagmanager.com/gtag/js?id=UA-175337989-1',
+  //   },
+  // ],
   [
     'script',
     {},

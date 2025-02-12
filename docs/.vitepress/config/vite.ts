@@ -73,15 +73,14 @@ export const getViteConfig = ({ mode }: { mode: string }): ViteConfig => {
     resolve: {
       alias,
     },
+    base: '/element-promax-docs/',
     plugins: [
       vueJsx(),
 
       // https://github.com/antfu/unplugin-vue-components
       Components({
         dirs: ['.vitepress/vitepress/components'],
-
         allowOverrides: true,
-
         // custom resolvers
         resolvers: [
           // auto import icons

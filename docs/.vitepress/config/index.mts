@@ -40,17 +40,25 @@ const buildTransformers = () => {
 
 consola.debug(`DOC_ENV: ${process.env.DOC_ENV}`)
 
-const locales = {}
-languages.forEach((lang) => {
-  locales[`/${lang}`] = {
-    label: lang,
-    lang,
-  }
-})
+console.log(process.env, process.env.NODE_ENV, process.env.DOC_ENV, 'process.env.DOC_ENV')
+
+const locales = {
+  '/element-promax-docs/en-US/': {
+    label: 'en-US',
+    lang: 'en-US',
+  },
+}
+
+// languages.forEach((lang) => {
+//   locales[`/${lang}`] = {
+//     label: lang,
+//     lang,
+//   }
+// })
 
 const setupConfig = (configEnv) => {
   const config: UserConfig<any> = {
-    title: 'Element Plus',
+    title: 'Element ProMax',
     description: 'A Vue 3 based component library for designers and developers',
     lastUpdated: true,
     head,
@@ -61,7 +69,6 @@ const setupConfig = (configEnv) => {
 
       editLinks: true,
       editLinkText: 'Edit this page on GitHub',
-
       logo: '/images/element-plus-logo.svg',
       logoSmall: '/images/element-plus-logo-small.svg',
       sidebars,
@@ -74,6 +81,8 @@ const setupConfig = (configEnv) => {
       langs: languages,
     },
     locales,
+    // base: process.env.NODE_ENV === 'production' ? '/element-plus-docs/' : '/',
+    base: '/element-promax-docs/',
     vite: getViteConfig(configEnv),
     markdown: {
       config: (md) => mdPlugin(md),
