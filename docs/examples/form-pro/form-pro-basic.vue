@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { h, onMounted } from 'vue'
 import ElFormPro, { useForm } from '@element-plus/components/form-pro'
 const [theFormPro, { setProps: setFormProProps }] = useForm()
 // 数据: FormProSchema
@@ -54,8 +54,16 @@ const onGetSchemaData = () => {
         field: 'rate',
         components: 'Rate',
         label: 'Rate 评分',
+        end: () => {
+          return h('div', {}, '达人需在该时间段内发布视频，否则无法获取佣金')
+        },
+        after: () => {
+          return h('div', () => 'after内容')
+        },
+        before: () => {
+          return h('div', () => 'before内容')
+        },
       },
-
       {
         field: 'Avatar',
         components: 'Avatar',

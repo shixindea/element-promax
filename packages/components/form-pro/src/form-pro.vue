@@ -17,15 +17,12 @@
         </ElSpace>
       </ElCol>
       <ElCol v-bind="theProps.wrapperCol">
-        <!-- 兼容Element Plus 组件  :key="theSchema.field || theSchema.components + index"  -->
         <FormItem
           v-if="theSchema.components != THE_COMP_TYPE.SLOT"
           v-bind="theSchema"
           v-model="theSchema.modelValue"
         />
-        <!-- 用户可自定义组件 -->
         <div v-if="theSchema.components == THE_COMP_TYPE.SLOT">
-          <!-- {{ theSlots[theSchema.slotName] }} -->
           <slot
             :name="theSchema.slotName"
             v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
@@ -34,14 +31,10 @@
         </div>
         <!-- 利用 h函数 组件 -->
         <div v-if="!!theSchema.end">
-          <!-- {{ theSlots[theSchema.slotName] }} -->
-          end 利用 h函数 组件
-          <!-- <slot
-            :name="theSchema.slotName"
-            v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
-            :model="thePropsModelValue"
-          /> -->
+          <div v-html="theSchema.endToHtml" />
         </div>
+        <div v-if="!!theSchema.after">after</div>
+        <div v-if="!!theSchema.before">before</div>
       </ElCol>
     </ElRow>
     <ElRow v-if="theProps?.showFooter" v-bind="theProps.rowOptions">
@@ -53,13 +46,11 @@
         </ElSpace>
       </ElCol>
     </ElRow>
-
-    <!-- {{ thePropsSchemas }} -->
   </ElSpace>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, render, watch } from 'vue'
 import AsyncValidator from 'async-validator'
 import ElButton from '@element-plus/components/button'
 import ElCol from '@element-plus/components/col'
@@ -173,6 +164,15 @@ const onReset = () => {
   })
 }
 // 重置 end
+
+// 将 VNode 转换为 HTML 的方法 start
+const convertVNodeToHtml = (vnode: any) => {
+  const container = document.createElement('div')
+  render(vnode, container)
+  return container.innerHTML
+}
+// 将 VNode 转换为 HTML 的方法 end
+
 // 重新渲染数据 start
 const onRenderData = () => {
   thePropsModelValue.value = onGetModelValue()
@@ -194,13 +194,10 @@ const onRenderData = () => {
     theSchema.isRequiredStar = theSchema?.dynamicRules
       ? theSchema.dynamicRules(thePropsSchemas.value).required
       : false
-    /** 处理检验逻辑 */
-    // theSchema.slots =
-    //   theSchema?.components === THE_COMP_TYPE.SLOT && !!theSlots
-    //     ? theSlots[theSchema.slotName]
-    //     : {}
-
-    // console.log(useSlots().slotANode(), 'useSlots')
+    /** 处理end */
+    if (theSchema?.end) {
+      theSchema.endToHtml = convertVNodeToHtml(theSchema.end())
+    }
   })
 }
 // 重新渲染数据 end

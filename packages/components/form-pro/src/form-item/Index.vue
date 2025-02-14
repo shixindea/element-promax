@@ -183,11 +183,6 @@
       />
     </template>
 
-    <!-- 插槽在form-pro.vue 文件中兼容 -->
-
-    <!-- end 函数 -->
-    <CompEnd v-if="!!theProps.end" :comp-info="theProps.end" />
-
     <div v-if="theProps.message != ''">
       <el-text class="mx-1" type="danger">
         {{ theProps.message }}
@@ -219,7 +214,6 @@ import ElCheckbox, {
   ElCheckboxGroup,
 } from '@element-plus/components/checkbox'
 import { THE_COMP_TYPE } from '../conf'
-import CompEnd from '../slot/comp-end.vue'
 
 const theProps = defineProps({
   field: { type: String },

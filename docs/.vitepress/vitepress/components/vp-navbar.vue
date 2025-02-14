@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { inBrowser, useData } from 'vitepress'
+import { useData } from 'vitepress'
 
 import VPNavbarSearch from './navbar/vp-search.vue'
 import VPNavbarMenu from './navbar/vp-menu.vue'
@@ -15,25 +14,14 @@ defineProps<{
 
 defineEmits(['toggle'])
 
-const { theme, page } = useData()
-
-const currentLink = computed(() => {
-  if (!inBrowser) {
-    return `/${page.value?.frontmatter?.lang || ''}/`
-  }
-  const existLangIndex = theme.value.langs.findIndex((lang) =>
-    window?.location?.pathname.startsWith(`/${lang}`)
-  )
-
-  return existLangIndex === -1 ? '/' : `/${theme.value.langs[existLangIndex]}/`
-})
+const { theme } = useData()
 </script>
 
 <template>
   <div class="navbar-wrapper">
     <div class="header-container">
       <div class="logo-container">
-        <a :href="currentLink">
+        <a href="/element-promax-docs/en-US">
           <img
             class="logo"
             src="/images/element-plus-logo.svg"
