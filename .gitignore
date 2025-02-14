@@ -20,3 +20,7 @@ cypress/screenshots/*
 cypress/videos/*
 tmp
 docs/.vitepress/cache
+
+
+build_docs.sh
+build.sh

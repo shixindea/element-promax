@@ -7,6 +7,9 @@
 <script setup lang="ts">
 import { h, onMounted } from 'vue'
 import ElFormPro, { useForm } from '@element-plus/components/form-pro'
+// 使用组件库请使用下方注释代码
+// import { useForm } from '@shixinde/element-promax'
+
 const [theFormPro, { setProps: setFormProProps }] = useForm()
 // 数据: FormProSchema
 const onGetSchemaData = () => {

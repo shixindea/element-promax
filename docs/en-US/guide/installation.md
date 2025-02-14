@@ -2,7 +2,6 @@
 title: Installation
 lang: en-US
 ---
-
 # Installation
 
 ## Compatibility ^(2.5.0)
@@ -13,10 +12,11 @@ If you really need to support outdated browsers, please add [Babel](https://babe
 
 Since Vue 3 no longer supports IE11, Element Plus does not support IE either.
 
+
 | version | ![Chrome](https://cdn.jsdelivr.net/npm/@browser-logos/chrome/chrome_32x32.png) <br> Chrome | ![IE](https://cdn.jsdelivr.net/npm/@browser-logos/edge/edge_32x32.png) <br> Edge | ![Firefox](https://cdn.jsdelivr.net/npm/@browser-logos/firefox/firefox_32x32.png) <br> Firefox | ![Safari](https://cdn.jsdelivr.net/npm/@browser-logos/safari/safari_32x32.png) <br> Safari |
 | ------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| < 2.5.0 | Chrome ≥ 64                                                                                | Edge ≥ 79                                                                        | Firefox ≥ 78                                                                                   | Safari ≥ 12                                                                                |
-| 2.5.0 + | Chrome ≥ 85                                                                                | Edge ≥ 85                                                                        | Firefox ≥ 79                                                                                   | Safari ≥ 14.1                                                                              |
+| < 2.5.0 | Chrome ≥ 64                                                                               | Edge ≥ 79                                                                       | Firefox ≥ 78                                                                                  | Safari ≥ 12                                                                               |
+| 2.5.0 + | Chrome ≥ 85                                                                               | Edge ≥ 85                                                                       | Firefox ≥ 79                                                                                  | Safari ≥ 14.1                                                                             |
 
 ### Sass
 
@@ -48,16 +48,16 @@ Choose a package manager you like.
 
 ::: code-group
 
-```shell [npm]
-$ npm install element-plus --save
+```shell
+$ npm install @shixinde/element-promax --save
 ```
 
-```shell [yarn]
-$ yarn add element-plus
+```shell
+$ yarn add @shixinde/element-promax
 ```
 
-```shell [pnpm]
-$ pnpm install element-plus
+```shell
+$ pnpm install @shixinde/element-promax
 ```
 
 :::
