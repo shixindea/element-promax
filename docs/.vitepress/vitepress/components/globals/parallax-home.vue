@@ -116,7 +116,7 @@ useEventListener(window, 'scroll', handleScroll)
   <div ref="target" class="home-page">
     <div class="banner" text="center">
       <div class="banner-desc">
-        <h1>{{ homeLang['title'] }}</h1>
+        <h1>Element ProMax</h1>
         <p>{{ homeLang['title_sub'] }}</p>
       </div>
     </div>

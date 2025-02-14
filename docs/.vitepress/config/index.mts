@@ -40,8 +40,6 @@ const buildTransformers = () => {
 
 consola.debug(`DOC_ENV: ${process.env.DOC_ENV}`)
 
-console.log(process.env, process.env.NODE_ENV, process.env.DOC_ENV, 'process.env.DOC_ENV')
-
 const locales = {
   '/element-promax-docs/en-US/': {
     label: 'en-US',

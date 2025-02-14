@@ -26,7 +26,7 @@ const config = reactive({
       :offset="config.offset"
     >
       <div class="demo">
-        <h1>Element Plus</h1>
+        <h1>Element ProMax</h1>
         <h2>A Vue 3 based component library for designers and developers</h2>
         <img src="/images/hamburger.png" alt="示例图片" />
       </div>
