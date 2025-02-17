@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { h, onMounted } from 'vue'
+// import ElFormPro, { useForm } from '@shixinde/element-promax'
 import ElFormPro, { useForm } from '@element-plus/components/form-pro'
 // 使用组件库请使用下方注释代码
 // import { useForm } from '@shixinde/element-promax'
@@ -57,14 +58,23 @@ const onGetSchemaData = () => {
         field: 'rate',
         components: 'Rate',
         label: 'Rate 评分',
-        end: () => {
-          return h('div', {}, '达人需在该时间段内发布视频，否则无法获取佣金')
-        },
+
         after: () => {
-          return h('div', () => 'after内容')
+          return h('div', {}, 'after内容')
         },
         before: () => {
-          return h('div', () => 'before内容')
+          return h('div', {}, 'before内容')
+        },
+        end: () => {
+          return h(
+            'div',
+            {
+              style: {
+                color: 'red',
+              },
+            },
+            '零落梅花过残腊，故园归醉及新年。'
+          )
         },
       },
       {

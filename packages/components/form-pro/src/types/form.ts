@@ -12,6 +12,8 @@ export interface FormSchema {
   componentProps?: any
   slotName: string
   end: object
+  before: object
+  after: object
 }
 
 export interface FormProSchema {

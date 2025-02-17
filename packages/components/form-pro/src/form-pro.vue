@@ -17,24 +17,35 @@
         </ElSpace>
       </ElCol>
       <ElCol v-bind="theProps.wrapperCol">
-        <FormItem
-          v-if="theSchema.components != THE_COMP_TYPE.SLOT"
-          v-bind="theSchema"
-          v-model="theSchema.modelValue"
-        />
-        <div v-if="theSchema.components == THE_COMP_TYPE.SLOT">
-          <slot
-            :name="theSchema.slotName"
-            v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
-            :model="thePropsModelValue"
-          />
+        <div style="display: flex; align-items: flex-start">
+          <!-- 左侧 -->
+
+          <template v-if="!!theSchema.before">
+            <component :is="theSchema.before" />
+          </template>
+          <!-- 中间部分 -->
+          <div>
+            <FormItem
+              v-if="theSchema.components != THE_COMP_TYPE.SLOT"
+              v-bind="theSchema"
+              v-model="theSchema.modelValue"
+            />
+            <div v-if="theSchema.components == THE_COMP_TYPE.SLOT">
+              <slot
+                :name="theSchema.slotName"
+                v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
+                :model="thePropsModelValue"
+              />
+            </div>
+            <template v-if="!!theSchema.end">
+              <component :is="theSchema.end" />
+            </template>
+          </div>
+          <!-- 右侧 -->
+          <template v-if="!!theSchema.after">
+            <component :is="theSchema.after" />
+          </template>
         </div>
-        <!-- 利用 h函数 组件 -->
-        <div v-if="!!theSchema.end">
-          <div v-html="theSchema.endToHtml" />
-        </div>
-        <div v-if="!!theSchema.after">after</div>
-        <div v-if="!!theSchema.before">before</div>
       </ElCol>
     </ElRow>
     <ElRow v-if="theProps?.showFooter" v-bind="theProps.rowOptions">
@@ -50,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, render, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import AsyncValidator from 'async-validator'
 import ElButton from '@element-plus/components/button'
 import ElCol from '@element-plus/components/col'
@@ -165,19 +176,11 @@ const onReset = () => {
 }
 // 重置 end
 
-// 将 VNode 转换为 HTML 的方法 start
-const convertVNodeToHtml = (vnode: any) => {
-  const container = document.createElement('div')
-  render(vnode, container)
-  return container.innerHTML
-}
-// 将 VNode 转换为 HTML 的方法 end
-
 // 重新渲染数据 start
 const onRenderData = () => {
   thePropsModelValue.value = onGetModelValue()
 
-  thePropsSchemas.value.forEach((theSchema: any) => {
+  thePropsSchemas.value.forEach(async (theSchema: any) => {
     /** 处理动态值 */
     theSchema.modelValue = thePropsSchemas.value.find(
       (item: any) => item.field === theSchema.field
@@ -194,10 +197,6 @@ const onRenderData = () => {
     theSchema.isRequiredStar = theSchema?.dynamicRules
       ? theSchema.dynamicRules(thePropsSchemas.value).required
       : false
-    /** 处理end */
-    if (theSchema?.end) {
-      theSchema.endToHtml = convertVNodeToHtml(theSchema.end())
-    }
   })
 }
 // 重新渲染数据 end
@@ -271,7 +270,12 @@ defineExpose({
 watch(
   () => thePropsSchemas.value,
   () => {
-    onRenderData()
+    try {
+      onRenderData()
+    } catch (error) {
+      console.error('onRenderData 渲染报错:', error)
+      // 可以在这里添加更多的错误处理逻辑
+    }
   },
   {
     deep: true,
