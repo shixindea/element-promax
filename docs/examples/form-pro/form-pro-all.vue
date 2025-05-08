@@ -210,6 +210,9 @@ const onGetSchemaData = () => {
         components: 'Select',
         label: '显示子组件',
         componentProps: {
+          style: {
+            width: '300px',
+          },
           placeholder: '测试使用componentProps --  Select a value',
           options: [
             {
@@ -340,6 +343,9 @@ const onGetSchemaData = () => {
         components: 'Slider',
         label: 'slider 滑块',
         componentProps: {
+          style: {
+            width: '600px',
+          },
           showInput: true,
         },
       },
@@ -362,6 +368,9 @@ const onGetSchemaData = () => {
         label: 'TreeSelect 树型选择',
         componentProps: {
           'render-after-expand': false,
+          style: {
+            width: '300px',
+          },
           data: [
             {
               value: '1',

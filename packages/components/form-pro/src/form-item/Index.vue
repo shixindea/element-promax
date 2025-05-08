@@ -269,7 +269,14 @@ watch(
   }
 )
 
-const thePropsModelValue = ref(theProps.modelValue)
+const thePropsModelValue = ref(
+  theProps.modelValue
+    ? theProps.modelValue
+    : theProps.components === THE_COMP_TYPE.CHECKBOXGROUP ||
+      theProps.components === THE_COMP_TYPE.CHECKBOXBUTTON
+    ? []
+    : theProps.modelValue
+)
 const theEmits = defineEmits(['update:modelValue'])
 const onUpdateValue = (value: any, theCompType: string) => {
   // 如果只需要值 就直接返回值
