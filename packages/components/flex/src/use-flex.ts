@@ -30,7 +30,7 @@ export function useFlex(props: FlexProps) {
     const theStyle = ['display: flex', alignment, justify, gap, props.style]
     props.wrap && theStyle.push('flex-wrap: wrap')
     props.row && theStyle.push('flex-direction: row')
-    props.cloumn && theStyle.push('flex-direction: column')
+    props.column && theStyle.push('flex-direction: column')
     props.direction == 'vertical' && theStyle.push('flex-direction: column')
     props.spaceBetween && theStyle.push('justify-content: space-between')
     props.alignCenter && theStyle.push('align-items: center')

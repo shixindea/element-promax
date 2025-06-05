@@ -71,7 +71,7 @@ export const flexProps = buildProps({
     type: [String, Number],
     default: 0,
   },
-  cloumn: Boolean,
+  column: Boolean,
   row: Boolean,
   wrap: Boolean,
   spaceBetween: Boolean,
