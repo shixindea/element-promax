@@ -84,3 +84,5 @@ export * from './message'
 export * from './message-box'
 export * from './notification'
 export * from './popover'
+
+export * from './flex'

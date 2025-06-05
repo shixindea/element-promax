@@ -11,6 +11,7 @@ import {
 import { ElButton, ElButtonGroup } from '@element-plus/components/button'
 import { ElCalendar } from '@element-plus/components/calendar'
 import { ElCard } from '@element-plus/components/card'
+import { ElFlex } from '@element-plus/components/flex'
 import { ElCarousel, ElCarouselItem } from '@element-plus/components/carousel'
 import { ElCascader } from '@element-plus/components/cascader'
 import { ElCascaderPanel } from '@element-plus/components/cascader-panel'
@@ -220,4 +221,6 @@ export default [
   ElAnchorLink,
   ElSegmented,
   ElMention,
+
+  ElFlex,
 ] as Plugin[]

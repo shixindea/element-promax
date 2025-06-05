@@ -8,6 +8,19 @@
       }
     ]
   },
+  "Guoguo": {
+    "text": "Guoguo开发",
+    "children": [
+      {
+        "link": "/form-pro",
+        "text": "FormPro"
+      },
+      {
+        "link": "/flex",
+        "text": "Flex"
+      }
+    ]
+  },
   "basic": {
     "text": "Basic",
     "children": [
@@ -51,6 +64,10 @@
       {
         "link": "/space",
         "text": "Space"
+      },
+      {
+        "link": "/flex",
+        "text": "Flex"
       },
       {
         "link": "/typography",
