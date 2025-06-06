@@ -1,10 +1,9 @@
+<!-- @format -->
+
 <template>
   <div>
-    <!-- v-bind="onGetSchemaData()" -->
     <el-form-pro @register="theFormPro" @submit="onHandleSubmit">
       <template #slotANode="{ model }">
-        <!-- 
-        style="width: 100px; height: 100px; background-color: pink" -->
         <div @click="model.nickname = '1'">
           插槽1[点击修改nickname值]{{ model }}
         </div>
@@ -43,7 +42,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 // import { ElFormPro } from '@element-plus/components/form-pro'
-import ElFormPro, { useForm } from '@element-plus/components/form-pro'
+import ElFormPro, { useFormPro } from '@element-plus/components/form-pro'
 import ElSpace from '@element-plus/components/space'
 import ElButton from '@element-plus/components/button'
 const [
@@ -69,7 +68,7 @@ const [
     // updateSchema,
     // removeSchemaByFiled,
   },
-] = useForm()
+] = useFormPro()
 
 // import type { FormProSchema } from '@element-plus/components/form-pro'
 
@@ -458,15 +457,6 @@ const onGetSchemaData = () => {
     ...theLayoutData,
   }
 }
-
-// const theFormPro = ref()
-
-// console.log('111 ===>', 111)
-
-// console.log('useFormPro(theFormPro.value) ===>', useFormPro(theFormPro.value))
-
-// const { setProps: setFormProProps } = useFormPro(theFormPro.value)
-
 const onHandleSubmit = (e: any, e2: any) => {
   console.log('onHandleSubmit ===>', e, e2)
 }
@@ -487,9 +477,5 @@ const onSetFormProFieldsValue = () => {
 }
 onMounted(() => {
   setFormProProps(onGetSchemaData())
-  // console.log('theFormPro.value ===>', theFormPro.value)
-  // useFormPro(666666666)
-  // console.log('theFormPro.value ===>')
-  // setFormProProps(onGetSchemaData())
 })
 </script>

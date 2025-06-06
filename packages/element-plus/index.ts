@@ -10,3 +10,4 @@ export const version = installer.version
 export default installer
 
 export { default as dayjs } from 'dayjs'
+export { useFormPro } from '@element-plus/components/form-pro/index'

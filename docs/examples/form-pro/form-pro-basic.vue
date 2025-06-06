@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <template>
   <div>
     <el-form-pro @register="theFormPro" @submit="onHandleSubmit" />
@@ -6,12 +8,12 @@
 
 <script setup lang="ts">
 import { h, onMounted } from 'vue'
-// import ElFormPro, { useForm } from '@shixinde/element-promax'
-import ElFormPro, { useForm } from '@element-plus/components/form-pro'
+// import ElFormPro, { useFormPro } from '@shixinde/element-promax'
+import ElFormPro, { useFormPro } from '@element-plus/components/form-pro'
 // 使用组件库请使用下方注释代码
-// import { useForm } from '@shixinde/element-promax'
+// import { useFormPro } from '@shixinde/element-promax'
 
-const [theFormPro, { setProps: setFormProProps }] = useForm()
+const [theFormPro, { setProps: setFormProProps }] = useFormPro()
 // 数据: FormProSchema
 const onGetSchemaData = () => {
   return {

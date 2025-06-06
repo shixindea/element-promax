@@ -3,7 +3,7 @@ import type { FormActionType, UseFormReturnType } from './types/form'
 import type { FormProProps } from './props'
 
 // any FormActionType
-export function useForm(): UseFormReturnType {
+export function useFormPro(): UseFormReturnType {
   const formRef: any = ref(null)
 
   async function getForm() {

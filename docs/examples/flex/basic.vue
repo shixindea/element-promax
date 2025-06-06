@@ -26,7 +26,7 @@
         border-radius: 2px;
       "
     >
-      G
+      袁果锅
     </el-flex>
     <el-flex
       center
@@ -37,7 +37,7 @@
         border-radius: 2px;
       "
     >
-      G
+      袁果锅
     </el-flex>
   </el-flex>
 
