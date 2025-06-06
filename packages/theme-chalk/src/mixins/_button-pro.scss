@@ -4,8 +4,8 @@
 @use '../mixins/function' as *;
 @use '../common/var' as *;
 
-@mixin button-plain($type) {
-  $button-color-types: (
+@mixin button-pro-plain($type) {
+  $button-pro-color-types: (
     '': (
       'text-color': (
         'color',
@@ -44,9 +44,9 @@
     ),
   );
 
-  @each $type, $typeMap in $button-color-types {
+  @each $type, $typeMap in $button-pro-color-types {
     @each $typeColor, $list in $typeMap {
-      @include css-var-from-global(('button', $type, $typeColor), $list);
+      @include css-var-from-global(('color', $type, $typeColor), $list);
     }
   }
 
@@ -62,14 +62,18 @@
   }
 }
 
-@mixin button-variant($type) {
-  $button-color-types: (
+@mixin button-pro-variant($type) {
+  $button-pro-color-types: (
     '': (
       'text-color': (
         'color',
         'white',
       ),
       'bg-color': (
+        'color',
+        $type,
+      ),
+      'box-shadow': (
         'color',
         $type,
       ),
@@ -139,20 +143,20 @@
     ),
   );
 
-  @each $type, $typeMap in $button-color-types {
+  @each $type, $typeMap in $button-pro-color-types {
     @each $typeColor, $list in $typeMap {
-      @include css-var-from-global(('button', $type, $typeColor), $list);
+      @include css-var-from-global(('color', $type, $typeColor), $list);
     }
   }
 
   &.is-plain,
   &.is-text,
   &.is-link {
-    @include button-plain($type);
+    @include button-pro-plain($type);
   }
 }
 
-@mixin button-size(
+@mixin button-pro-size(
   $padding-vertical,
   $padding-horizontal,
   $font-size,

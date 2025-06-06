@@ -18,6 +18,10 @@
       {
         "link": "/flex",
         "text": "Flex"
+      },
+      {
+        "link": "/button-pro",
+        "text": "ButtonPro"
       }
     ]
   },

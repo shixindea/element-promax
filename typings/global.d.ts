@@ -42,7 +42,6 @@ declare module 'vue' {
     ElFooter: typeof import('element-plus')['ElFooter']
     ElForm: typeof import('element-plus')['ElForm']
     ElFormItem: typeof import('element-plus')['ElFormItem']
-    ElFormPro: typeof import('element-plus')['ElFormPro']
     ElHeader: typeof import('element-plus')['ElHeader']
     ElIcon: typeof import('element-plus')['ElIcon']
     ElImage: typeof import('element-plus')['ElImage']
@@ -107,6 +106,11 @@ declare module 'vue' {
     ElTourStep: typeof import('element-plus')['ElTourStep']
     ElSegmented: typeof import('element-plus')['ElSegmented']
     ElMention: typeof import('element-plus')['ElMention']
+
+    ElFlex: typeof import('element-plus')['ElFlex']
+    ElFormPro: typeof import('element-plus')['ElFormPro']
+    ElButtonPro: typeof import('element-plus')['ElButtonPro']
+    ElButtonProGroup: typeof import('element-plus')['ElButtonProGroup']
   }
 
   interface ComponentCustomProperties {

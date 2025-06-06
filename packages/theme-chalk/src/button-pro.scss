@@ -1,0 +1,476 @@
+/** @format */
+
+@use 'sass:map';
+
+@use 'common/var' as *;
+@use 'mixins/button-pro' as *;
+@use 'mixins/button-pro-styles' as *;
+@use 'mixins/mixins' as *;
+@use 'mixins/utils' as *;
+@use 'mixins/var' as *;
+
+$button-pro-icon-span-gap: () !default;
+$button-pro-icon-span-gap: map.merge(
+  (
+    'large': 8px,
+    'default': 6px,
+    'small': 4px,
+  ),
+  $button-pro-icon-span-gap
+);
+
+@include b(button-pro) {
+  @include set-component-css-var('button-pro', $button-pro);
+}
+
+@include b(button-pro) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  line-height: 1;
+  // min-height will expand when in flex
+  height: map.get($input-height, 'default');
+  white-space: nowrap;
+  cursor: pointer;
+  color: getCssVar('button-pro', 'text-color');
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: getCssVar('button-pro', 'font-weight');
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: getCssVar('button-pro', 'bg-color');
+  border: getCssVar('border');
+  border-color: getCssVar('button-pro', 'border-color');
+
+  &:hover {
+    color: getCssVar('button-pro', 'hover', 'text-color');
+    border-color: getCssVar('button-pro', 'hover', 'border-color');
+    background-color: getCssVar('button-pro', 'hover', 'bg-color');
+    outline: none;
+  }
+
+  &:active {
+    color: getCssVar('button-pro', 'active', 'text-color');
+    border-color: getCssVar('button-pro', 'active', 'border-color');
+    background-color: getCssVar('button-pro', 'active', 'bg-color');
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid getCssVar('button-pro', 'outline-color');
+    outline-offset: 1px;
+    transition: outline-offset 0s, outline 0s;
+  }
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  & + & {
+    margin-left: 12px;
+  }
+
+  & {
+    @include button-pro-size(
+      map.get($button-pro-padding-vertical, 'default') -
+        $button-pro-border-width,
+      map.get($button-pro-padding-horizontal, 'default') -
+        $button-pro-border-width,
+      map.get($button-pro-font-size, 'default'),
+      20px
+    );
+    transition: all 0.3s ease;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  & [class*='#{$namespace}-icon'] {
+    & + span {
+      margin-left: map.get($button-pro-icon-span-gap, 'default');
+    }
+    svg {
+      vertical-align: bottom;
+    }
+  }
+
+  @include when(plain) {
+    @include css-var-from-global(
+      ('button-pro', 'hover', 'text-color'),
+      ('color', 'primary')
+    );
+    @include css-var-from-global(
+      ('button-pro', 'hover', 'bg-color'),
+      ('fill-color', 'blank')
+    );
+    @include css-var-from-global(
+      ('button-pro', 'hover', 'border-color'),
+      ('color', 'primary')
+    );
+  }
+
+  @include when(active) {
+    color: getCssVar('button-pro', 'active', 'text-color');
+    border-color: getCssVar('button-pro', 'active', 'border-color');
+    background-color: getCssVar('button-pro', 'active', 'bg-color');
+    outline: none;
+  }
+
+  @include when(disabled) {
+    &,
+    &:hover {
+      color: getCssVar('button-pro', 'disabled', 'text-color');
+      cursor: not-allowed;
+      background-image: none;
+      background-color: getCssVar('button-pro', 'disabled', 'bg-color');
+      border-color: getCssVar('button-pro', 'disabled', 'border-color');
+    }
+  }
+
+  @include when(loading) {
+    position: relative;
+    pointer-events: none;
+
+    &:before {
+      // mask the button-pro
+      z-index: 1;
+      pointer-events: none;
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: -1px;
+      right: -1px;
+      bottom: -1px;
+      border-radius: inherit;
+      background-color: getCssVar('mask-color', 'extra-light');
+    }
+  }
+  @include when(round) {
+    border-radius: getCssVar('border-radius', 'round');
+  }
+  @include when(circle) {
+    width: map.get($input-height, 'default');
+    border-radius: 50%;
+    padding: map.get($button-pro-padding-vertical, 'default') -
+      $button-pro-border-width;
+  }
+
+  @include when(text) {
+    color: getCssVar('button-pro', 'text-color');
+    border: 0 solid transparent;
+    background-color: transparent;
+
+    @include when(disabled) {
+      color: getCssVar('button-pro', 'disabled', 'text-color');
+      background-color: transparent !important;
+    }
+
+    &:not(.is-disabled) {
+      &:hover {
+        background-color: getCssVar('fill-color', 'light');
+      }
+
+      &:focus-visible {
+        outline: 2px solid getCssVar('button-pro', 'outline-color');
+        outline-offset: 1px;
+        transition: outline-offset 0s, outline 0s;
+      }
+
+      &:active {
+        background-color: getCssVar('fill-color');
+      }
+
+      @include when(has-bg) {
+        background-color: getCssVar('fill-color', 'light');
+
+        &:hover {
+          background-color: getCssVar('fill-color');
+        }
+
+        &:active {
+          background-color: getCssVar('fill-color', 'dark');
+        }
+      }
+    }
+  }
+
+  @include e(text) {
+    @include m(expand) {
+      letter-spacing: 0.3em;
+      margin-right: -0.3em;
+    }
+  }
+
+  @include when(link) {
+    border-color: transparent;
+    color: getCssVar('button-pro', 'text-color');
+    background: transparent;
+    padding: 2px;
+    height: auto;
+
+    &:hover {
+      color: getCssVar('button-pro', 'hover', 'link-text-color');
+    }
+
+    @include when(disabled) {
+      color: getCssVar('button-pro', 'disabled', 'text-color');
+      background-color: transparent !important;
+      border-color: transparent !important;
+    }
+
+    &:not(.is-disabled) {
+      &:hover {
+        border-color: transparent;
+        background-color: transparent;
+      }
+
+      &:active {
+        color: getCssVar('button-pro', 'active-color');
+        border-color: transparent;
+        background-color: transparent;
+      }
+    }
+  }
+
+  @include m(text) {
+    border-color: transparent;
+    background: transparent;
+    color: getCssVar('color', 'primary');
+    padding-left: 0;
+    padding-right: 0;
+    @include when(disabled) {
+      color: getCssVar('button-pro', 'disabled', 'text-color');
+      background-color: transparent !important;
+      border-color: transparent !important;
+    }
+
+    &:not(.is-disabled) {
+      &:hover {
+        color: getCssVar('color', 'primary', 'light-3');
+        border-color: transparent;
+        background-color: transparent;
+      }
+
+      &:active {
+        color: getCssVar('color', 'primary', 'dark-2');
+        border-color: transparent;
+        background-color: transparent;
+      }
+    }
+  }
+
+  @include e(link) {
+    @include m(expand) {
+      letter-spacing: 0.3em;
+      margin-right: -0.3em;
+    }
+  }
+
+  @each $type in (primary, success, warning, danger, info) {
+    @include m($type) {
+      @include button-pro-variant($type);
+    }
+  }
+
+  @each $size in (large, small) {
+    @include m($size) {
+      @include set-css-var-value(
+        ('button-pro', 'size'),
+        map.get($input-height, $size)
+      );
+
+      height: getCssVar('button-pro', 'size');
+
+      & [class*='#{$namespace}-icon'] {
+        & + span {
+          margin-left: map.get($button-pro-icon-span-gap, $size);
+        }
+      }
+
+      & {
+        @include button-pro-size(
+          map.get($button-pro-padding-vertical, $size) -
+            $button-pro-border-width,
+          map.get($button-pro-padding-horizontal, $size) -
+            $button-pro-border-width,
+          map.get($button-pro-font-size, $size),
+          if($size == 'large', 24px, 18px)
+        );
+        transition: all 0.3s ease;
+      }
+
+      @include when(circle) {
+        width: getCssVar('button-pro', 'size');
+        padding: map.get($button-pro-padding-vertical, $size) -
+          $button-pro-border-width;
+      }
+    }
+  }
+
+  // 20种自定义按钮样式
+  @include m(3d) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-3d($type);
+      }
+    }
+  }
+
+  @include m(neon) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-neon($type);
+      }
+    }
+  }
+
+  @include m(gradient) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-gradient($type);
+      }
+    }
+  }
+
+  @include m(ripple) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-ripple($type);
+      }
+    }
+  }
+
+  @include m(border-animation) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-border-animation($type);
+      }
+    }
+  }
+
+  @include m(pulse) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-pulse($type);
+      }
+    }
+  }
+
+  @include m(float) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-float($type);
+      }
+    }
+  }
+
+  @include m(shine) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-shine($type);
+      }
+    }
+  }
+
+  @include m(outline) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-outline($type);
+      }
+    }
+  }
+
+  @include m(expand) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-expand($type);
+      }
+    }
+  }
+
+  @include m(shake) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-shake($type);
+      }
+    }
+  }
+
+  @include m(rotate-icon) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-rotate-icon($type);
+      }
+    }
+  }
+
+  @include m(bounce) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-bounce($type);
+      }
+    }
+  }
+
+  @include m(fold) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-fold($type);
+      }
+    }
+  }
+
+  @include m(slide) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-slide($type);
+      }
+    }
+  }
+
+  @include m(bubble) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-bubble($type);
+      }
+    }
+  }
+
+  @include m(blink) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-blink($type);
+      }
+    }
+  }
+
+  @include m(flip) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-flip($type);
+      }
+    }
+  }
+
+  @include m(shadow) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-shadow($type);
+      }
+    }
+  }
+
+  @include m(scale) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-scale($type);
+      }
+    }
+  }
+}

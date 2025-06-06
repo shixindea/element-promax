@@ -9,6 +9,10 @@ import {
   ElBreadcrumbItem,
 } from '@element-plus/components/breadcrumb'
 import { ElButton, ElButtonGroup } from '@element-plus/components/button'
+import {
+  ElButtonPro,
+  ElButtonProGroup,
+} from '@element-plus/components/button-pro'
 import { ElCalendar } from '@element-plus/components/calendar'
 import { ElCard } from '@element-plus/components/card'
 import { ElFlex } from '@element-plus/components/flex'
@@ -158,7 +162,6 @@ export default [
   ElEmpty,
   ElForm,
   ElFormItem,
-  ElFormPro,
   ElIcon,
   ElImage,
   ElImageViewer,
@@ -222,5 +225,9 @@ export default [
   ElSegmented,
   ElMention,
 
+  // 袁果锅 自定义组件
+  ElFormPro,
   ElFlex,
+  ElButtonPro,
+  ElButtonProGroup,
 ] as Plugin[]

@@ -1,4 +1,9 @@
-/* Element Chalk Variables */
+/**
+ * /* Element Chalk Variables
+ *
+ * @format
+ */
+
 @use 'sass:math';
 @use 'sass:map';
 @use 'sass:color';
@@ -1652,3 +1657,95 @@ $breakpoints-spec: (
   'lg-and-down': '(max-width: #{$xl - 1})',
   'xl-only': '(min-width: #{$xl})',
 ) !default;
+
+// Button-pro
+// css3 var in packages/theme-chalk/src/button-pro.scss
+$button-pro: () !default;
+$button-pro: map.merge(
+  (
+    'font-weight': getCssVar('font-weight-primary'),
+    'border-color': getCssVar('border-color'),
+    'bg-color': getCssVar('fill-color', 'blank'),
+    'text-color': getCssVar('text-color', 'regular'),
+    'disabled-text-color': getCssVar('disabled-text-color'),
+    'disabled-bg-color': getCssVar('fill-color', 'blank'),
+    'disabled-border-color': getCssVar('border-color-light'),
+    'divide-border-color': rgba($color-white, 0.5),
+    'hover-text-color': getCssVar('color-primary'),
+    'hover-bg-color': getCssVar('color-primary', 'light-9'),
+    'hover-border-color': getCssVar('color-primary-light-7'),
+    'active-text-color': getCssVar('button-pro-hover-text-color'),
+    'active-border-color': getCssVar('color-primary'),
+    'active-bg-color': getCssVar('button-pro', 'hover-bg-color'),
+    'outline-color': getCssVar('color-primary', 'light-5'),
+    'hover-link-text-color': getCssVar('text-color', 'secondary'),
+    'active-color': getCssVar('text-color', 'primary'),
+  ),
+  $button-pro
+);
+
+$button-pro-border-width: $border-width !default;
+
+// need mix, so do not use css var
+$button-pro-hover-tint-percent: 20%;
+$button-pro-active-shade-percent: 10%;
+
+$button-pro-border-color: () !default;
+$button-pro-bg-color: () !default;
+$button-pro-text-color: () !default;
+
+@each $type in $types {
+  $button-pro-border-color: map.merge(
+    (
+      $type: map.get($colors, $type, 'base'),
+    ),
+    $button-pro-border-color
+  ) !global;
+
+  $button-pro-bg-color: map.merge(
+    (
+      $type: map.get($colors, $type, 'base'),
+    ),
+    $button-pro-bg-color
+  ) !global;
+}
+
+$button-pro-font-size: () !default;
+$button-pro-font-size: map.merge(
+  (
+    'large': getCssVar('font-size', 'base'),
+    'default': getCssVar('font-size', 'base'),
+    'small': 12px,
+  ),
+  $button-pro-font-size
+);
+
+$button-pro-border-radius: () !default;
+$button-pro-border-radius: map.merge(
+  (
+    'large': getCssVar('border-radius', 'base'),
+    'default': getCssVar('border-radius', 'base'),
+    'small': calc(#{getCssVar('border-radius', 'base')} - 1px),
+  ),
+  $button-pro-border-radius
+);
+
+$button-pro-padding-vertical: () !default;
+$button-pro-padding-vertical: map.merge(
+  (
+    'large': 13px,
+    'default': 9px,
+    'small': 6px,
+  ),
+  $button-pro-padding-vertical
+);
+
+$button-pro-padding-horizontal: () !default;
+$button-pro-padding-horizontal: map.merge(
+  (
+    'large': 20px,
+    'default': 16px,
+    'small': 12px,
+  ),
+  $button-pro-padding-horizontal
+);

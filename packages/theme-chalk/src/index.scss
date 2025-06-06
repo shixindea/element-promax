@@ -1,3 +1,5 @@
+/** @format */
+
 @use './base.scss';
 // component styles
 @use './affix.scss';
@@ -109,3 +111,6 @@
 @use './anchor-link.scss';
 @use './segmented.scss';
 @use './mention.scss';
+
+// 袁果锅 自定义组件
+@use './button-pro.scss';
