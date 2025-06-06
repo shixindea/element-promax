@@ -33,35 +33,35 @@ $button-pro-icon-span-gap: map.merge(
   height: map.get($input-height, 'default');
   white-space: nowrap;
   cursor: pointer;
-  color: getCssVar('button-pro', 'text-color');
+  color: getCssVar('color', 'text-color');
   text-align: center;
   box-sizing: border-box;
   outline: none;
   transition: 0.1s;
-  font-weight: getCssVar('button-pro', 'font-weight');
+  font-weight: getCssVar('color', 'font-weight');
   user-select: none;
   vertical-align: middle;
   -webkit-appearance: none;
-  background-color: getCssVar('button-pro', 'bg-color');
+  background-color: getCssVar('color', 'bg-color');
   border: getCssVar('border');
-  border-color: getCssVar('button-pro', 'border-color');
+  border-color: getCssVar('color', 'border-color');
 
   &:hover {
-    color: getCssVar('button-pro', 'hover', 'text-color');
-    border-color: getCssVar('button-pro', 'hover', 'border-color');
-    background-color: getCssVar('button-pro', 'hover', 'bg-color');
+    color: getCssVar('color', 'hover', 'text-color');
+    border-color: getCssVar('color', 'hover', 'border-color');
+    background-color: getCssVar('color', 'hover', 'bg-color');
     outline: none;
   }
 
   &:active {
-    color: getCssVar('button-pro', 'active', 'text-color');
-    border-color: getCssVar('button-pro', 'active', 'border-color');
-    background-color: getCssVar('button-pro', 'active', 'bg-color');
+    color: getCssVar('color', 'active', 'text-color');
+    border-color: getCssVar('color', 'active', 'border-color');
+    background-color: getCssVar('color', 'active', 'bg-color');
     outline: none;
   }
 
   &:focus-visible {
-    outline: 2px solid getCssVar('button-pro', 'outline-color');
+    outline: 2px solid getCssVar('color', 'outline-color');
     outline-offset: 1px;
     transition: outline-offset 0s, outline 0s;
   }
@@ -116,20 +116,20 @@ $button-pro-icon-span-gap: map.merge(
   }
 
   @include when(active) {
-    color: getCssVar('button-pro', 'active', 'text-color');
-    border-color: getCssVar('button-pro', 'active', 'border-color');
-    background-color: getCssVar('button-pro', 'active', 'bg-color');
+    color: getCssVar('color', 'active', 'text-color');
+    border-color: getCssVar('color', 'active', 'border-color');
+    background-color: getCssVar('color', 'active', 'bg-color');
     outline: none;
   }
 
   @include when(disabled) {
     &,
     &:hover {
-      color: getCssVar('button-pro', 'disabled', 'text-color');
+      color: getCssVar('color', 'disabled', 'text-color');
       cursor: not-allowed;
       background-image: none;
-      background-color: getCssVar('button-pro', 'disabled', 'bg-color');
-      border-color: getCssVar('button-pro', 'disabled', 'border-color');
+      background-color: getCssVar('color', 'disabled', 'bg-color');
+      border-color: getCssVar('color', 'disabled', 'border-color');
     }
   }
 
@@ -162,12 +162,12 @@ $button-pro-icon-span-gap: map.merge(
   }
 
   @include when(text) {
-    color: getCssVar('button-pro', 'text-color');
+    color: getCssVar('color', 'text-color');
     border: 0 solid transparent;
     background-color: transparent;
 
     @include when(disabled) {
-      color: getCssVar('button-pro', 'disabled', 'text-color');
+      color: getCssVar('color', 'disabled', 'text-color');
       background-color: transparent !important;
     }
 
@@ -177,7 +177,7 @@ $button-pro-icon-span-gap: map.merge(
       }
 
       &:focus-visible {
-        outline: 2px solid getCssVar('button-pro', 'outline-color');
+        outline: 2px solid getCssVar('color', 'outline-color');
         outline-offset: 1px;
         transition: outline-offset 0s, outline 0s;
       }
@@ -209,17 +209,17 @@ $button-pro-icon-span-gap: map.merge(
 
   @include when(link) {
     border-color: transparent;
-    color: getCssVar('button-pro', 'text-color');
+    color: getCssVar('color', 'text-color');
     background: transparent;
     padding: 2px;
     height: auto;
 
     &:hover {
-      color: getCssVar('button-pro', 'hover', 'link-text-color');
+      color: getCssVar('color', 'hover', 'link-text-color');
     }
 
     @include when(disabled) {
-      color: getCssVar('button-pro', 'disabled', 'text-color');
+      color: getCssVar('color', 'disabled', 'text-color');
       background-color: transparent !important;
       border-color: transparent !important;
     }
@@ -231,7 +231,7 @@ $button-pro-icon-span-gap: map.merge(
       }
 
       &:active {
-        color: getCssVar('button-pro', 'active-color');
+        color: getCssVar('color', 'active-color');
         border-color: transparent;
         background-color: transparent;
       }
@@ -245,7 +245,7 @@ $button-pro-icon-span-gap: map.merge(
     padding-left: 0;
     padding-right: 0;
     @include when(disabled) {
-      color: getCssVar('button-pro', 'disabled', 'text-color');
+      color: getCssVar('color', 'disabled', 'text-color');
       background-color: transparent !important;
       border-color: transparent !important;
     }
@@ -285,7 +285,7 @@ $button-pro-icon-span-gap: map.merge(
         map.get($input-height, $size)
       );
 
-      height: getCssVar('button-pro', 'size');
+      height: getCssVar('color', 'size');
 
       & [class*='#{$namespace}-icon'] {
         & + span {
@@ -306,7 +306,7 @@ $button-pro-icon-span-gap: map.merge(
       }
 
       @include when(circle) {
-        width: getCssVar('button-pro', 'size');
+        width: getCssVar('color', 'size');
         padding: map.get($button-pro-padding-vertical, $size) -
           $button-pro-border-width;
       }

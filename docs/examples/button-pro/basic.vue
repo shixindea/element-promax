@@ -3,7 +3,15 @@
 <template>
   <div class="mb-4">
     <el-button-pro>Default</el-button-pro>
-    <el-button-pro type="primary">Primary</el-button-pro>
+    <el-button-pro type="primary" class="el-button-pro--3d" size="large"
+      >Primary</el-button-pro
+    >
+    <el-button-pro type="primary" class="el-button-pro--3d"
+      >Primary</el-button-pro
+    >
+    <el-button-pro type="primary" class="el-button-pro--3d" size="small"
+      >Primary</el-button-pro
+    >
     <el-button-pro type="success">Success</el-button-pro>
     <el-button-pro type="info">Info</el-button-pro>
     <el-button-pro type="warning">Warning</el-button-pro>
