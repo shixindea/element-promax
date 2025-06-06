@@ -8,49 +8,64 @@
 @use '../common/var' as *;
 @use 'sass:map';
 
-// getCssVar('color', $type)
-// getCssVar('color', $type)
-// getCssVar('color', $type)
-// getCssVar('color', $type)
-// getCssVar('color', $type)
-// getCssVar('color', $type)
-// getCssVar('color', $type)
-// getCssVar('color', $type)
-// getCssVar('color', $type)
 // 1. 3D按钮 - 具有立体感的按钮
 @mixin button-pro-3d($type) {
   // 使用 css-var-from-global 获取实际颜色值而不是 CSS 变量字符串
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
   $light-color: getCssVar('color', $type, 'light-3');
   $dark-color: getCssVar('color', $type, 'dark-2');
 
+  color: $text-color;
   background-color: $color;
-  box-shadow: 0 6px 0 $color, 0 6px 10px rgba(0, 0, 0, 0.15);
+  border-color: $color;
+  box-shadow: 0 6px 0 $dark-color,
+    0 6px 10px rgba(var(--el-color-#{$type}-rgb), 0.3);
   transform: translateY(0);
   transition: all 0.2s ease;
 
   &:hover {
+    color: $text-color;
+    background-color: $light-color;
+    border-color: $light-color;
     transform: translateY(-2px);
-    box-shadow: 0 8px 0 $color, 0 8px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 0 $color,
+      0 8px 15px rgba(var(--el-color-#{$type}-rgb), 0.4);
   }
 
   &:active {
+    color: $text-color;
+    background-color: $dark-color;
+    border-color: $dark-color;
     transform: translateY(4px);
-    box-shadow: 0 2px 0 $color, 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 0 $dark-color,
+      0 2px 5px rgba(var(--el-color-#{$type}-rgb), 0.2);
   }
 }
 
 // 2. 霓虹灯按钮 - 发光边框效果
 @mixin button-pro-neon($type) {
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
 
+  color: $color;
+  background-color: transparent;
   border: 2px solid $color;
-  box-shadow: 0 0 5px $color, 0 0 10px $color, 0 0 15px $color;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 5px rgba(var(--el-color-#{$type}-rgb), 0.7),
+    0 0 10px rgba(var(--el-color-#{$type}-rgb), 0.5),
+    0 0 15px rgba(var(--el-color-#{$type}-rgb), 0.3);
+  text-shadow: 0 0 5px rgba(var(--el-color-#{$type}-rgb), 0.5);
   transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: 0 0 10px $color, 0 0 20px $color, 0 0 30px $color;
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.2);
+    border-color: $light-color;
+    box-shadow: 0 0 10px rgba(var(--el-color-#{$type}-rgb), 0.8),
+      0 0 20px rgba(var(--el-color-#{$type}-rgb), 0.6),
+      0 0 30px rgba(var(--el-color-#{$type}-rgb), 0.4);
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
   }
 }
@@ -58,25 +73,46 @@
 // 3. 渐变按钮 - 多彩渐变背景
 @mixin button-pro-gradient($type, $direction: to right) {
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
   $light-color: getCssVar('color', $type, 'light-3');
   $dark-color: getCssVar('color', $type, 'dark-2');
 
+  color: $text-color;
   background-image: linear-gradient($direction, $color, $light-color);
   border: none;
   transition: all 0.5s ease;
   background-size: 200% auto;
+  box-shadow: 0 4px 6px rgba(var(--el-color-#{$type}-rgb), 0.2);
 
   &:hover {
+    color: $text-color;
     background-position: right center;
+    box-shadow: 0 6px 10px rgba(var(--el-color-#{$type}-rgb), 0.4);
   }
 }
 
 // 4. 涟漪按钮 - 点击产生波纹效果
 @mixin button-pro-ripple($type) {
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+    box-shadow: 0 0 10px rgba(var(--el-color-#{$type}-rgb), 0.5);
+  }
+  
   &::after {
     content: '';
     display: block;
@@ -86,7 +122,7 @@
     top: 0;
     left: 0;
     pointer-events: none;
-    background-image: radial-gradient(circle, $color 20%, transparent 20.01%);
+    background-image: radial-gradient(circle, $light-color 10%, transparent 10.01%);
     background-repeat: no-repeat;
     background-position: 50%;
     transform: scale(10, 10);
@@ -96,17 +132,54 @@
 
   &:active::after {
     transform: scale(0, 0);
-    opacity: 0.5;
+    opacity: 0.8;
     transition: 0s;
+  }
+  
+  // 添加一个持续的微小波纹动画
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    border-radius: 50%;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.05);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    z-index: -1;
+  }
+  
+  &:hover::before {
+    animation: button-pro-ripple-pulse 1.5s ease-out infinite;
+  }
+  
+  @keyframes button-pro-ripple-pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
   }
 }
 
 // 5. 边框动画按钮 - 边框动画效果
 @mixin button-pro-border-animation($type) {
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
 
   position: relative;
   border: none;
+  color: $color;
+  background-color: transparent;
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease;
 
   &::before,
   &::after {
@@ -128,6 +201,12 @@
     right: 0;
   }
 
+  &:hover {
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+  }
+
   &:hover::before,
   &:hover::after {
     width: 100%;
@@ -135,14 +214,14 @@
   }
 
   &:hover::before {
-    border-top-color: $color;
-    border-right-color: $color;
+    border-top-color: $light-color;
+    border-right-color: $light-color;
     transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
   }
 
   &:hover::after {
-    border-bottom-color: $color;
-    border-left-color: $color;
+    border-bottom-color: $light-color;
+    border-left-color: $light-color;
     transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
   }
 }
@@ -168,20 +247,44 @@
 // 7. 悬浮按钮 - 鼠标悬浮时上浮效果
 @mixin button-pro-float($type) {
   $color: getCssVar('color', $type);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 
   &:hover {
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(var(--el-color-#{$type}-rgb, 0, 0, 0), 0.3);
+    box-shadow: 0 10px 20px rgba(var(--el-color-#{$type}-rgb), 0.3);
   }
 }
 
 // 8. 光泽按钮 - 鼠标悬浮时产生闪光效果
 @mixin button-pro-shine($type) {
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
   position: relative;
   overflow: hidden;
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 
+  &:hover {
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+  }
+  
   &::before {
     content: '';
     position: absolute;
@@ -192,12 +295,13 @@
     background: linear-gradient(
       to right,
       rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.8) 50%,
       rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(30deg);
     transition: transform 0.5s;
     opacity: 0;
+    z-index: 1;
   }
 
   &:hover::before {
@@ -209,6 +313,9 @@
 // 9. 轮廓按钮 - 鼠标悬浮时填充背景
 @mixin button-pro-outline($type) {
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
 
   color: $color;
   background-color: transparent;
@@ -216,16 +323,29 @@
   transition: all 0.3s ease;
 
   &:hover {
-    color: #fff;
-    background-color: $color;
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.9);
+    border-color: $dark-color;
+    box-shadow: 0 0 8px rgba(var(--el-color-#{$type}-rgb), 0.5);
   }
 }
 
 // 10. 扩展按钮 - 鼠标悬浮时宽度扩展
 @mixin button-pro-expand($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
   transition: all 0.3s ease;
 
   &:hover {
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
     padding-left: calc(
       map.get($button-pro-padding-horizontal, 'default') * 1.5
     );
@@ -235,28 +355,33 @@
   }
 }
 
-// 11. 摇晃按钮 - 鼠标悬浮时摇晃效果
+// 11. 摇晃按钮 - 鼠标悬浮时左右摇晃
 @mixin button-pro-shake($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  
   &:hover {
-    animation: shake 0.5s;
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+    animation: button-pro-shake 0.5s ease;
   }
-
-  @keyframes shake {
-    0%,
-    100% {
+  
+  @keyframes button-pro-shake {
+    0%, 100% {
       transform: translateX(0);
     }
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
+    10%, 30%, 50%, 70%, 90% {
       transform: translateX(-5px);
     }
-    20%,
-    40%,
-    60%,
-    80% {
+    20%, 40%, 60%, 80% {
       transform: translateX(5px);
     }
   }
@@ -264,22 +389,51 @@
 
 // 12. 旋转按钮 - 鼠标悬浮时图标旋转
 @mixin button-pro-rotate-icon($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  
   [class*='#{$namespace}-icon'] {
     transition: transform 0.3s ease;
   }
 
-  &:hover [class*='#{$namespace}-icon'] {
-    transform: rotate(180deg);
+  &:hover {
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+    
+    [class*='#{$namespace}-icon'] {
+      transform: rotate(180deg);
+    }
   }
 }
 
 // 13. 弹跳按钮 - 鼠标悬浮时弹跳效果
 @mixin button-pro-bounce($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  
   &:hover {
-    animation: bounce 0.5s;
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+    animation: button-pro-bounce 0.5s;
   }
 
-  @keyframes bounce {
+  @keyframes button-pro-bounce {
     0%,
     20%,
     50%,
@@ -298,21 +452,40 @@
 
 // 14. 折叠按钮 - 鼠标悬浮时高度变化
 @mixin button-pro-fold($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
   transition: all 0.3s ease;
+  transform-origin: center bottom;
 
   &:hover {
-    transform: perspective(500px) rotateX(15deg);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+    transform: perspective(500px) rotateX(20deg);
+    box-shadow: 0 15px 25px rgba(var(--el-color-#{$type}-rgb), 0.5);
   }
 }
 
 // 15. 滑动按钮 - 背景滑动效果
 @mixin button-pro-slide($type) {
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
 
   position: relative;
   z-index: 1;
   overflow: hidden;
+  border-color: $color;
+  color: $color;
+  background-color: transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
 
   &::before {
     content: '';
@@ -321,9 +494,14 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background-color: $color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.9);
     transition: all 0.3s ease;
     z-index: -1;
+  }
+
+  &:hover {
+    color: $text-color;
+    border-color: $dark-color;
   }
 
   &:hover::before {
@@ -333,8 +511,18 @@
 
 // 16. 气泡按钮 - 鼠标悬浮时产生气泡效果
 @mixin button-pro-bubble($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+
   position: relative;
   overflow: hidden;
+  border-color: $color;
+  color: $color;
+  background-color: transparent;
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease;
 
   &::before {
     content: '';
@@ -343,10 +531,17 @@
     top: 50%;
     width: 0;
     height: 0;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.9);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    color: $text-color;
+    border-color: $dark-color;
+    box-shadow: 0 0 10px rgba(var(--el-color-#{$type}-rgb), 0.5);
   }
 
   &:hover::before {
@@ -357,28 +552,55 @@
 
 // 17. 闪烁按钮 - 鼠标悬浮时闪烁效果
 @mixin button-pro-blink($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  
   &:hover {
-    animation: blink 1s infinite;
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+    animation: button-pro-blink 0.7s infinite;
+    box-shadow: 0 0 10px rgba(var(--el-color-#{$type}-rgb), 0.6);
   }
 
-  @keyframes blink {
+  @keyframes button-pro-blink {
     0%,
     100% {
       opacity: 1;
+      transform: scale(1);
     }
     50% {
-      opacity: 0.7;
+      opacity: 0.6;
+      transform: scale(1.05);
     }
   }
 }
 
 // 18. 翻转按钮 - 3D翻转效果
 @mixin button-pro-flip($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
   transition: all 0.5s ease;
   transform-style: preserve-3d;
   perspective: 500px;
 
   &:hover {
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
     transform: rotateY(180deg);
   }
 }
@@ -386,21 +608,40 @@
 // 19. 阴影按钮 - 动态阴影效果
 @mixin button-pro-shadow($type) {
   $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
+  box-shadow: 0 4px 6px rgba(var(--el-color-#{$type}-rgb), 0.2);
   transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: 0 8px 15px rgba($color, 0.3);
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
+    box-shadow: 0 8px 15px rgba(var(--el-color-#{$type}-rgb), 0.4);
   }
 }
 
 // 20. 缩放按钮 - 鼠标悬浮时缩放效果
 @mixin button-pro-scale($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
   transition: all 0.3s ease;
 
+  border-color: $color;
+  background-color: transparent;
+  color: $color;
   &:hover {
     transform: scale(1.05);
+    color: $text-color;
+    background-color: rgba(var(--el-color-#{$type}-rgb), 0.8);
+    border-color: $dark-color;
   }
 
   &:active {

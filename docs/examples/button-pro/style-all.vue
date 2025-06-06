@@ -15,6 +15,12 @@
         <el-button-pro type="warning" class="el-button-pro--3d"
           >3D按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--3d"
+          >3D按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--3d"
+          >3D按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -22,6 +28,12 @@
       <div class="style-title">霓虹灯按钮</div>
       <div class="button-row">
         <el-button-pro type="primary" class="el-button-pro--neon"
+          >霓虹灯</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--neon"
+          >霓虹灯</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--neon"
           >霓虹灯</el-button-pro
         >
         <el-button-pro type="danger" class="el-button-pro--neon"
@@ -45,6 +57,12 @@
         <el-button-pro type="warning" class="el-button-pro--gradient"
           >渐变按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--gradient"
+          >渐变按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--gradient"
+          >渐变按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -52,6 +70,12 @@
       <div class="style-title">涟漪按钮</div>
       <div class="button-row">
         <el-button-pro type="primary" class="el-button-pro--ripple"
+          >涟漪按钮</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--ripple"
+          >涟漪按钮</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--ripple"
           >涟漪按钮</el-button-pro
         >
         <el-button-pro type="danger" class="el-button-pro--ripple"
@@ -90,6 +114,12 @@
         <el-button-pro type="primary" class="el-button-pro--pulse"
           >脉冲按钮</el-button-pro
         >
+        <el-button-pro type="success" class="el-button-pro--pulse"
+          >脉冲按钮</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--pulse"
+          >脉冲按钮</el-button-pro
+        >
         <el-button-pro type="danger" class="el-button-pro--pulse"
           >脉冲按钮</el-button-pro
         >
@@ -111,6 +141,12 @@
         <el-button-pro type="warning" class="el-button-pro--float"
           >悬浮按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--float"
+          >悬浮按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--float"
+          >悬浮按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -118,6 +154,12 @@
       <div class="style-title">光泽按钮</div>
       <div class="button-row">
         <el-button-pro type="primary" class="el-button-pro--shine"
+          >光泽按钮</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--shine"
+          >光泽按钮</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--shine"
           >光泽按钮</el-button-pro
         >
         <el-button-pro type="danger" class="el-button-pro--shine"
@@ -141,6 +183,12 @@
         <el-button-pro type="warning" class="el-button-pro--outline"
           >轮廓按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--outline"
+          >轮廓按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--outline"
+          >轮廓按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -148,6 +196,12 @@
       <div class="style-title">展开按钮</div>
       <div class="button-row">
         <el-button-pro type="primary" class="el-button-pro--expand"
+          >展开按钮</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--expand"
+          >展开按钮</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--expand"
           >展开按钮</el-button-pro
         >
         <el-button-pro type="danger" class="el-button-pro--expand"
@@ -171,6 +225,12 @@
         <el-button-pro type="warning" class="el-button-pro--shake"
           >抖动按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--shake"
+          >抖动按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--shake"
+          >抖动按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -179,6 +239,18 @@
       <div class="button-row">
         <el-button-pro
           type="primary"
+          class="el-button-pro--rotate-icon"
+          :icon="Refresh"
+          >旋转图标</el-button-pro
+        >
+        <el-button-pro
+          type="success"
+          class="el-button-pro--rotate-icon"
+          :icon="Refresh"
+          >旋转图标</el-button-pro
+        >
+        <el-button-pro
+          type="warning"
           class="el-button-pro--rotate-icon"
           :icon="Refresh"
           >旋转图标</el-button-pro
@@ -210,6 +282,12 @@
         <el-button-pro type="warning" class="el-button-pro--bounce"
           >弹跳按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--bounce"
+          >弹跳按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--bounce"
+          >弹跳按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -217,6 +295,12 @@
       <div class="style-title">折叠按钮</div>
       <div class="button-row">
         <el-button-pro type="primary" class="el-button-pro--fold"
+          >折叠按钮</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--fold"
+          >折叠按钮</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--fold"
           >折叠按钮</el-button-pro
         >
         <el-button-pro type="danger" class="el-button-pro--fold"
@@ -240,6 +324,12 @@
         <el-button-pro type="warning" class="el-button-pro--slide"
           >滑动按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--slide"
+          >滑动按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--slide"
+          >滑动按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -247,6 +337,12 @@
       <div class="style-title">气泡按钮</div>
       <div class="button-row">
         <el-button-pro type="primary" class="el-button-pro--bubble"
+          >气泡按钮</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--bubble"
+          >气泡按钮</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--bubble"
           >气泡按钮</el-button-pro
         >
         <el-button-pro type="danger" class="el-button-pro--bubble"
@@ -270,6 +366,12 @@
         <el-button-pro type="warning" class="el-button-pro--blink"
           >闪烁按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--blink"
+          >闪烁按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--blink"
+          >闪烁按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -277,6 +379,12 @@
       <div class="style-title">翻转按钮</div>
       <div class="button-row">
         <el-button-pro type="primary" class="el-button-pro--flip"
+          >翻转按钮</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--flip"
+          >翻转按钮</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--flip"
           >翻转按钮</el-button-pro
         >
         <el-button-pro type="danger" class="el-button-pro--flip"
@@ -300,6 +408,12 @@
         <el-button-pro type="warning" class="el-button-pro--shadow"
           >阴影按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--shadow"
+          >阴影按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--shadow"
+          >阴影按钮</el-button-pro
+        >
       </div>
     </div>
 
@@ -313,6 +427,15 @@
           >缩放按钮</el-button-pro
         >
         <el-button-pro type="info" class="el-button-pro--scale"
+          >缩放按钮</el-button-pro
+        >
+        <el-button-pro type="danger" class="el-button-pro--scale"
+          >缩放按钮</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--scale"
+          >缩放按钮</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--scale"
           >缩放按钮</el-button-pro
         >
       </div>
