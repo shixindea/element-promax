@@ -1749,3 +1749,18 @@ $button-pro-padding-horizontal: map.merge(
   ),
   $button-pro-padding-horizontal
 );
+
+// Messagepro
+// css3 var in packages/theme-chalk/src/message.scss
+$message-pro: () !default;
+$message-pro: map.merge(
+  (
+    'bg-color': getCssVar('color', 'info', 'light-9'),
+    'border-color': getCssVar('border-color-lighter'),
+    'padding': 11px 15px,
+    'close-size': 16px,
+    'close-icon-color': getCssVar('text-color-placeholder'),
+    'close-hover-color': getCssVar('text-color-secondary'),
+  ),
+  $message
+);

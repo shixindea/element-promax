@@ -1,0 +1,431 @@
+/** @format */
+
+@use 'sass:map';
+@use 'mixins/mixins' as *;
+@use 'mixins/var' as *;
+@use 'common/var' as *;
+
+// 定义MessagePro组件的CSS变量
+@include b(message-pro) {
+  @include set-component-css-var('message-pro', $message-pro);
+}
+
+// 基础样式
+@include b(message-pro) {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  box-sizing: border-box;
+  border-radius: getCssVar('border-radius-base');
+  border-width: getCssVar('border-width');
+  border-style: getCssVar('border-style');
+  border-color: getCssVar('message-pro', 'border-color');
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  background-color: getCssVar('message-pro', 'bg-color');
+  transition: opacity getCssVar('transition-duration'), transform 0.4s, top 0.4s;
+  padding: getCssVar('message-pro', 'padding');
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+  // 居中样式
+  @include when(center) {
+    justify-content: center;
+  }
+
+  // Plain样式
+  @include when(plain) {
+    background-color: getCssVar('bg-color', 'overlay');
+    border-color: getCssVar('bg-color', 'overlay');
+    box-shadow: getCssVar('box-shadow-light');
+  }
+
+  p {
+    margin: 0;
+  }
+
+  // 类型样式：success, info, warning, error
+  @each $type in (success, info, warning, error) {
+    @include m($type) {
+      @include css-var-from-global(
+        ('message-pro', 'bg-color'),
+        ('color', $type, 'light-9')
+      );
+      @include css-var-from-global(
+        ('message-pro', 'border-color'),
+        ('color', $type, 'light-8')
+      );
+      @include css-var-from-global(
+        ('message-pro', 'text-color'),
+        ('color', $type)
+      );
+
+      .#{$namespace}-message-pro__content {
+        color: getCssVar('message-pro', 'text-color');
+        overflow-wrap: break-word;
+      }
+    }
+
+    & .#{$namespace}-message-pro-icon--#{$type} {
+      color: getCssVar('message-pro', 'text-color');
+    }
+  }
+
+  // Badge样式
+  .#{$namespace}-message-pro__badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+  }
+
+  // 内容样式
+  @include e(content) {
+    padding: 0;
+    font-size: 14px;
+    line-height: 1;
+    &:focus {
+      outline-width: 0;
+    }
+  }
+
+  // 关闭按钮样式
+  & .#{$namespace}-message-pro__closeBtn {
+    cursor: pointer;
+    color: getCssVar('message-pro', 'close-icon-color');
+    font-size: getCssVar('message-pro', 'close-size');
+
+    &:focus {
+      outline-width: 0;
+    }
+    &:hover {
+      color: getCssVar('message-pro', 'close-hover-color');
+    }
+  }
+
+  // 1. 圆角样式 - 更圆润的边角
+  @include m(rounded) {
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  // 2. 尺寸变体 - 小号
+  @include m(small) {
+    padding: 8px 12px;
+    font-size: 12px;
+
+    .#{$namespace}-message-pro__icon {
+      font-size: 14px;
+    }
+
+    .#{$namespace}-message-pro__closeBtn {
+      font-size: 14px;
+    }
+  }
+
+  // 3. 尺寸变体 - 大号
+  @include m(large) {
+    padding: 14px 20px;
+    font-size: 16px;
+
+    .#{$namespace}-message-pro__icon {
+      font-size: 20px;
+    }
+
+    .#{$namespace}-message-pro__closeBtn {
+      font-size: 18px;
+    }
+  }
+
+  // 4. 阴影效果 - 增强
+  @include m(shadow) {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  // 5. 无边框样式
+  @include m(borderless) {
+    border: none;
+  }
+
+  // 6. 半透明背景
+  @include m(translucent) {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+
+    @each $type in (success, info, warning, error) {
+      &.#{$namespace}-message-pro--#{$type} {
+        background-color: rgba(getCssVar('color', $type, 'light-9'), 0.9);
+      }
+    }
+  }
+
+  // 7. 左侧边框强调
+  @include m(left-border) {
+    border-left-width: 4px;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 0;
+    padding-left: 16px;
+
+    @each $type in (success, info, warning, error) {
+      &.#{$namespace}-message-pro--#{$type} {
+        border-left-color: getCssVar('color', $type);
+      }
+    }
+  }
+
+  // 8. 顶部边框强调
+  @include m(top-border) {
+    border-top-width: 4px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 0;
+    padding-top: 16px;
+
+    @each $type in (success, info, warning, error) {
+      &.#{$namespace}-message-pro--#{$type} {
+        border-top-color: getCssVar('color', $type);
+      }
+    }
+  }
+
+  // 9. 填充样式 - 更强烈的背景色
+  @include m(filled) {
+    @each $type in (success, info, warning, error) {
+      &.#{$namespace}-message-pro--#{$type} {
+        background-color: getCssVar('color', $type);
+        color: #fff;
+        border-color: getCssVar('color', $type);
+
+        .#{$namespace}-message-pro__content,
+        .#{$namespace}-message-pro__icon,
+        .#{$namespace}-message-pro__closeBtn {
+          color: #fff;
+        }
+
+        .#{$namespace}-message-pro__closeBtn:hover {
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+    }
+  }
+
+  // 10. 渐变背景
+  @include m(gradient) {
+    &.#{$namespace}-message-pro--success {
+      background: linear-gradient(
+        to right,
+        getCssVar('color', 'success', 'light-5'),
+        getCssVar('color', 'success', 'light-8')
+      );
+      border: none;
+    }
+
+    &.#{$namespace}-message-pro--info {
+      background: linear-gradient(
+        to right,
+        getCssVar('color', 'info', 'light-5'),
+        getCssVar('color', 'info', 'light-8')
+      );
+      border: none;
+    }
+
+    &.#{$namespace}-message-pro--warning {
+      background: linear-gradient(
+        to right,
+        getCssVar('color', 'warning', 'light-5'),
+        getCssVar('color', 'warning', 'light-8')
+      );
+      border: none;
+    }
+
+    &.#{$namespace}-message-pro--error {
+      background: linear-gradient(
+        to right,
+        getCssVar('color', 'error', 'light-5'),
+        getCssVar('color', 'error', 'light-8')
+      );
+      border: none;
+    }
+
+    .#{$namespace}-message-pro__content,
+    .#{$namespace}-message-pro__icon,
+    .#{$namespace}-message-pro__closeBtn {
+      color: #fff;
+    }
+
+    .#{$namespace}-message-pro__closeBtn:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  // 11. 带图标背景
+  @include m(icon-bg) {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .#{$namespace}-message-pro__icon {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // 12. 动画效果 - 脉冲
+  @include m(pulse) {
+    animation: el-message-pro-pulse 2s infinite;
+
+    @keyframes el-message-pro-pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(getCssVar('color', 'primary', 'base'), 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(getCssVar('color', 'primary', 'base'), 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(getCssVar('color', 'primary', 'base'), 0);
+      }
+    }
+
+    @each $type in (success, info, warning, error) {
+      &.#{$namespace}-message-pro--#{$type} {
+        animation-name: el-message-pro-pulse-#{$type};
+      }
+
+      @keyframes el-message-pro-pulse-#{$type} {
+        0% {
+          box-shadow: 0 0 0 0 rgba(getCssVar('color', $type, 'base'), 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(getCssVar('color', $type, 'base'), 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(getCssVar('color', $type, 'base'), 0);
+        }
+      }
+    }
+  }
+
+  // 13. 卡片样式
+  @include m(card) {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+
+  // 14. 紧凑样式
+  @include m(compact) {
+    padding: 8px 12px;
+    gap: 4px;
+  }
+
+  // 15. 宽样式
+  @include m(wide) {
+    min-width: 300px;
+  }
+
+  // 16. 带标题样式
+  @include m(with-title) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+
+    .#{$namespace}-message-pro__title {
+      font-weight: bold;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    &.is-center {
+      align-items: center;
+    }
+  }
+
+  // 17. 带底部操作区样式
+  @include m(with-action) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+
+    .#{$namespace}-message-pro__action {
+      margin-top: 8px;
+      display: flex;
+      gap: 8px;
+    }
+
+    &.is-center {
+      align-items: center;
+    }
+  }
+
+  // 18. 悬浮效果
+  @include m(hover-effect) {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateX(-50%) translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // 19. 暗色主题
+  @include m(dark) {
+    background-color: #333;
+    color: #fff;
+    border-color: #444;
+
+    .#{$namespace}-message-pro__content,
+    .#{$namespace}-message-pro__icon,
+    .#{$namespace}-message-pro__closeBtn {
+      color: #fff;
+    }
+
+    .#{$namespace}-message-pro__closeBtn:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  // 20. 带边框阴影
+  @include m(border-shadow) {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  }
+}
+
+// 淡入淡出动画
+.#{$namespace}-message-pro-fade-enter-from,
+.#{$namespace}-message-pro-fade-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}
+
+// 滑入滑出动画
+.#{$namespace}-message-pro-slide-enter-from,
+.#{$namespace}-message-pro-slide-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -30px);
+}
+
+// 缩放动画
+.#{$namespace}-message-pro-scale-enter-from,
+.#{$namespace}-message-pro-scale-leave-to {
+  opacity: 0;
+  transform: translate(-50%, 0) scale(0.8);
+}

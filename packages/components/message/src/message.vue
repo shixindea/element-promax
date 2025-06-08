@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <template>
   <transition
     :name="ns.b('fade')"

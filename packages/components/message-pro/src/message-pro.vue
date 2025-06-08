@@ -68,7 +68,7 @@ defineOptions({
 const props = defineProps(messageProProps)
 defineEmits(messageProEmits)
 
-const { ns, zIndex } = useGlobalComponentSettings('messagePro')
+const { ns, zIndex } = useGlobalComponentSettings('message-pro')
 const { currentZIndex, nextZIndex } = zIndex
 
 const messageRef = ref<HTMLDivElement>()
