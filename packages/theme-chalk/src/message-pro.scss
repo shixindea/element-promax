@@ -1895,4 +1895,748 @@
       }
     }
   }
+
+  // ===== 居中提示效果样式 =====
+  // 居中基础样式
+  &.message-pro-center {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    max-width: 80%;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    // 响应式调整
+    @media screen and (max-width: 768px) {
+      max-width: 90%;
+      padding: 16px;
+    }
+
+    .#{$namespace}-message-pro__icon {
+      margin-bottom: 12px;
+      font-size: 32px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .#{$namespace}-message-pro__content {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  // 1. 标准居中提示 - 简洁明了的基础样式
+  &.message-pro-center-standard {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    border: 1px solid #ebeef5;
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} {
+        border-top: 3px solid getCssVar('color', $type);
+      }
+    }
+  }
+
+  // 2. 圆形图标居中提示 - 带有圆形图标背景
+  &.message-pro-center-circle-icon {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+
+    .#{$namespace}-message-pro__icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      animation: message-pro-scale-in 0.3s ease-out;
+
+      @media screen and (max-width: 768px) {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} .#{$namespace}-message-pro__icon {
+        background-color: rgba(getCssVar('color', $type, 'rgb'), 0.1);
+        color: getCssVar('color', $type);
+      }
+    }
+  }
+
+  // 3. 脉冲动画居中提示 - 带有脉冲动画效果
+  &.message-pro-center-pulse {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    animation: message-pro-pulse 2s infinite;
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} {
+        animation-name: message-pro-pulse-#{$type};
+      }
+
+      @keyframes message-pro-pulse-#{$type} {
+        0% {
+          box-shadow: 0 0 0 0 rgba(getCssVar('color', $type, 'rgb'), 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(getCssVar('color', $type, 'rgb'), 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(getCssVar('color', $type, 'rgb'), 0);
+        }
+      }
+    }
+  }
+
+  // 4. 卡片式居中提示 - 更像一张卡片
+  &.message-pro-center-card {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} {
+        border-left: 4px solid getCssVar('color', $type);
+      }
+    }
+  }
+
+  // 5. 毛玻璃效果居中提示
+  &.message-pro-center-glassmorphism {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} {
+        background: rgba(getCssVar('color', $type, 'light-9'), 0.7);
+        border-color: rgba(getCssVar('color', $type, 'light-5'), 0.3);
+      }
+    }
+  }
+
+  // 6. 3D效果居中提示
+  &.message-pro-center-3d {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    transform: translate(-50%, -50%) perspective(1000px) rotateX(10deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translate(-50%, -50%) perspective(1000px) rotateX(0deg);
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+  }
+
+  // 7. 渐变背景居中提示
+  &.message-pro-center-gradient {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    border: none;
+
+    .#{$namespace}-message-pro__content,
+    .#{$namespace}-message-pro__icon,
+    .#{$namespace}-message-pro__closeBtn {
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+
+    &.#{$namespace}-message-pro--success {
+      background: linear-gradient(
+        to right,
+        getCssVar('color', 'success', 'light-5'),
+        getCssVar('color', 'success', 'light-3')
+      );
+    }
+
+    &.#{$namespace}-message-pro--info {
+      background: linear-gradient(
+        to right,
+        getCssVar('color', 'info', 'light-5'),
+        getCssVar('color', 'info', 'light-3')
+      );
+    }
+
+    &.#{$namespace}-message-pro--warning {
+      background: linear-gradient(
+        to right,
+        getCssVar('color', 'warning', 'light-5'),
+        getCssVar('color', 'warning', 'light-3')
+      );
+    }
+
+    &.#{$namespace}-message-pro--error {
+      background: linear-gradient(
+        to right,
+        getCssVar('color', 'error', 'light-5'),
+        getCssVar('color', 'error', 'light-3')
+      );
+    }
+  }
+
+  // 8. 旋转进入效果居中提示
+  &.message-pro-center-rotate {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    animation: message-pro-rotate-in 0.5s ease-out;
+
+    @keyframes message-pro-rotate-in {
+      0% {
+        transform: translate(-50%, -50%) rotate(180deg) scale(0.3);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-spin 0.6s ease-in-out;
+    }
+
+    @keyframes message-pro-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  // 9. 阴影强调居中提示
+  &.message-pro-center-shadow-emphasis {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: none;
+
+    .#{$namespace}-message-pro__icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      animation: message-pro-shadow-pulse 2s infinite;
+
+      @media screen and (max-width: 768px) {
+        font-size: 32px;
+      }
+    }
+
+    @keyframes message-pro-shadow-pulse {
+      0% {
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      50% {
+        text-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+      }
+      100% {
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} .#{$namespace}-message-pro__icon {
+        color: getCssVar('color', $type);
+      }
+    }
+  }
+
+  // 10. 边框动画居中提示
+  &.message-pro-center-border-animation {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    border: 2px solid transparent;
+    animation: message-pro-border-pulse 2s infinite;
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} {
+        @keyframes message-pro-border-pulse {
+          0%,
+          100% {
+            border-color: rgba(getCssVar('color', $type, 'rgb'), 0.3);
+          }
+          50% {
+            border-color: rgba(getCssVar('color', $type, 'rgb'), 1);
+          }
+        }
+      }
+    }
+  }
+
+  // 11. 水波纹效果居中提示
+  &.message-pro-center-ripple {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0.05) 0%,
+        transparent 60%
+      );
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: message-pro-ripple 2s ease-out infinite;
+    }
+
+    @keyframes message-pro-ripple {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+      position: relative;
+      z-index: 1;
+    }
+
+    .#{$namespace}-message-pro__content {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // 12. 霓虹灯效果居中提示
+  &.message-pro-center-neon {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+
+    .#{$namespace}-message-pro__content {
+      color: #fff;
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-neon-pulse 1.5s infinite alternate;
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} .#{$namespace}-message-pro__icon {
+        color: getCssVar('color', $type);
+        text-shadow: 0 0 5px getCssVar('color', $type),
+          0 0 10px getCssVar('color', $type), 0 0 15px getCssVar('color', $type);
+
+        @keyframes message-pro-neon-pulse {
+          0% {
+            text-shadow: 0 0 5px getCssVar('color', $type),
+              0 0 10px getCssVar('color', $type),
+              0 0 15px getCssVar('color', $type);
+          }
+          100% {
+            text-shadow: 0 0 10px getCssVar('color', $type),
+              0 0 20px getCssVar('color', $type),
+              0 0 30px getCssVar('color', $type);
+          }
+        }
+      }
+    }
+  }
+
+  // 13. 弹性缩放居中提示
+  &.message-pro-center-elastic {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    animation: message-pro-elastic 0.6s ease-in-out;
+
+    @keyframes message-pro-elastic {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+      }
+      60% {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+      80% {
+        transform: translate(-50%, -50%) scale(0.95);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+  }
+
+  // 14. 液态效果居中提示
+  &.message-pro-center-liquid {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: message-pro-liquid-morph 8s ease-in-out infinite;
+
+    @keyframes message-pro-liquid-morph {
+      0%,
+      100% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      }
+      25% {
+        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+      }
+      50% {
+        border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+      }
+      75% {
+        border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+      }
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-float 3s ease-in-out infinite;
+    }
+
+    @keyframes message-pro-float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  }
+
+  // 15. 分层卡片居中提示
+  &.message-pro-center-layered {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 12px;
+      z-index: -1;
+    }
+
+    &::before {
+      background-color: rgba(0, 0, 0, 0.05);
+      transform: translate(5px, 5px);
+    }
+
+    &::after {
+      background-color: rgba(0, 0, 0, 0.05);
+      transform: translate(10px, 10px);
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+  }
+
+  // 16. 闪光效果居中提示
+  &.message-pro-center-shine {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        rgba(255, 255, 255, 0) 20%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 80%
+      );
+      transform: rotate(45deg);
+      animation: message-pro-shine 3s infinite;
+    }
+
+    @keyframes message-pro-shine {
+      0% {
+        transform: translateX(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) rotate(45deg);
+      }
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+      position: relative;
+      z-index: 1;
+    }
+
+    .#{$namespace}-message-pro__content {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // 17. 暗色主题居中提示
+  &.message-pro-center-dark {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #333;
+    color: #fff;
+    border-color: #444;
+
+    .#{$namespace}-message-pro__content,
+    .#{$namespace}-message-pro__closeBtn {
+      color: #fff;
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type} .#{$namespace}-message-pro__icon {
+        color: getCssVar('color', $type);
+      }
+    }
+  }
+
+  // 18. 扫描线效果居中提示
+  &.message-pro-center-scan-line {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #2196f3, transparent);
+      animation: message-pro-scan-line 2s linear infinite;
+    }
+
+    @keyframes message-pro-scan-line {
+      0% {
+        top: 0;
+      }
+      50% {
+        top: calc(100% - 4px);
+      }
+      100% {
+        top: 0;
+      }
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+
+    @each $type in (primary, success, warning, error, info) {
+      &.#{$namespace}-message-pro--#{$type}::after {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          getCssVar('color', $type),
+          transparent
+        );
+      }
+    }
+  }
+
+  // 19. 折纸效果居中提示
+  &.message-pro-center-origami {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background-color: #fff;
+    transform-style: preserve-3d;
+    animation: message-pro-origami 0.6s ease-out;
+
+    @keyframes message-pro-origami {
+      0% {
+        transform: translate(-50%, -50%) rotateX(-90deg);
+        transform-origin: top center;
+      }
+      100% {
+        transform: translate(-50%, -50%) rotateX(0deg);
+        transform-origin: top center;
+      }
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+  }
+
+  // 20. 全息投影效果居中提示
+  &.message-pro-center-hologram {
+    top: 42vh !important;
+    @extend .message-pro-center;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5),
+      inset 0 0 10px rgba(0, 255, 255, 0.5);
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff;
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        0deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.2) 50%,
+        transparent 100%
+      );
+      animation: message-pro-hologram-scan 2s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes message-pro-hologram-scan {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+
+    .#{$namespace}-message-pro__content,
+    .#{$namespace}-message-pro__icon,
+    .#{$namespace}-message-pro__closeBtn {
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .#{$namespace}-message-pro__icon {
+      animation: message-pro-bounce 0.5s ease 0.3s both;
+    }
+  }
+
+  // 动画定义
+  @keyframes message-pro-bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes message-pro-scale-in {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    70% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+// 居中提示的淡入淡出动画
+.#{$namespace}-message-pro-center-fade-enter-from,
+.#{$namespace}-message-pro-center-fade-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.#{$namespace}-message-pro-center-fade-enter-active,
+.#{$namespace}-message-pro-center-fade-leave-active {
+  transition: opacity 0.4s, transform 0.4s;
 }

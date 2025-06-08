@@ -4,11 +4,13 @@
   <div class="message-pro-demo">
     <h2>基础用法</h2>
     <div class="demo-section">
-      <el-button @click="open1">默认样式</el-button>
-      <el-button type="success" @click="open2">成功消息</el-button>
-      <el-button type="warning" @click="open3">警告消息</el-button>
-      <el-button type="danger" @click="open4">错误消息</el-button>
-      <el-button type="info" @click="open5">信息消息</el-button>
+      <el-space wrap>
+        <el-button @click="open1">默认样式</el-button>
+        <el-button type="success" @click="open2">成功消息</el-button>
+        <el-button type="warning" @click="open3">警告消息</el-button>
+        <el-button type="danger" @click="open4">错误消息</el-button>
+        <el-button type="info" @click="open5">信息消息</el-button>
+      </el-space>
     </div>
 
     <h2>尺寸变体</h2>

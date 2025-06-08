@@ -29,7 +29,7 @@ message-pro/styles
 
 :::
 
-## Plain ^(2.6.3)121
+## styles-mobile
 
 Set `plain` to have a plain background.
 
@@ -39,13 +39,13 @@ message-pro/styles-mobile
 
 :::
 
-## Closable
+## styles-center
 
 A close button can be added.
 
 :::demo A default Message cannot be closed manually. If you need a closable message, you can set `showClose` field. Besides, same as notification, message has a controllable `duration`. Default duration is 3000 ms, and it won't disappear when set to `0`.
 
-message/closable
+message-pro/styles-center
 
 :::
 

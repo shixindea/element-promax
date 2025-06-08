@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <template>
-  123123<el-button :plain="true" @click="open">Show message</el-button>
+  <el-button :plain="true" @click="open">Show message</el-button>
   <el-button :plain="true" @click="openVn">VNode</el-button>
 </template>
 
