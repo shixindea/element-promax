@@ -531,8 +531,8 @@
     background-color: rgba(var(--el-color-#{$type}-rgb), 0.9);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+      height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: -1;
   }
 
@@ -545,11 +545,31 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background-image: radial-gradient(circle at 20% 35%, rgba(255, 255, 255, 0.3) 3px, transparent 4px),
-                      radial-gradient(circle at 75% 44%, rgba(255, 255, 255, 0.3) 4px, transparent 5px),
-                      radial-gradient(circle at 46% 52%, rgba(255, 255, 255, 0.3) 5px, transparent 6px),
-                      radial-gradient(circle at 33% 76%, rgba(255, 255, 255, 0.3) 3px, transparent 4px),
-                      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.3) 4px, transparent 5px);
+    background-image: radial-gradient(
+        circle at 20% 35%,
+        rgba(255, 255, 255, 0.3) 3px,
+        transparent 4px
+      ),
+      radial-gradient(
+        circle at 75% 44%,
+        rgba(255, 255, 255, 0.3) 4px,
+        transparent 5px
+      ),
+      radial-gradient(
+        circle at 46% 52%,
+        rgba(255, 255, 255, 0.3) 5px,
+        transparent 6px
+      ),
+      radial-gradient(
+        circle at 33% 76%,
+        rgba(255, 255, 255, 0.3) 3px,
+        transparent 4px
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(255, 255, 255, 0.3) 4px,
+        transparent 5px
+      );
     opacity: 0;
     transform: scale(0.8);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -560,13 +580,13 @@
     color: $text-color;
     border-color: $dark-color;
     box-shadow: 0 0 15px rgba(var(--el-color-#{$type}-rgb), 0.6);
-    
+
     &::before {
       width: 250%;
       height: 250%;
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     &::after {
       opacity: 1;
       transform: scale(1);
@@ -575,7 +595,8 @@
   }
 
   @keyframes button-pro-bubble-float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0) scale(1);
     }
     50% {
@@ -681,5 +702,45 @@
 
   &:active {
     transform: scale(0.95);
+  }
+}
+
+// 21. hover空背景到主题色过渡
+@mixin button-pro-hover-bg-write($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $bg-color: getCssVar('color', $type, 'light-i');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  transition: all 0.3s ease;
+
+  border-color: $color;
+  background-color: var(--el-color-#{$type}-rgb);
+  color: getCssVar('color', $type, 'light-i');
+  &:hover {
+    color: $text-color;
+    background-color: getCssVar('color', $type);
+    border-color: getCssVar('color', $text-color);
+  }
+}
+// 22. hover主题色到空背景过渡
+@mixin button-pro-hover-bg-color($type) {
+  $color: getCssVar('color', $type);
+  $text-color: getCssVar('color', 'white');
+  $bg-color: getCssVar('color', $type, 'light-i');
+  $dark-color: getCssVar('color', $type, 'dark-2');
+  $light-color: getCssVar('color', $type, 'light-3');
+  transition: all 0.3s ease;
+  // var(--el-color-#{$type}-rgb);
+  border-color: $color;
+  background-color: getCssVar(
+    'color',
+    $type
+  ); // getCssVar('color', $type, 'light-i');
+  color: $text-color;
+  &:hover {
+    color: getCssVar('color', $type);
+    background-color: var(--el-color-#{$type}-rgb);
+    border-color: getCssVar('color', $text-color);
   }
 }

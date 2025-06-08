@@ -8,7 +8,7 @@ export function darken(color: TinyColor, amount = 20) {
   return color.mix('#141414', amount).toString()
 }
 
-export function useButtonCustomStyle(props: ButtonProProps) {
+export function useButtonProCustomStyle(props: ButtonProProps) {
   const _disabled = useFormDisabled()
   const ns = useNamespace('button')
 

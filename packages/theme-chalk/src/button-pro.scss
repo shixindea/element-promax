@@ -473,4 +473,18 @@ $button-pro-icon-span-gap: map.merge(
       }
     }
   }
+  @include m(hover-bg-write) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-hover-bg-write($type);
+      }
+    }
+  }
+  @include m(hover-bg-color) {
+    @each $type in (primary, success, warning, danger, info) {
+      &.el-button-pro--#{$type} {
+        @include button-pro-hover-bg-color($type);
+      }
+    }
+  }
 }

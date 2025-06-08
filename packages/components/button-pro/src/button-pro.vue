@@ -34,7 +34,7 @@ import { ElIcon } from '@element-plus/components/icon'
 import { useNamespace } from '@element-plus/hooks'
 import { useButtonPro } from './use-button-pro'
 import { buttonProEmits, buttonProProps } from './button-pro'
-import { useButtonCustomStyle } from './button-pro-custom'
+import { useButtonProCustomStyle } from './button-pro-custom'
 
 defineOptions({
   name: 'ElButtonPro',
@@ -43,7 +43,7 @@ defineOptions({
 const props = defineProps(buttonProProps)
 const emit = defineEmits(buttonProEmits)
 
-const buttonStyle = useButtonCustomStyle(props)
+const buttonStyle = useButtonProCustomStyle(props)
 const ns = useNamespace('button-pro')
 const { _ref, _size, _type, _disabled, _props, shouldAddSpace, handleClick } =
   useButtonPro(props, emit)

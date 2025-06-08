@@ -423,21 +423,62 @@
         <el-button-pro type="primary" class="el-button-pro--scale"
           >缩放按钮</el-button-pro
         >
-        <el-button-pro type="danger" class="el-button-pro--scale"
-          >缩放按钮</el-button-pro
-        >
-        <el-button-pro type="info" class="el-button-pro--scale"
-          >缩放按钮</el-button-pro
-        >
-        <el-button-pro type="danger" class="el-button-pro--scale"
-          >缩放按钮</el-button-pro
-        >
         <el-button-pro type="success" class="el-button-pro--scale"
           >缩放按钮</el-button-pro
         >
         <el-button-pro type="warning" class="el-button-pro--scale"
           >缩放按钮</el-button-pro
         >
+        <el-button-pro type="danger" class="el-button-pro--scale"
+          >缩放按钮</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--scale"
+          >缩放按钮</el-button-pro
+        >
+      </div>
+    </div>
+
+    <div class="style-section">
+      <div class="style-title">hover背景透明到颜色</div>
+      <div class="button-row">
+        <el-button-pro type="primary" class="el-button-pro--hover-bg-write"
+          >hover背景透明到颜色</el-button-pro
+        >
+        <el-button-pro type="success" class="el-button-pro--hover-bg-write"
+          >hover背景透明到颜色</el-button-pro
+        >
+        <el-button-pro type="warning" class="el-button-pro--hover-bg-write"
+          >hover背景透明到颜色</el-button-pro
+        >
+        <el-button-pro type="danger" class="el-button-pro--hover-bg-write"
+          >hover背景透明到颜色</el-button-pro
+        >
+        <el-button-pro type="info" class="el-button-pro--hover-bg-write"
+          >hover背景透明到颜色</el-button-pro
+        >
+      </div>
+    </div>
+
+    <div class="style-section">
+      <div class="style-title">
+        hover背景颜色到透明
+        <div class="button-row">
+          <el-button-pro type="primary" class="el-button-pro--hover-bg-color"
+            >hover背景颜色到透明</el-button-pro
+          >
+          <el-button-pro type="success" class="el-button-pro--hover-bg-color"
+            >hover背景颜色到透明</el-button-pro
+          >
+          <el-button-pro type="warning" class="el-button-pro--hover-bg-color"
+            >hover背景颜色到透明</el-button-pro
+          >
+          <el-button-pro type="danger" class="el-button-pro--hover-bg-color"
+            >hover背景颜色到透明</el-button-pro
+          >
+          <el-button-pro type="info" class="el-button-pro--hover-bg-color"
+            >hover背景颜色到透明</el-button-pro
+          >
+        </div>
       </div>
     </div>
   </div>
