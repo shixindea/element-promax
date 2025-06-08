@@ -29,13 +29,13 @@ message-pro/styles
 
 :::
 
-## Plain ^(2.6.3)
+## Plain ^(2.6.3)121
 
 Set `plain` to have a plain background.
 
 :::demo
 
-message/plain
+message-pro/styles-mobile
 
 :::
 
