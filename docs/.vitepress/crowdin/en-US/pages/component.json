@@ -22,6 +22,10 @@
       {
         "link": "/button-pro",
         "text": "ButtonPro"
+      },
+      {
+        "link": "/message-pro",
+        "text": "MessagePro"
       }
     ]
   },
