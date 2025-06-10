@@ -3,7 +3,6 @@ import { vLoading } from './src/directive'
 
 import type { App } from 'vue'
 
-// installer and everything in all
 export const ElLoading = {
   install(app: App) {
     app.directive('loading', vLoading)

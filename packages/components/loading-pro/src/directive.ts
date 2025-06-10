@@ -8,7 +8,7 @@ import type { LoadingProInstance } from './loading-pro'
 
 const INSTANCE_KEY = Symbol('ElLoadingPro')
 
-export type LoadingProBinding = boolean | UnwrapRef<LoadingOProptions>
+export type LoadingProBinding = boolean | UnwrapRef<LoadingProOptions>
 export interface ElementLoadingPro extends HTMLElement {
   [INSTANCE_KEY]?: {
     instance: LoadingProInstance
@@ -54,6 +54,7 @@ const createInstance = (
     body: getBindingProp('body') ?? binding.modifiers.body,
     lock: getBindingProp('lock') ?? binding.modifiers.lock,
   }
+
   el[INSTANCE_KEY] = {
     options,
     instance: LoadingPro(options),

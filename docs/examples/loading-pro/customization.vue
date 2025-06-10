@@ -1,6 +1,8 @@
+<!-- @format -->
+
 <template>
   <el-table
-    v-loading="loading"
+    v-loadingPro="loading"
     element-loading-text="Loading..."
     :element-loading-spinner="svg"
     element-loading-svg-view-box="-10, -10, 50, 50"
@@ -13,7 +15,7 @@
     <el-table-column prop="address" label="Address" />
   </el-table>
   <el-table
-    v-loading="loading"
+    v-loading-pro="loading"
     :element-loading-svg="svg"
     class="custom-loading-svg"
     element-loading-svg-view-box="-10, -10, 50, 50"

@@ -122,6 +122,8 @@ declare module 'vue' {
     $confirm: typeof import('element-plus')['ElMessageBox']['confirm']
     $prompt: typeof import('element-plus')['ElMessageBox']['prompt']
     $loading: typeof import('element-plus')['ElLoadingService']
+
+    $loadingPro: typeof import('element-plus')['ElLoadingProService']
   }
 }
 

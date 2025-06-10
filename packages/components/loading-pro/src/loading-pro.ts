@@ -107,7 +107,6 @@ export function createLoadingProComponent(options: LoadingProOptionsResolved) {
         const spinnerText = data.text
           ? h('p', { class: ns.b('text') }, [data.text])
           : undefined
-
         return h(
           Transition,
           {

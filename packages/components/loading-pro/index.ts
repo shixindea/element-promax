@@ -3,10 +3,9 @@ import { vLoadingPro } from './src/directive'
 
 import type { App } from 'vue'
 
-// installer and everything in all
 export const ElLoadingPro = {
   install(app: App) {
-    app.directive('loading-pro', vLoadingPro)
+    app.directive('loadingPro', vLoadingPro)
     app.config.globalProperties.$loadingPro = LoadingPro
   },
   directive: vLoadingPro,
