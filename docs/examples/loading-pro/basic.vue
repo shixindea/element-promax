@@ -1,5 +1,3 @@
-<!-- @format -->
-
 <template>
   <el-table v-loading="loading" :data="tableData" style="width: 100%">
     <el-table-column prop="date" label="Date" width="180" />

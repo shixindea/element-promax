@@ -26,6 +26,10 @@
       {
         "link": "/message-pro",
         "text": "MessagePro"
+      },
+      {
+        "link": "/loading-pro",
+        "text": "LoadingPro"
       }
     ]
   },

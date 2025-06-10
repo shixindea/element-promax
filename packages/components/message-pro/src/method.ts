@@ -94,6 +94,9 @@ const createMessage = (
   const userOnClose = options.onClose
 
   const container = document.createElement('div')
+  const theCustomClass = options.animation
+    ? `message-pro-${options.animation}`
+    : options.customClass
 
   const props = {
     ...options,
@@ -104,7 +107,7 @@ const createMessage = (
       userOnClose?.()
       closeMessage(instance)
     },
-
+    customClass: theCustomClass,
     // clean message element preventing mem leak
     onDestroy: () => {
       // since the element is destroy, then the VNode should be collected by GC as well

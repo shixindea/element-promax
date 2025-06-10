@@ -7,137 +7,67 @@ lang: en-US
 
 # Message-Pro
 
-Used to show feedback after an activity. The difference with Notification is that the latter is often used to show a system level passive notification.
+Message-Pro 是一款功能丰富、样式多样的 PC 端、移动端消息提示组件，提供从极简到赛博等风格各异的视觉体验。
 
-## Basic usage
+## 基础使用
 
-Displays at the top, and disappears after 3 seconds.
+Basic
 
-:::demo The setup of Message is very similar to notification, so parts of the options won't be explained in detail here. You can check the options table below combined with notification doc to understand it. Element Plus has registered a `$message` method for invoking. Message can take a string or a VNode as parameter, and it will be shown as the main body.
+:::demo
 
 message-pro/basic
 
 :::
 
-## Types
+## 果锅 ☺️
 
-Used to show the feedback of Success, Warning, Message and Error activities.
+果锅比较喜欢的样式
 
-:::demo When you need more customizations, Message component can also take an object as parameter. For example, setting value of `type` can define different types, and its default is `info`. In such cases the main body is passed in as the value of `message`. Also, we have registered methods for different types, so you can directly call it without passing a type like `open4`.
+:::demo
 
-message-pro/styles
+message-pro/like
 
 :::
 
-## styles-mobile
+## 悬浮样式
 
-Set `plain` to have a plain background.
+这些效果涵盖了极简主义、玻璃拟态、3D 立体、复古潮流、液态动效和赛博朋克等多种风格，每种风格下都有独特的按钮和消息样式，适合不同场景和用户喜好。
 
 :::demo
+
+message-pro/styles-pc
+
+:::
+
+## 居中样式
+
+:::demo 这些效果包含多种居中提示样式，如标准、圆形图标、脉冲动画等，还有毛玻璃、3D 效果等，风格多样，适配不同场景。
 
 message-pro/styles-mobile
 
 :::
 
-## styles-center
-
-A close button can be added.
-
-:::demo A default Message cannot be closed manually. If you need a closable message, you can set `showClose` field. Besides, same as notification, message has a controllable `duration`. Default duration is 3000 ms, and it won't disappear when set to `0`.
-
-message-pro/styles-center
-
-:::
-
-## Centered text
-
-Use the `center` attribute to center the text.
-
-:::demo
-
-message/centered-content
-
-:::
-
-## Use HTML string
-
-`message` supports HTML string.
-
-:::demo Set `dangerouslyUseHTMLString` to true and `message` will be treated as an HTML string.
-
-message/raw-html
-
-:::
-
-:::warning
-
-Although `message` property supports HTML strings, dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). So when `dangerouslyUseHTMLString` is on, please make sure the content of `message` is trusted, and **never** assign `message` to user-provided content.
-
-:::
-
-## Grouping
-
-merge messages with the same content.
-
-:::demo Set `grouping` to true and the same content of `message` will be merged.
-
-message/grouping
-
-:::
-
-## Global method
-
-Element Plus has added a global method `$message` for `app.config.globalProperties`. So in a vue instance you can call `Message` like what we did in this page.
-
-## Local import
-
-```ts
-import { ElMessage } from 'element-plus';
-```
-
-In this case you should call `ElMessage(options)`. We have also registered methods for different types, e.g. `ElMessage.success(options)`. You can call `ElMessage.closeAll()` to manually close all the instances.
-
-## App context inheritance ^(2.0.3)
-
-Now message accepts a `context` as second parameter of the message constructor which allows you to inject current app's context to message which allows you to inherit all the properties of the app.
-
-You can use it like this:
-
-:::tip
-
-If you globally registered ElMessage component, it will automatically inherit your app context.
-
-:::
-
-```ts
-import { getCurrentInstance } from 'vue';
-import { ElMessage } from 'element-plus';
-
-// in your setup method
-const { appContext } = getCurrentInstance()!;
-ElMessage({}, appContext);
-```
-
-## API
+API
 
 ### Options
 
-| Name                     | Description                                                                                         | Type                                            | Default   |        |          |      |
-| ------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------- | --------- | ------ | -------- | ---- |
-| message                  | message text                                                                                        | ^[string] / ^[VNode] / ^[Function]`() => VNode` | ''        |        |          |      |
-| type                     | message type                                                                                        | ^[enum]`'success'                               | 'warning' | 'info' | 'error'` | info |
-| plain ^(2.6.3)           | whether message is plain                                                                            | ^[boolean]                                      | false     |        |          |      |
-| icon                     | custom icon component, overrides`type`                                                              | ^[string] / ^[Component]                        | —         |        |          |      |
-| dangerouslyUseHTMLString | whether`message` is treated as HTML string                                                          | ^[boolean]                                      | false     |        |          |      |
-| customClass              | custom class name for Message                                                                       | ^[string]                                       | ''        |        |          |      |
-| duration                 | display duration, millisecond. If set to 0, it will not turn off automatically                      | ^[number]                                       | 3000      |        |          |      |
-| showClose                | whether to show a close button                                                                      | ^[boolean]                                      | false     |        |          |      |
-| center                   | whether to center the text                                                                          | ^[boolean]                                      | false     |        |          |      |
-| onClose                  | callback function when closed with the message instance as the parameter                            | ^[Function]`() => void`                         | —         |        |          |      |
-| offset                   | set the distance to the top of viewport                                                             | ^[number]                                       | 16        |        |          |      |
-| appendTo                 | set the root element for the message, default to`document.body`                                     | ^[string] / ^[HTMLElement]                      | —         |        |          |      |
-| grouping                 | merge messages with the same content, type of VNode message is not supported                        | ^[boolean]                                      | false     |        |          |      |
-| repeatNum                | The number of repetitions, similar to badge, is used as the initial number when used with`grouping` | ^[number]                                       | 1         |        |          |      |
+| Name                     | Description                                                                                         | Type                                            | Default          |        |          |      |
+| ------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ---------------- | ------ | -------- | ---- |
+| message                  | message text                                                                                        | ^[string] / ^[VNode] / ^[Function]`() => VNode` | ''               |        |          |      |
+| type                     | message type                                                                                        | ^[enum]`'success'                               | 'warning'        | 'info' | 'error'` | info |
+| animation                | 果锅增加 ❤️ 动画                                                                                    | ^[string]'                                      | 见楼下 animation |        |          |
+| plain ^(2.6.3)           | whether message is plain                                                                            | ^[boolean]                                      | false            |        |          |      |
+| icon                     | custom icon component, overrides`type`                                                              | ^[string] / ^[Component]                        | —                |        |          |      |
+| dangerouslyUseHTMLString | whether`message` is treated as HTML string                                                          | ^[boolean]                                      | false            |        |          |      |
+| customClass              | custom class name for Message                                                                       | ^[string]                                       | ''               |        |          |      |
+| duration                 | display duration, millisecond. If set to 0, it will not turn off automatically                      | ^[number]                                       | 3000             |        |          |      |
+| showClose                | whether to show a close button                                                                      | ^[boolean]                                      | false            |        |          |      |
+| center                   | whether to center the text                                                                          | ^[boolean]                                      | false            |        |          |      |
+| onClose                  | callback function when closed with the message instance as the parameter                            | ^[Function]`() => void`                         | —                |        |          |      |
+| offset                   | set the distance to the top of viewport                                                             | ^[number]                                       | 16               |        |          |      |
+| appendTo                 | set the root element for the message, default to`document.body`                                     | ^[string] / ^[HTMLElement]                      | —                |        |          |      |
+| grouping                 | merge messages with the same content, type of VNode message is not supported                        | ^[boolean]                                      | false            |        |          |      |
+| repeatNum                | The number of repetitions, similar to badge, is used as the initial number when used with`grouping` | ^[number]                                       | 1                |        |          |      |
 
 ### Methods
 
@@ -146,3 +76,77 @@ ElMessage({}, appContext);
 | Name  | Description       | Type                    |
 | ----- | ----------------- | ----------------------- |
 | close | close the Message | ^[Function]`() => void` |
+
+### 样式文件 Animation
+
+| 序号 | 效果名称             | Animation 名称          |
+| ---- | -------------------- | ----------------------- |
+| 1    | 纯色浮动按钮效果     | floating                |
+| 2    | 呼吸灯效果           | breathing               |
+| 3    | 极简线条风格         | minimalist              |
+| 4    | 点状提示效果         | dot                     |
+| 5    | 微交互效果           | micro-interaction       |
+| 6    | 毛玻璃悬浮卡片效果   | glassmorphism           |
+| 7    | 彩虹折射按钮效果     | rainbow-refraction      |
+| 8    | 磨砂玻璃效果         | frosted-glass           |
+| 9    | 玻璃卡片效果         | glass-card              |
+| 10   | 半透明效果           | translucent             |
+| 11   | 3D 立方体效果        | 3d-cube                 |
+| 12   | 立体进度条效果       | 3d-progress             |
+| 13   | 3D 卡片效果          | 3d-card                 |
+| 14   | 立体阴影效果         | 3d-shadow               |
+| 15   | 3D 按钮效果          | 3d-button               |
+| 16   | 像素风格效果         | pixel                   |
+| 17   | CRT 屏幕效果         | crt                     |
+| 18   | 复古电视机效果       | retro-tv                |
+| 19   | 复古纸张效果         | vintage                 |
+| 20   | 复古电脑效果         | retro-computer          |
+| 21   | 水滴融合效果         | water-drop              |
+| 22   | 流动背景效果         | flowing-background      |
+| 23   | 液态按钮效果         | liquid-button           |
+| 24   | 液态斑点效果         | blob                    |
+| 25   | 波浪效果             | wave                    |
+| 26   | 霓虹故障效果         | neon-glitch             |
+| 27   | 全息投影键盘效果     | hologram-keyboard       |
+| 28   | 赛博朋克风格         | cyberpunk               |
+| 29   | 故障文字效果         | glitch-text             |
+| 30   | 霓虹边框效果         | neon-border             |
+| 31   | 树叶生长效果         | leaf-growth             |
+| 32   | 水波纹效果           | water-ripple            |
+| 33   | 自然卡片效果         | nature-card             |
+| 34   | 木纹质感效果         | wood-texture            |
+| 35   | 叶纹图案效果         | leaf-pattern            |
+| 36   | 多级悬浮球效果       | floating-ball           |
+| 37   | 智能折叠效果         | smart-tab               |
+| 38   | 状态指示灯效果       | status-indicator        |
+| 40   | 功能卡片效果         | functional-card         |
+| 41   | 梵高星空背景效果     | van-gogh                |
+| 42   | 折纸动画效果         | paper-fold              |
+| 43   | 画笔效果             | paint-brush             |
+| 44   | 水墨效果             | ink-wash                |
+| 45   | 马赛克效果           | mosaic                  |
+| 46   | 立体图标效果         | 3d-icon                 |
+| 47   | 毛玻璃背景效果       | glass-background        |
+| 48   | 磨砂玻璃背景效果     | frosted-background      |
+| 49   | 玻璃卡片背景效果     | glass-card-bg           |
+| 50   | 悬浮球效果           | floating-ball           |
+| 51   | 标准提示效果         | standard                |
+| 52   | 圆形图标居中提示     | center-circle-icon      |
+| 53   | 脉冲动画居中提示     | center-pulse            |
+| 54   | 卡片式居中提示       | center-card             |
+| 55   | 毛玻璃效果居中提示   | center-glassmorphism    |
+| 56   | 3D 效果居中提示      | center-3d               |
+| 57   | 渐变背景居中提示     | center-gradient         |
+| 58   | 旋转进入效果居中提示 | center-rotate           |
+| 59   | 阴影强调居中提示     | center-shadow-emphasis  |
+| 60   | 边框动画居中提示     | center-border-animation |
+| 61   | 水波纹效果居中提示   | center-ripple           |
+| 62   | 霓虹灯效果居中提示   | center-neon             |
+| 63   | 弹性缩放居中提示     | center-elastic          |
+| 64   | 液态效果居中提示     | center-liquid           |
+| 65   | 分层卡片居中提示     | center-layered          |
+| 66   | 闪光效果居中提示     | center-shine            |
+| 67   | 暗色主题居中提示     | center-dark             |
+| 68   | 扫描线效果居中提示   | center-scan-line        |
+| 69   | 折纸效果居中提示     | center-origami          |
+| 70   | 全息投影效果居中提示 | center-hologram         |

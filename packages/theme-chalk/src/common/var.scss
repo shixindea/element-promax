@@ -1751,7 +1751,7 @@ $button-pro-padding-horizontal: map.merge(
 );
 
 // Messagepro
-// css3 var in packages/theme-chalk/src/message.scss
+// css3 var in packages/theme-chalk/src/message-pro.scss
 $message-pro: () !default;
 $message-pro: map.merge(
   (
@@ -1763,4 +1763,15 @@ $message-pro: map.merge(
     'close-hover-color': getCssVar('text-color-secondary'),
   ),
   $message-pro
+);
+
+// loading-pro
+// css3 var in packages/theme-chalk/src/loading-pro.scss
+$loading-pro: () !default;
+$loading-pro: map.merge(
+  (
+    'spinner-size': 42px,
+    'fullscreen-spinner-size': 50px,
+  ),
+  $loading-pro
 );

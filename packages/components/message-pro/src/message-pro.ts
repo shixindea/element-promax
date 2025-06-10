@@ -151,6 +151,11 @@ export const messageProProps = buildProps({
     type: Number,
     default: messageProDefaults.repeatNum,
   },
+  animation: {
+    type: String,
+    default: 'standard',
+  },
+  // customClass: `message-pro-center-${style}`,
 } as const)
 export type MessageProProps = ExtractPropTypes<typeof messageProProps>
 
