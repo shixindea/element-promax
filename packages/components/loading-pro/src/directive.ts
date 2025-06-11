@@ -33,11 +33,12 @@ const createInstance = (
     else return data
   }
 
-  const getProp = <K extends keyof LoadingProOptions>(name: K) =>
-    resolveExpression(
+  const getProp = <K extends keyof LoadingProOptions>(name: K) => {
+    return resolveExpression(
       getBindingProp(name) ||
         el.getAttribute(`element-loading-pro-${hyphenate(name)}`)
     )
+  }
 
   const fullscreen =
     getBindingProp('fullscreen') ?? binding.modifiers.fullscreen
@@ -48,7 +49,9 @@ const createInstance = (
     svgViewBox: getProp('svgViewBox'),
     spinner: getProp('spinner'),
     background: getProp('background'),
-    customClass: getProp('customClass'),
+    customClass: binding.modifiers.D3D
+      ? 'crystal-effect'
+      : getProp('customClass'),
     fullscreen,
     target: getBindingProp('target') ?? (fullscreen ? undefined : el),
     body: getBindingProp('body') ?? binding.modifiers.body,

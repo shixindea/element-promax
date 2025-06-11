@@ -28,6 +28,7 @@ const openFullScreen2 = () => {
     lock: true,
     text: 'Loading',
     background: 'rgba(0, 0, 0, 0.7)',
+    customClass: 'elastic-effect',
   })
   setTimeout(() => {
     loading.close()

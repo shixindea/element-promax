@@ -30,6 +30,9 @@ const buildTransformers = () => {
     'trap-focus',
     'mousewheel',
     'resize',
+    // 袁果锅开发
+    'loadingPro',
+
   ]
   directives.forEach((k) => {
     transformers[k] = transformer

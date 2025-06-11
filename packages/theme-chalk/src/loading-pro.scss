@@ -8,7 +8,7 @@
   @include set-component-css-var('loading-pro', $loading-pro);
 }
 
-@include b(loading-parent) {
+@include b(loading-pro-parent) {
   @include m(relative) {
     position: relative !important;
   }
@@ -18,7 +18,7 @@
   }
 }
 
-@include b(loading-mask) {
+@include b(loading-pro-mask) {
   position: absolute;
   z-index: 2000;
   background-color: getCssVar('mask-color');
@@ -32,27 +32,27 @@
   @include when(fullscreen) {
     position: fixed;
 
-    .#{$namespace}-loading-spinner {
+    .#{$namespace}-loading-pro-spinner {
       margin-top: calc(
-        (0px - getCssVar('loading-fullscreen-spinner-size')) / 2
+        (0px - getCssVar('loading-pro-fullscreen-spinner-size')) / 2
       );
 
       .circular {
-        height: getCssVar('loading-fullscreen-spinner-size');
-        width: getCssVar('loading-fullscreen-spinner-size');
+        height: getCssVar('loading-pro-fullscreen-spinner-size');
+        width: getCssVar('loading-pro-fullscreen-spinner-size');
       }
     }
   }
 }
 
-@include b(loading-spinner) {
+@include b(loading-pro-spinner) {
   top: 50%;
-  margin-top: calc((0px - getCssVar('loading-spinner-size')) / 2);
+  margin-top: calc((0px - getCssVar('loading-pro-spinner-size')) / 2);
   width: 100%;
   text-align: center;
   position: absolute;
 
-  .#{$namespace}-loading-text {
+  .#{$namespace}-loading-pro-text {
     color: getCssVar('color-primary');
     margin: 3px 0;
     font-size: 14px;
@@ -60,13 +60,13 @@
 
   .circular {
     display: inline;
-    height: getCssVar('loading-spinner-size');
-    width: getCssVar('loading-spinner-size');
-    animation: loading-rotate 2s linear infinite;
+    height: getCssVar('loading-pro-spinner-size');
+    width: getCssVar('loading-pro-spinner-size');
+    animation: loading-pro-rotate 2s linear infinite;
   }
 
   .path {
-    animation: loading-dash 1.5s ease-in-out infinite;
+    animation: loading-pro-dash 1.5s ease-in-out infinite;
     stroke-dasharray: 90, 150;
     stroke-dashoffset: 0;
     stroke-width: 2;
@@ -79,18 +79,18 @@
   }
 }
 
-.#{$namespace}-loading-fade-enter-from,
-.#{$namespace}-loading-fade-leave-to {
+.#{$namespace}-loading-pro-fade-enter-from,
+.#{$namespace}-loading-pro-fade-leave-to {
   opacity: 0;
 }
 
-@keyframes loading-rotate {
+@keyframes loading-pro-rotate {
   100% {
     transform: rotate(360deg);
   }
 }
 
-@keyframes loading-dash {
+@keyframes loading-pro-dash {
   0% {
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
@@ -107,7 +107,7 @@
 
 /* 1. Wave Effect */
 .wave-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: wave-rotate 1.5s ease-in-out infinite;
     }
@@ -116,7 +116,7 @@
       stroke-width: 3;
       animation: wave-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       animation: wave-text 1.5s ease-in-out infinite;
     }
@@ -169,7 +169,7 @@
 
 /* 2. Pulse Effect */
 .pulse-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: pulse-rotate 1.5s ease-in-out infinite;
     }
@@ -178,7 +178,7 @@
       animation: pulse-dash 1.5s ease-in-out infinite;
       stroke-width: 3;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       animation: pulse-text 1.5s ease-in-out infinite;
       color: getCssVar('color-primary');
     }
@@ -186,7 +186,8 @@
 }
 
 @keyframes pulse-rotate {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(0deg);
   }
   50% {
@@ -213,7 +214,8 @@
 }
 
 @keyframes pulse-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
   }
   50% {
@@ -223,10 +225,10 @@
 
 /* 3. Neon Effect */
 .neon-effect {
-  .#{$namespace}-loading-mask {
+  .#{$namespace}-loading-pro-mask {
     background-color: rgba(0, 0, 0, 0.7);
   }
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       filter: drop-shadow(0 0 8px getCssVar('color-primary'));
       animation: neon-rotate 2s linear infinite;
@@ -236,7 +238,7 @@
       stroke-width: 3;
       animation: neon-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       text-shadow: 0 0 8px getCssVar('color-primary');
       animation: neon-text 1.5s ease-in-out infinite;
@@ -269,7 +271,8 @@
 }
 
 @keyframes neon-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.8;
     filter: drop-shadow(0 0 2px getCssVar('color-primary'));
   }
@@ -281,7 +284,7 @@
 
 /* 4. Minimalist Effect */
 .minimalist-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: minimalist-rotate 2s ease-in-out infinite;
     }
@@ -291,7 +294,7 @@
       stroke-dasharray: 60, 200;
       animation: minimalist-dash 2s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       font-weight: 300;
       letter-spacing: 2px;
       color: getCssVar('color-primary');
@@ -325,7 +328,7 @@
 
 /* 5. Gradient Effect */
 .gradient-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: gradient-rotate 2s linear infinite;
     }
@@ -334,7 +337,7 @@
       stroke-width: 3;
       animation: gradient-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       background: linear-gradient(90deg, #6366f1, #8b5cf6, #d946ef);
       background-size: 200% auto;
       -webkit-background-clip: text;
@@ -377,16 +380,18 @@
 
 /* 6. Elastic Effect */
 .elastic-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
-      animation: elastic-rotate 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+      animation: elastic-rotate 2s cubic-bezier(0.68, -0.55, 0.27, 1.55)
+        infinite;
     }
     .path {
       stroke: getCssVar('color-primary');
       stroke-width: 2;
-      animation: elastic-dash 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+      animation: elastic-dash 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)
+        infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       animation: elastic-text 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
       color: getCssVar('color-primary');
     }
@@ -421,7 +426,8 @@
 }
 
 @keyframes elastic-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -431,10 +437,10 @@
 
 /* 7. Tech Effect */
 .tech-effect {
-  .#{$namespace}-loading-mask {
+  .#{$namespace}-loading-pro-mask {
     background-color: rgba(0, 0, 0, 0.8);
   }
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: tech-rotate 2s linear infinite;
     }
@@ -444,7 +450,7 @@
       stroke-linecap: square;
       animation: tech-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-info');
       font-family: monospace;
       letter-spacing: 1px;
@@ -487,7 +493,8 @@
 }
 
 @keyframes tech-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.7;
   }
   50% {
@@ -497,11 +504,11 @@
 
 /* 8. Crystal Effect */
 .crystal-effect {
-  .#{$namespace}-loading-mask {
+  .#{$namespace}-loading-pro-mask {
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(5px);
   }
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: crystal-rotate 2s linear infinite;
       filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.1));
@@ -512,7 +519,7 @@
       opacity: 0.8;
       animation: crystal-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       font-weight: 300;
       letter-spacing: 1px;
@@ -547,10 +554,10 @@
 
 /* 9. Dark Mode Effect */
 .dark-mode-effect {
-  .#{$namespace}-loading-mask {
+  .#{$namespace}-loading-pro-mask {
     background-color: rgba(0, 0, 0, 0.85);
   }
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: dark-mode-rotate 2s linear infinite;
     }
@@ -559,7 +566,7 @@
       stroke-width: 2;
       animation: dark-mode-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: #fff;
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     }
@@ -589,7 +596,7 @@
 
 /* 10. Liquid Effect */
 .liquid-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: liquid-rotate 2s ease infinite;
     }
@@ -598,7 +605,7 @@
       stroke-width: 4;
       animation: liquid-dash 2s ease infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       animation: liquid-text 2s ease infinite;
     }
@@ -646,7 +653,8 @@
 }
 
 @keyframes liquid-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.6;
     transform: translateY(0);
   }
@@ -658,7 +666,7 @@
 
 /* 11. 3D Effect */
 .three-d-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     perspective: 800px;
     .circular {
       animation: three-d-rotate 2s ease-in-out infinite;
@@ -669,7 +677,7 @@
       stroke-width: 3;
       animation: three-d-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       animation: three-d-text 2s ease-in-out infinite;
       transform-style: preserve-3d;
@@ -705,7 +713,8 @@
 }
 
 @keyframes three-d-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateZ(0px);
   }
   50% {
@@ -715,10 +724,10 @@
 
 /* 12. Scan Effect */
 .scan-effect {
-  .#{$namespace}-loading-mask {
+  .#{$namespace}-loading-pro-mask {
     background-color: rgba(0, 0, 0, 0.7);
   }
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: scan-rotate 2s linear infinite;
     }
@@ -727,7 +736,7 @@
       stroke-width: 2;
       animation: scan-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-success');
       animation: scan-text 2s ease-in-out infinite;
     }
@@ -738,7 +747,12 @@
       right: 0;
       top: 50%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, getCssVar('color-success'), transparent);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        getCssVar('color-success'),
+        transparent
+      );
       animation: scan-line 2s linear infinite;
     }
   }
@@ -766,7 +780,8 @@
 }
 
 @keyframes scan-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.7;
   }
   50% {
@@ -795,7 +810,7 @@
 
 /* 13. Bubble Effect */
 .bubble-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: bubble-rotate 2s ease-in-out infinite;
     }
@@ -804,7 +819,7 @@
       stroke-width: 3;
       animation: bubble-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       animation: bubble-text 2s ease-in-out infinite;
     }
@@ -812,7 +827,8 @@
 }
 
 @keyframes bubble-rotate {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(0deg) scale(1);
   }
   50% {
@@ -849,7 +865,8 @@
 }
 
 @keyframes bubble-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.7;
   }
@@ -861,7 +878,7 @@
 
 /* 14. Magnetic Effect */
 .magnetic-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: magnetic-rotate 2s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
     }
@@ -870,7 +887,7 @@
       stroke-width: 3;
       animation: magnetic-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-warning');
       animation: magnetic-text 2s ease-in-out infinite;
     }
@@ -911,7 +928,8 @@
 }
 
 @keyframes magnetic-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
   25% {
@@ -924,7 +942,7 @@
 
 /* 15. Origami Effect */
 .origami-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: origami-rotate 2s ease-in-out infinite;
     }
@@ -934,7 +952,7 @@
       stroke-linecap: square;
       animation: origami-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       font-weight: 300;
       letter-spacing: 2px;
@@ -977,7 +995,8 @@
 }
 
 @keyframes origami-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -987,10 +1006,10 @@
 
 /* 16. Hologram Effect */
 .hologram-effect {
-  .#{$namespace}-loading-mask {
+  .#{$namespace}-loading-pro-mask {
     background-color: rgba(0, 0, 0, 0.7);
   }
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: hologram-rotate 2s linear infinite;
       filter: drop-shadow(0 0 5px rgba(0, 191, 255, 0.7));
@@ -1001,7 +1020,7 @@
       animation: hologram-dash 1.5s ease-in-out infinite;
       opacity: 0.8;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: #00bfff;
       text-shadow: 0 0 5px rgba(0, 191, 255, 0.7);
       animation: hologram-text 2s ease-in-out infinite;
@@ -1032,7 +1051,8 @@
 }
 
 @keyframes hologram-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
     text-shadow: 0 0 5px rgba(0, 191, 255, 0.5);
   }
@@ -1044,7 +1064,7 @@
 
 /* 17. Particle Effect */
 .particle-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: particle-rotate 2s linear infinite;
     }
@@ -1054,7 +1074,7 @@
       stroke-dasharray: 5, 15;
       animation: particle-dash 2s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-danger');
       animation: particle-text 2s ease-in-out infinite;
     }
@@ -1089,7 +1109,8 @@
 }
 
 @keyframes particle-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.7;
   }
   50% {
@@ -1099,7 +1120,7 @@
 
 /* 18. Shine Effect */
 .shine-effect {
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: shine-rotate 2s linear infinite;
       position: relative;
@@ -1111,7 +1132,12 @@
         left: -10%;
         width: 120%;
         height: 120%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
         transform: rotate(45deg);
         animation: shine-sweep 2s linear infinite;
       }
@@ -1121,7 +1147,7 @@
       stroke-width: 3;
       animation: shine-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       position: relative;
       overflow: hidden;
@@ -1132,7 +1158,12 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
         animation: shine-text-sweep 2s linear infinite;
       }
     }
@@ -1180,10 +1211,10 @@
 
 /* 19. Card Effect */
 .card-effect {
-  .#{$namespace}-loading-mask {
+  .#{$namespace}-loading-pro-mask {
     background-color: rgba(255, 255, 255, 0.9);
   }
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -1198,7 +1229,7 @@
       stroke-width: 3;
       animation: card-dash 1.5s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       font-weight: 500;
       margin-top: 10px;
@@ -1229,11 +1260,11 @@
 
 /* 20. Breeze Effect */
 .breeze-effect {
-  .#{$namespace}-loading-mask {
+  .#{$namespace}-loading-pro-mask {
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(3px);
   }
-  .#{$namespace}-loading-spinner {
+  .#{$namespace}-loading-pro-spinner {
     .circular {
       animation: breeze-rotate 2s ease-in-out infinite;
     }
@@ -1243,7 +1274,7 @@
       stroke-linecap: round;
       animation: breeze-dash 2s ease-in-out infinite;
     }
-    .#{$namespace}-loading-text {
+    .#{$namespace}-loading-pro-text {
       color: getCssVar('color-primary');
       font-weight: 300;
       letter-spacing: 1px;
@@ -1294,7 +1325,8 @@
 }
 
 @keyframes breeze-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.7;
     transform: translateY(0);
   }
@@ -1304,25 +1336,25 @@
   }
 }
 
-/* 20种不同风格的Loading样式 */
+/* 20种不同风格的Loading-pro样式 */
 
 /* 1. 波浪效果 - Wave Effect */
-.el-loading-mask.wave-effect {
+.el-loading-pro-mask.wave-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: wave-rotate 1.5s ease-in-out infinite;
     }
-    
+
     .path {
-      stroke: #409EFF;
+      stroke: #409eff;
       stroke-width: 3;
       animation: wave-dash 1.5s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #409EFF;
+
+    .el-loading-pro-text {
+      color: #409eff;
       font-weight: bold;
       animation: wave-text 1.5s ease-in-out infinite;
     }
@@ -1345,22 +1377,23 @@
   0% {
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
-    stroke: #409EFF;
+    stroke: #409eff;
   }
   50% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -40px;
-    stroke: #67C23A;
+    stroke: #67c23a;
   }
   100% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -120px;
-    stroke: #409EFF;
+    stroke: #409eff;
   }
 }
 
 @keyframes wave-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -1369,22 +1402,22 @@
 }
 
 /* 2. 脉冲效果 - Pulse Effect */
-.el-loading-mask.pulse-effect {
+.el-loading-pro-mask.pulse-effect {
   background-color: rgba(0, 0, 0, 0.7);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: pulse-scale 1s ease-in-out infinite alternate;
     }
-    
+
     .path {
-      stroke: #F56C6C;
+      stroke: #f56c6c;
       stroke-width: 4;
       animation: pulse-color 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #F56C6C;
+
+    .el-loading-pro-text {
+      color: #f56c6c;
       font-weight: bold;
       animation: pulse-text 1s ease-in-out infinite alternate;
     }
@@ -1401,11 +1434,12 @@
 }
 
 @keyframes pulse-color {
-  0%, 100% {
-    stroke: #F56C6C;
+  0%,
+  100% {
+    stroke: #f56c6c;
   }
   50% {
-    stroke: #E6A23C;
+    stroke: #e6a23c;
   }
 }
 
@@ -1421,24 +1455,24 @@
 }
 
 /* 3. 霓虹灯效果 - Neon Effect */
-.el-loading-mask.neon-effect {
+.el-loading-pro-mask.neon-effect {
   background-color: rgba(0, 0, 0, 0.85);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
-      filter: drop-shadow(0 0 8px #E6A23C);
+      filter: drop-shadow(0 0 8px #e6a23c);
       animation: neon-rotate 2s linear infinite;
     }
-    
+
     .path {
-      stroke: #E6A23C;
+      stroke: #e6a23c;
       stroke-width: 3;
       animation: neon-glow 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #E6A23C;
-      text-shadow: 0 0 10px #E6A23C, 0 0 20px #E6A23C, 0 0 30px #E6A23C;
+
+    .el-loading-pro-text {
+      color: #e6a23c;
+      text-shadow: 0 0 10px #e6a23c, 0 0 20px #e6a23c, 0 0 30px #e6a23c;
       animation: neon-text-glow 2s ease-in-out infinite;
     }
   }
@@ -1451,43 +1485,45 @@
 }
 
 @keyframes neon-glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 5px #E6A23C);
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px #e6a23c);
     stroke-width: 3;
   }
   50% {
-    filter: drop-shadow(0 0 15px #E6A23C);
+    filter: drop-shadow(0 0 15px #e6a23c);
     stroke-width: 4;
   }
 }
 
 @keyframes neon-text-glow {
-  0%, 100% {
-    text-shadow: 0 0 10px #E6A23C, 0 0 20px #E6A23C;
+  0%,
+  100% {
+    text-shadow: 0 0 10px #e6a23c, 0 0 20px #e6a23c;
     opacity: 0.8;
   }
   50% {
-    text-shadow: 0 0 15px #E6A23C, 0 0 30px #E6A23C, 0 0 45px #E6A23C;
+    text-shadow: 0 0 15px #e6a23c, 0 0 30px #e6a23c, 0 0 45px #e6a23c;
     opacity: 1;
   }
 }
 
 /* 4. 极简效果 - Minimalist Effect */
-.el-loading-mask.minimalist-effect {
+.el-loading-pro-mask.minimalist-effect {
   background-color: rgba(255, 255, 255, 0.95);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: minimalist-rotate 1.5s linear infinite;
     }
-    
+
     .path {
       stroke: #909399;
       stroke-width: 1;
       stroke-dasharray: 60, 150;
     }
-    
-    .el-loading-text {
+
+    .el-loading-pro-text {
       color: #909399;
       font-size: 12px;
       letter-spacing: 2px;
@@ -1503,29 +1539,29 @@
 }
 
 /* 5. 渐变效果 - Gradient Effect */
-.el-loading-mask.gradient-effect {
+.el-loading-pro-mask.gradient-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: gradient-rotate 2s linear infinite;
     }
-    
+
     .path {
       stroke: url(#gradient);
       stroke-width: 3;
       animation: gradient-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      background: linear-gradient(90deg, #409EFF, #67C23A, #E6A23C, #F56C6C);
+
+    .el-loading-pro-text {
+      background: linear-gradient(90deg, #409eff, #67c23a, #e6a23c, #f56c6c);
       background-size: 300% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: gradient-text 4s linear infinite;
     }
   }
-  
+
   /* SVG渐变定义 */
   svg {
     &:first-child {
@@ -1567,22 +1603,23 @@
 }
 
 /* 6. 弹性效果 - Elastic Effect */
-.el-loading-mask.elastic-effect {
+.el-loading-pro-mask.elastic-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
-      animation: elastic-rotate 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+      animation: elastic-rotate 2s cubic-bezier(0.68, -0.55, 0.27, 1.55)
+        infinite;
     }
-    
+
     .path {
-      stroke: #67C23A;
+      stroke: #67c23a;
       stroke-width: 3;
       animation: elastic-dash 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
     }
-    
-    .el-loading-text {
-      color: #67C23A;
+
+    .el-loading-pro-text {
+      color: #67c23a;
       animation: elastic-text 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
     }
   }
@@ -1619,7 +1656,8 @@
 }
 
 @keyframes elastic-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -1628,15 +1666,15 @@
 }
 
 /* 7. 科技风效果 - Tech Effect */
-.el-loading-mask.tech-effect {
+.el-loading-pro-mask.tech-effect {
   background-color: rgba(0, 0, 0, 0.8);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: tech-rotate 2s linear infinite;
       position: relative;
     }
-    
+
     .circular::before {
       content: '';
       position: absolute;
@@ -1648,15 +1686,15 @@
       border-radius: 50%;
       animation: tech-pulse 2s linear infinite;
     }
-    
+
     .path {
-      stroke: #409EFF;
+      stroke: #409eff;
       stroke-width: 2;
       animation: tech-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #409EFF;
+
+    .el-loading-pro-text {
+      color: #409eff;
       font-family: monospace;
       letter-spacing: 1px;
       animation: tech-text 2s linear infinite;
@@ -1671,7 +1709,8 @@
 }
 
 @keyframes tech-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.3;
   }
@@ -1697,7 +1736,8 @@
 }
 
 @keyframes tech-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -1706,23 +1746,23 @@
 }
 
 /* 8. 水晶效果 - Crystal Effect */
-.el-loading-mask.crystal-effect {
+.el-loading-pro-mask.crystal-effect {
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: crystal-rotate 2s linear infinite;
       filter: drop-shadow(0 0 10px rgba(64, 158, 255, 0.5));
     }
-    
+
     .path {
       stroke: rgba(64, 158, 255, 0.8);
       stroke-width: 3;
       animation: crystal-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
+
+    .el-loading-pro-text {
       color: rgba(64, 158, 255, 0.8);
       text-shadow: 0 0 10px rgba(64, 158, 255, 0.5);
       animation: crystal-text 2s ease-in-out infinite;
@@ -1755,7 +1795,8 @@
 }
 
 @keyframes crystal-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.8;
   }
   50% {
@@ -1764,22 +1805,22 @@
 }
 
 /* 9. 黑暗模式效果 - Dark Mode Effect */
-.el-loading-mask.dark-mode-effect {
+.el-loading-pro-mask.dark-mode-effect {
   background-color: rgba(30, 30, 30, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: dark-rotate 2s linear infinite;
     }
-    
+
     .path {
-      stroke: #F56C6C;
+      stroke: #f56c6c;
       stroke-width: 3;
       animation: dark-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #F56C6C;
+
+    .el-loading-pro-text {
+      color: #f56c6c;
       font-weight: bold;
       animation: dark-text 2s ease-in-out infinite;
     }
@@ -1796,48 +1837,49 @@
   0% {
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
-    stroke: #F56C6C;
+    stroke: #f56c6c;
   }
   50% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -40px;
-    stroke: #E6A23C;
+    stroke: #e6a23c;
   }
   100% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -120px;
-    stroke: #F56C6C;
+    stroke: #f56c6c;
   }
 }
 
 @keyframes dark-text {
-  0%, 100% {
-    color: #F56C6C;
+  0%,
+  100% {
+    color: #f56c6c;
   }
   50% {
-    color: #E6A23C;
+    color: #e6a23c;
   }
 }
 
 /* 10. 液态效果 - Liquid Effect */
-.el-loading-mask.liquid-effect {
+.el-loading-pro-mask.liquid-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: liquid-rotate 2s linear infinite;
       filter: blur(0.3px);
     }
-    
+
     .path {
-      stroke: #409EFF;
+      stroke: #409eff;
       stroke-width: 4;
       stroke-linecap: round;
       animation: liquid-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #409EFF;
+
+    .el-loading-pro-text {
+      color: #409eff;
       font-weight: bold;
       animation: liquid-text 2s ease-in-out infinite;
     }
@@ -1881,7 +1923,8 @@
 }
 
 @keyframes liquid-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1892,25 +1935,25 @@
 }
 
 /* 11. 立体效果 - 3D Effect */
-.el-loading-mask.three-d-effect {
+.el-loading-pro-mask.three-d-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     perspective: 800px;
-    
+
     .circular {
       animation: three-d-rotate 3s ease-in-out infinite;
       transform-style: preserve-3d;
     }
-    
+
     .path {
-      stroke: #67C23A;
+      stroke: #67c23a;
       stroke-width: 3;
       animation: three-d-dash 3s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #67C23A;
+
+    .el-loading-pro-text {
+      color: #67c23a;
       font-weight: bold;
       animation: three-d-text 3s ease-in-out infinite;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -1946,7 +1989,8 @@
 }
 
 @keyframes three-d-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateZ(0);
   }
   50% {
@@ -1955,15 +1999,15 @@
 }
 
 /* 12. 扫描效果 - Scan Effect */
-.el-loading-mask.scan-effect {
+.el-loading-pro-mask.scan-effect {
   background-color: rgba(0, 0, 0, 0.7);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: scan-rotate 2s linear infinite;
       position: relative;
     }
-    
+
     .circular::after {
       content: '';
       position: absolute;
@@ -1971,24 +2015,24 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: #E6A23C;
+      background: #e6a23c;
       animation: scan-line 2s linear infinite;
-      box-shadow: 0 0 8px #E6A23C;
+      box-shadow: 0 0 8px #e6a23c;
     }
-    
+
     .path {
-      stroke: #E6A23C;
+      stroke: #e6a23c;
       stroke-width: 2;
       animation: scan-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #E6A23C;
+
+    .el-loading-pro-text {
+      color: #e6a23c;
       font-family: monospace;
       animation: scan-text 2s steps(10) infinite;
       overflow: hidden;
       white-space: nowrap;
-      border-right: 2px solid #E6A23C;
+      border-right: 2px solid #e6a23c;
     }
   }
 }
@@ -2027,7 +2071,8 @@
 }
 
 @keyframes scan-text {
-  0%, 100% {
+  0%,
+  100% {
     width: 0;
   }
   50% {
@@ -2036,23 +2081,24 @@
 }
 
 /* 13. 气泡效果 - Bubble Effect */
-.el-loading-mask.bubble-effect {
+.el-loading-pro-mask.bubble-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: bubble-rotate 2s linear infinite;
       position: relative;
     }
-    
-    .circular::before, .circular::after {
+
+    .circular::before,
+    .circular::after {
       content: '';
       position: absolute;
       border-radius: 50%;
       background: rgba(64, 158, 255, 0.2);
       animation: bubble-pulse 2s ease-in-out infinite alternate;
     }
-    
+
     .circular::before {
       width: 15px;
       height: 15px;
@@ -2061,7 +2107,7 @@
       transform: translateX(-50%);
       animation-delay: 0s;
     }
-    
+
     .circular::after {
       width: 10px;
       height: 10px;
@@ -2070,15 +2116,15 @@
       transform: translateX(-50%);
       animation-delay: 0.5s;
     }
-    
+
     .path {
-      stroke: #409EFF;
+      stroke: #409eff;
       stroke-width: 3;
       animation: bubble-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #409EFF;
+
+    .el-loading-pro-text {
+      color: #409eff;
       animation: bubble-text 2s ease-in-out infinite;
     }
   }
@@ -2121,7 +2167,8 @@
 }
 
 @keyframes bubble-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -2130,22 +2177,22 @@
 }
 
 /* 14. 磁性效果 - Magnetic Effect */
-.el-loading-mask.magnetic-effect {
+.el-loading-pro-mask.magnetic-effect {
   background-color: rgba(0, 0, 0, 0.75);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: magnetic-rotate 2s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
     }
-    
+
     .path {
-      stroke: #F56C6C;
+      stroke: #f56c6c;
       stroke-width: 3;
       animation: magnetic-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #F56C6C;
+
+    .el-loading-pro-text {
+      color: #f56c6c;
       font-weight: bold;
       animation: magnetic-text 2s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
     }
@@ -2186,7 +2233,8 @@
 }
 
 @keyframes magnetic-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -2195,23 +2243,23 @@
 }
 
 /* 15. 折纸效果 - Origami Effect */
-.el-loading-mask.origami-effect {
+.el-loading-pro-mask.origami-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: origami-rotate 3s ease-in-out infinite;
       transform-style: preserve-3d;
     }
-    
+
     .path {
-      stroke: #67C23A;
+      stroke: #67c23a;
       stroke-width: 2;
       animation: origami-dash 3s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #67C23A;
+
+    .el-loading-pro-text {
+      color: #67c23a;
       font-weight: bold;
       animation: origami-text 3s ease-in-out infinite;
     }
@@ -2246,7 +2294,8 @@
 }
 
 @keyframes origami-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: skew(0deg, 0deg);
   }
   25% {
@@ -2258,25 +2307,25 @@
 }
 
 /* 16. 全息效果 - Hologram Effect */
-.el-loading-mask.hologram-effect {
+.el-loading-pro-mask.hologram-effect {
   background-color: rgba(0, 0, 0, 0.8);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: hologram-rotate 2s linear infinite;
-      filter: drop-shadow(0 0 5px #409EFF);
+      filter: drop-shadow(0 0 5px #409eff);
     }
-    
+
     .path {
-      stroke: #409EFF;
+      stroke: #409eff;
       stroke-width: 2;
       animation: hologram-dash 2s ease-in-out infinite;
       opacity: 0.8;
     }
-    
-    .el-loading-text {
-      color: #409EFF;
-      text-shadow: 0 0 5px #409EFF;
+
+    .el-loading-pro-text {
+      color: #409eff;
+      text-shadow: 0 0 5px #409eff;
       animation: hologram-text 2s ease-in-out infinite;
       opacity: 0.8;
     }
@@ -2308,7 +2357,8 @@
 }
 
 @keyframes hologram-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
   }
   50% {
@@ -2317,46 +2367,47 @@
 }
 
 /* 17. 粒子效果 - Particle Effect */
-.el-loading-mask.particle-effect {
+.el-loading-pro-mask.particle-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: particle-rotate 2s linear infinite;
       position: relative;
     }
-    
-    .circular::before, .circular::after {
+
+    .circular::before,
+    .circular::after {
       content: '';
       position: absolute;
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #E6A23C;
+      background: #e6a23c;
       animation: particle-move 2s ease-in-out infinite;
     }
-    
+
     .circular::before {
       top: 0;
       left: 50%;
       transform: translateX(-50%);
     }
-    
+
     .circular::after {
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       animation-delay: 1s;
     }
-    
+
     .path {
-      stroke: #E6A23C;
+      stroke: #e6a23c;
       stroke-width: 3;
       animation: particle-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #E6A23C;
+
+    .el-loading-pro-text {
+      color: #e6a23c;
       animation: particle-text 2s ease-in-out infinite;
     }
   }
@@ -2369,7 +2420,8 @@
 }
 
 @keyframes particle-move {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
   }
@@ -2395,7 +2447,8 @@
 }
 
 @keyframes particle-text {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -2404,16 +2457,16 @@
 }
 
 /* 18. 闪光效果 - Shine Effect */
-.el-loading-mask.shine-effect {
+.el-loading-pro-mask.shine-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: shine-rotate 2s linear infinite;
       position: relative;
       overflow: hidden;
     }
-    
+
     .circular::after {
       content: '';
       position: absolute;
@@ -2421,31 +2474,41 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      );
       transform: rotate(30deg);
       animation: shine-sweep 2s linear infinite;
     }
-    
+
     .path {
-      stroke: #409EFF;
+      stroke: #409eff;
       stroke-width: 3;
       animation: shine-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #409EFF;
+
+    .el-loading-pro-text {
+      color: #409eff;
       position: relative;
       overflow: hidden;
     }
-    
-    .el-loading-text::after {
+
+    .el-loading-pro-text::after {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      );
       animation: shine-text-sweep 2s linear infinite;
     }
   }
@@ -2491,24 +2554,24 @@
 }
 
 /* 19. 卡片效果 - Card Effect */
-.el-loading-mask.card-effect {
+.el-loading-pro-mask.card-effect {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: card-rotate 2s linear infinite;
     }
-    
+
     .path {
-      stroke: #67C23A;
+      stroke: #67c23a;
       stroke-width: 3;
       animation: card-dash 2s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #67C23A;
+
+    .el-loading-pro-text {
+      color: #67c23a;
       font-weight: bold;
       padding: 5px 10px;
       border-radius: 4px;
@@ -2540,7 +2603,8 @@
 }
 
 @keyframes card-text {
-  0%, 100% {
+  0%,
+  100% {
     background-color: rgba(103, 194, 58, 0.1);
   }
   50% {
@@ -2549,23 +2613,23 @@
 }
 
 /* 20. 微风效果 - Breeze Effect */
-.el-loading-mask.breeze-effect {
+.el-loading-pro-mask.breeze-effect {
   background-color: rgba(255, 255, 255, 0.9);
-  
-  .el-loading-spinner {
+
+  .el-loading-pro-spinner {
     .circular {
       animation: breeze-rotate 3s ease-in-out infinite;
     }
-    
+
     .path {
-      stroke: #409EFF;
+      stroke: #409eff;
       stroke-width: 2;
       stroke-dasharray: 50, 150;
       animation: breeze-dash 3s ease-in-out infinite;
     }
-    
-    .el-loading-text {
-      color: #409EFF;
+
+    .el-loading-pro-text {
+      color: #409eff;
       animation: breeze-text 3s ease-in-out infinite;
       transform-origin: center;
     }
@@ -2606,7 +2670,8 @@
 }
 
 @keyframes breeze-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(0deg);
   }
   25% {
