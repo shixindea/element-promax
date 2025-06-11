@@ -5,49 +5,41 @@ lang: en-US
 
 <!-- @format -->
 
-# Loading
+# Loading-pro
 
-Show animation while loading data.
+加载数据时显示动画。
 
-## Loading inside a container
+## 基础用法 - 盒子内
 
-Displays animation in a container (such as a table) while loading data.
-
-:::demo Element Plus provides two ways to invoke Loading: directive and service. For the custom directive `v-loading`, you just need to bind a `boolean` value to it. By default, the loading mask will append to the element where the directive is used. Adding the `body` modifier makes the mask append to the body element.
+:::demo
 
 loading-pro/basic
 
 :::
 
-## Customization
+## 自定义样式和背景色
 
-You can customize loading text, loading spinner and background color.
+> `showLoading`、text、animation、backgroundColor、borderColor、color、width、height
 
-:::demo Add attribute `element-loading-text` to the element on which `v-loading` is bound, and its value will be displayed under the spinner. Similarly, the `element-loading-spinner / element-loading-svg` and `element-loading-background` attributes are used to set the svg icon, background color value, and loading icon, respectively.
+:::demo
 
 loading-pro/customization
 
 :::
 
-:::warning
-
-Although the `element-loading-spinner / element-loading-svg` attribute supports incoming HTML fragments, it is very dangerous to dynamically render arbitrary HTML on the website, because it is easy to cause [XSS attack](https://en.wikipedia.org/wiki/Cross-site_scripting). Please make sure that the content of `element-loading-spinner / element-loading-svg` is trustworthy. **Never** assign user-submitted content to the `element-loading-spinner / element-loading-svg` attribute.
-
-:::
-
-## Full screen loading
+## 全屏 loading
 
 Show a full screen animation while loading data.
 
-:::demo When used as a directive, a full screen Loading requires the `fullscreen` modifier, and it will be appended to body. In this case, if you wish to disable scrolling on body, you can add another modifier `lock`. When used as a service, Loading will be full screen by default.
+:::demo
 
 loading-pro/fullscreen
 
 :::
 
-## 全部用法 1
+## Loading Pro 样式展示
 
-Show a full screen animation while loading data.
+告别单调乏味的加载等待！欢迎来到 Loading Pro 的样式展示区。这里汇聚了 Loading Pro 丰富多样的视觉呈现，旨在证明一个加载组件不仅能传递“正在加载”的信息，更能成为你应用界面中一道亮丽且富有格调的风景线。
 
 :::demo
 
@@ -55,19 +47,9 @@ loading-pro/all-styles
 
 :::
 
-## 全部用法 2
+## Loading Pro 性能展示
 
-Show a full screen animation while loading data.
-
-:::demo
-
-loading-pro/interactive-tester
-
-:::
-
-## 全部用法 3
-
-Show a full screen animation while loading data.
+欢迎来到果锅的 Loading Pro 性能展示区！在这里，我们不仅仅是展示一个加载组件，更是向你证明我们对速度和效率的极致追求。你可能会好奇，一个加载组件的性能究竟有多重要？答案是：至关重要。一个卡顿、延迟的加载体验，会瞬间破坏用户对整个应用的信任感。
 
 :::demo
 
@@ -75,9 +57,9 @@ loading-pro/performance-showcase
 
 :::
 
-## 全部用法 4
+## Loading Pro 样式画廊
 
-Show a full screen animation while loading data.
+欢迎来到果锅的 Loading Pro 样式画廊！这里是一个精心策划的视觉空间，专门展示我们 Loading Pro 组件所能呈现的丰富多样、引人入胜的加载效果。我们深知，加载状态不仅仅是技术上的等待，更是用户体验中不可或缺的一环，它直接影响着用户对产品流畅度和专业度的感知。Show a full screen animation while loading data.
 
 :::demo
 
@@ -142,12 +124,54 @@ If Element Plus is imported entirely, a globally method `$loading` will be regis
 
 ### Directives
 
-| Name                         | Description                                                  | Type                           |
-| ---------------------------- | ------------------------------------------------------------ | ------------------------------ |
-| v-loading                    | show animation while loading data                            | ^[boolean] / ^[LoadingOptions] |
-| element-loading-text         | loading text that displays under the spinner                 | ^[string]                      |
-| element-loading-spinner      | icon of the custom spinner                                   | ^[string]                      |
-| element-loading-svg          | icon of the custom spinner (same as element-loading-spinner) | ^[string]                      |
-| element-loading-svg-view-box | sets the viewBox attribute for loading svg element           | ^[string]                      |
-| element-loading-background   | background color of the mask                                 | ^[string]                      |
-| element-loading-custom-class | custom class name for loading                                | ^[string]                      |
+| Name      | Description        | Type   |
+| --------- | ------------------ | ------ |
+| v-loading | 具体内容见下方新增 | Object |
+|           |                    |        |
+
+### New Props
+
+| Name            | Description                         | Type                          |
+| --------------- | ----------------------------------- | ----------------------------- |
+| showLoading     | 是否显示 loading [仅自定义指令有效] | Boolean                       |
+| animation       | 动画                                | 见下方枚举类型 Animation Enum |
+| backgroundColor | 会影响动画颜色                      | String                        |
+| borderColor     | 会影响动画颜色                      | String                        |
+| color           | 字体颜色                            | String                        |
+| width           | 内部动画的大小                      | String                        |
+| hegit           | 内部动画的大小                      | String                        |
+
+### Animation Enum
+
+| 序号 | 名称           | 动画名称  |
+| ---- | -------------- | --------- |
+| 1    | 弧线效果       | spinner   |
+| 2    | 脉冲效果       | pulse     |
+| 3    | 点阵效果       | dots      |
+| 4    | 弹跳球效果     | bounce    |
+| 5    | 旋转方块效果   | cube      |
+| 6    | 渐变环效果     | gradient  |
+| 7    | 心跳效果       | heartbeat |
+| 8    | 螺旋效果       | spiral    |
+| 9    | 闪烁效果       | blink     |
+| 10   | 摆动效果       | swing     |
+| 15   | 呼吸效果       | breath    |
+| 17   | 星形效果       | star      |
+| 18   | 小猫咪效果     | kitty     |
+| 19   | 彩虹圈效果     | rainbow   |
+| 20   | 爱心跳动效果   | love      |
+| 21   | 小鸭子游泳效果 | duck      |
+| 22   | 小蜜蜂飞舞效果 | bee       |
+| 23   | 泡泡效果       | bubble    |
+| 24   | 小火箭效果     | rocket    |
+| 25   | 跳跳糖效果     | candy     |
+| 26   | 小花朵效果     | flower    |
+| 27   | 蝴蝶飞舞效果   | butterfly |
+| 28   | 小鱼游泳效果   | fish      |
+| 29   | 太阳效果       | sun       |
+| 30   | 月亮效果       | moon      |
+| 31   | 云朵效果       | cloud     |
+| 32   | 闪电效果       | lightning |
+| 33   | 雪花效果       | snowflake |
+| 34   | 叶子效果       | leaf      |
+| 35   | 樱花效果       | cherry    |

@@ -14,8 +14,8 @@ const openFullScreen2 = () => {
   const loading = ElLoadingPro.service({
     lock: true,
     text: 'Loading',
-    // background: 'rgba(0, 0, 0, 0.7)',
-    // customClass: 'loading-pro-dots',
+    background: 'rgba(0, 0, 0, 0.7)',
+    animation: 'dots',
   })
   setTimeout(() => {
     loading.close()

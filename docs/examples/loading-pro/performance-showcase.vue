@@ -228,9 +228,9 @@
           <el-descriptions-item label="测试样式">{{
             stressResults.style
           }}</el-descriptions-item>
-          <el-descriptions-item label="并发数量">{{
-            stressResults.count
-          }}</el-descriptions-item>
+          <el-descriptions-item label="并发数量">
+            <el-text>{{ stressResults.count }}</el-text>
+          </el-descriptions-item>
           <el-descriptions-item label="平均FPS">{{
             stressResults.avgFPS
           }}</el-descriptions-item>
@@ -804,7 +804,6 @@ onUnmounted(() => {
 .stress-results {
   margin-top: 20px;
   padding: 20px;
-  background: #f8f9fa;
   border-radius: 8px;
 }
 

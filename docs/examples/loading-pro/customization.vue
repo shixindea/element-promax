@@ -2,7 +2,10 @@
 
 <template>
   <el-table
-    v-loadingPro="loading"
+    v-loadingPro="{
+      showLoading: true,
+      animation: 'pulse',
+    }"
     element-loading-text="Loading..."
     :element-loading-spinner="svg"
     element-loading-svg-view-box="-10, -10, 50, 50"
@@ -15,7 +18,13 @@
     <el-table-column prop="address" label="Address" />
   </el-table>
   <el-table
-    v-loading-pro="loading"
+    v-loading-pro="{
+      showLoading: true,
+      animation: 'bee',
+      background: 'rgba(122, 122, 122, 0.8)',
+      text: 'Loading...',
+      color: 'pink',
+    }"
     :element-loading-svg="svg"
     class="custom-loading-svg"
     element-loading-svg-view-box="-10, -10, 50, 50"
