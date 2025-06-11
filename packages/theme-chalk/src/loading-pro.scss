@@ -35,6 +35,19 @@
     .#{$namespace}-loading-pro-spinner {
       left: 50%;
       top: 50%;
+
+      .circular {
+        height: getCssVar('loading-pro-fullscreen-spinner-size');
+        width: getCssVar('loading-pro-fullscreen-spinner-size');
+        width: 40px;
+        height: 40px;
+      }
+      .#{$namespace}-loading-pro-text {
+        margin: 3px 0;
+        font-size: 14px;
+      }
+    }
+    .#{$namespace}-loading-pro-writebg {
       position: absolute;
       width: 200px;
       height: 200px;
@@ -47,17 +60,6 @@
       border-radius: 24px;
       transform: translate(-50%, -50%);
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-
-      .circular {
-        height: getCssVar('loading-pro-fullscreen-spinner-size');
-        width: getCssVar('loading-pro-fullscreen-spinner-size');
-        width: 40px;
-        height: 40px;
-      }
-      .#{$namespace}-loading-pro-text {
-        margin: 3px 0;
-        font-size: 14px;
-      }
     }
   }
 }
@@ -430,7 +432,7 @@
   width: 50px;
   height: 40px;
   position: relative;
-  
+
   &::before {
     content: '🐱';
     font-size: 30px;
@@ -440,7 +442,7 @@
     transform: translate(-50%, -50%);
     animation: kitty-bounce 1.5s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '💕';
     font-size: 16px;
@@ -452,7 +454,8 @@
 }
 
 @keyframes kitty-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1) rotate(-5deg);
   }
   50% {
@@ -461,7 +464,8 @@
 }
 
 @keyframes love-float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) scale(0.8);
     opacity: 0.7;
   }
@@ -488,7 +492,7 @@
   );
   animation: rainbow-spin 2s linear infinite;
   position: relative;
-  
+
   &::before {
     content: '🌈';
     position: absolute;
@@ -507,7 +511,8 @@
 }
 
 @keyframes rainbow-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
@@ -520,7 +525,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '💖';
     font-size: 35px;
@@ -530,7 +535,7 @@
     transform: translate(-50%, -50%);
     animation: love-beat 1.2s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '✨';
     font-size: 12px;
@@ -542,7 +547,8 @@
 }
 
 @keyframes love-beat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
   }
   25% {
@@ -557,7 +563,8 @@
 }
 
 @keyframes sparkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.5) rotate(0deg);
   }
@@ -572,7 +579,7 @@
   width: 60px;
   height: 40px;
   position: relative;
-  
+
   &::before {
     content: '🦆';
     font-size: 30px;
@@ -582,7 +589,7 @@
     transform: translateY(-50%);
     animation: duck-swim 3s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '💧';
     font-size: 14px;
@@ -609,7 +616,8 @@
 }
 
 @keyframes water-drop {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: translateY(0) scale(0.8);
   }
@@ -624,7 +632,7 @@
   width: 60px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '🐝';
     font-size: 25px;
@@ -634,7 +642,7 @@
     transform: translate(-50%, -50%);
     animation: bee-fly 2.5s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '🌸';
     font-size: 16px;
@@ -664,7 +672,8 @@
 }
 
 @keyframes flower-sway {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(-5deg);
   }
   50% {
@@ -677,26 +686,34 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent 70%);
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.8),
+      transparent 70%
+    );
     border: 2px solid getCssVar('color-primary');
     border-radius: 50%;
     left: 15px;
     top: 15px;
     animation: bubble-float 2s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '';
     position: absolute;
     width: 12px;
     height: 12px;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), transparent 70%);
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.9),
+      transparent 70%
+    );
     border: 1px solid getCssVar('color-primary');
     border-radius: 50%;
     left: 35px;
@@ -706,7 +723,8 @@
 }
 
 @keyframes bubble-float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) scale(1);
     opacity: 0.7;
   }
@@ -721,7 +739,7 @@
   width: 50px;
   height: 60px;
   position: relative;
-  
+
   &::before {
     content: '🚀';
     font-size: 30px;
@@ -731,7 +749,7 @@
     transform: translate(-50%, -50%);
     animation: rocket-launch 2s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '⭐';
     font-size: 12px;
@@ -761,7 +779,8 @@
 }
 
 @keyframes star-twinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(0.8) rotate(0deg);
   }
@@ -776,7 +795,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '🍭';
     font-size: 28px;
@@ -786,7 +805,7 @@
     transform: translate(-50%, -50%);
     animation: candy-bounce 1.8s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '✨';
     font-size: 10px;
@@ -798,7 +817,8 @@
 }
 
 @keyframes candy-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) rotate(0deg) scale(1);
   }
   25% {
@@ -813,7 +833,8 @@
 }
 
 @keyframes magic-sparkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.5);
   }
@@ -828,7 +849,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '🌸';
     font-size: 30px;
@@ -838,7 +859,7 @@
     transform: translate(-50%, -50%);
     animation: flower-bloom 2.5s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '🌿';
     font-size: 16px;
@@ -850,7 +871,8 @@
 }
 
 @keyframes flower-bloom {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
   }
   50% {
@@ -859,7 +881,8 @@
 }
 
 @keyframes leaf-sway {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(-10deg);
   }
   50% {
@@ -872,7 +895,7 @@
   width: 60px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '🦋';
     font-size: 28px;
@@ -882,7 +905,7 @@
     transform: translate(-50%, -50%);
     animation: butterfly-dance 3s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '🌺';
     font-size: 14px;
@@ -925,7 +948,7 @@
   width: 60px;
   height: 40px;
   position: relative;
-  
+
   &::before {
     content: '🐠';
     font-size: 26px;
@@ -935,7 +958,7 @@
     transform: translateY(-50%);
     animation: fish-swim 4s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '🫧';
     font-size: 12px;
@@ -970,7 +993,8 @@
 }
 
 @keyframes bubble-rise {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: translateY(0) scale(0.8);
   }
@@ -985,7 +1009,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '☀️';
     font-size: 32px;
@@ -995,7 +1019,7 @@
     transform: translate(-50%, -50%);
     animation: sun-shine 2s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -1011,7 +1035,8 @@
 }
 
 @keyframes sun-shine {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
   }
   50% {
@@ -1020,7 +1045,8 @@
 }
 
 @keyframes sun-glow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.3;
   }
@@ -1035,7 +1061,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '🌙';
     font-size: 30px;
@@ -1045,7 +1071,7 @@
     transform: translate(-50%, -50%);
     animation: moon-phase 3s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '⭐';
     font-size: 10px;
@@ -1057,7 +1083,8 @@
 }
 
 @keyframes moon-phase {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.8;
   }
@@ -1068,7 +1095,8 @@
 }
 
 @keyframes star-blink {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(0.8);
   }
@@ -1083,7 +1111,7 @@
   width: 60px;
   height: 40px;
   position: relative;
-  
+
   &::before {
     content: '☁️';
     font-size: 32px;
@@ -1093,7 +1121,7 @@
     transform: translate(-50%, -50%);
     animation: cloud-float 4s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '💧';
     font-size: 12px;
@@ -1105,7 +1133,8 @@
 }
 
 @keyframes cloud-float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) translateX(0);
   }
   50% {
@@ -1133,7 +1162,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '⚡';
     font-size: 30px;
@@ -1143,7 +1172,7 @@
     transform: translate(-50%, -50%);
     animation: lightning-strike 1.5s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -1159,18 +1188,22 @@
 }
 
 @keyframes lightning-strike {
-  0%, 90%, 100% {
+  0%,
+  90%,
+  100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
-  10%, 80% {
+  10%,
+  80% {
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(1.3);
   }
 }
 
 @keyframes electric-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0;
   }
@@ -1185,7 +1218,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '❄️';
     font-size: 28px;
@@ -1195,7 +1228,7 @@
     transform: translate(-50%, -50%);
     animation: snowflake-spin 3s linear infinite;
   }
-  
+
   &::after {
     content: '❄️';
     font-size: 16px;
@@ -1232,7 +1265,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '🍃';
     font-size: 28px;
@@ -1242,7 +1275,7 @@
     transform: translate(-50%, -50%);
     animation: leaf-dance 3s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '🍂';
     font-size: 16px;
@@ -1254,7 +1287,8 @@
 }
 
 @keyframes leaf-dance {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
   25% {
@@ -1284,7 +1318,7 @@
   width: 50px;
   height: 50px;
   position: relative;
-  
+
   &::before {
     content: '🌸';
     font-size: 26px;
@@ -1294,7 +1328,7 @@
     transform: translate(-50%, -50%);
     animation: cherry-bloom 2.5s ease-in-out infinite;
   }
-  
+
   &::after {
     content: '🌸';
     font-size: 14px;
@@ -1306,7 +1340,8 @@
 }
 
 @keyframes cherry-bloom {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
   }
   50% {

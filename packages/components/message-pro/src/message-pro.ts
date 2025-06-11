@@ -155,6 +155,10 @@ export const messageProProps = buildProps({
     type: String,
     default: 'standard',
   },
+  showWriteBg: {
+    type: Boolean,
+    default: true,
+  },
   // customClass: `message-pro-center-${style}`,
 } as const)
 export type MessageProProps = ExtractPropTypes<typeof messageProProps>

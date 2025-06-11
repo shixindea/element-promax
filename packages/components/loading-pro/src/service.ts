@@ -96,6 +96,7 @@ const resolveOptions = (
     closed: options.closed,
     target,
     animation: options.animation || '',
+    showWriteBg: options.showWriteBg,
     backgroundColor: options.backgroundColor || '',
     borderColor: options.borderColor || '',
     color: options.color || '',

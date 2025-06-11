@@ -34,6 +34,7 @@ export type LoadingProOptionsResolved = {
   closed?: () => void
 
   animation: MaybeRef<string>
+  showWriteBg: MaybeRef<boolean>
   backgroundColor: MaybeRef<string>
   borderColor: MaybeRef<string>
   color: MaybeRef<string>

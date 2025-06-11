@@ -124,10 +124,9 @@ If Element Plus is imported entirely, a globally method `$loading` will be regis
 
 ### Directives
 
-| Name      | Description        | Type   |
-| --------- | ------------------ | ------ |
-| v-loading | 具体内容见下方新增 | Object |
-|           |                    |        |
+| Name      | Description        | Type               |
+| --------- | ------------------ | ------------------ |
+| v-loading | 具体内容见下方新增 | 见下方 [New Props] |
 
 ### New Props
 
@@ -135,6 +134,7 @@ If Element Plus is imported entirely, a globally method `$loading` will be regis
 | --------------- | ----------------------------------- | ----------------------------- |
 | showLoading     | 是否显示 loading [仅自定义指令有效] | Boolean                       |
 | animation       | 动画                                | 见下方枚举类型 Animation Enum |
+| showWriteBg     | 显示白色背景                        | Boolean                       |
 | backgroundColor | 会影响动画颜色                      | String                        |
 | borderColor     | 会影响动画颜色                      | String                        |
 | color           | 字体颜色                            | String                        |

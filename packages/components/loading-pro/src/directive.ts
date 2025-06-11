@@ -58,6 +58,7 @@ const createInstance = (
     lock: getBindingProp('lock') ?? binding.modifiers.lock,
 
     animation: getProp('animation'),
+    showWriteBg: getProp('showWriteBg'),
     backgroundColor: getProp('backgroundColor'),
     borderColor: getProp('borderColor'),
     color: getProp('color'),

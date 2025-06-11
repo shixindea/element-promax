@@ -90,7 +90,9 @@ export function createLoadingProComponent(options: LoadingProOptionsResolved) {
       const theWidth = data.width || '40px'
       const theHeight = data.height || '40px'
       const theAnimation = data.animation
-
+      const theClass = data.showWriteBg
+        ? [ns.b('spinner'), ns.b('writebg')]
+        : [ns.b('spinner')]
       return () => {
         const spinner = h(
           'div',
@@ -144,7 +146,7 @@ export function createLoadingProComponent(options: LoadingProOptionsResolved) {
                     h(
                       'div',
                       {
-                        class: ns.b('spinner'),
+                        class: theClass,
                       },
                       [spinner, spinnerText]
                     ),

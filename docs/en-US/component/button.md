@@ -3,6 +3,8 @@ title: Button
 lang: en-US
 ---
 
+<!-- @format -->
+
 # Button
 
 Commonly used button.

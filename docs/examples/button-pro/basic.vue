@@ -3,10 +3,17 @@
 <template>
   <div class="mb-4">
     <el-button-pro>Default</el-button-pro>
-    <el-button-pro type="primary" class="el-button-pro--3d" size="large"
+    <el-button-pro loading type="primary" class="el-button-pro--3d" size="large"
       >Primary</el-button-pro
     >
-    <el-button-pro type="primary" class="el-button-pro--3d"
+    <el-button-pro
+      disabled
+      type="primary"
+      class="el-button-pro--3d"
+      size="large"
+      >Primary</el-button-pro
+    >
+    <el-button-pro loading type="primary" class="el-button-pro--3d" size="large"
       >Primary</el-button-pro
     >
     <el-button-pro type="primary" class="el-button-pro--3d" size="small"
