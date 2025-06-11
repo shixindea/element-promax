@@ -1,13 +1,6 @@
 <!-- @format -->
 
 <template>
-  <el-button
-    v-loadingPro.fullscreen.lock="fullscreenLoading"
-    type="primary"
-    @click="openFullScreen1"
-  >
-    As a directive
-  </el-button>
   <el-button type="primary" @click="openFullScreen2"> As a service </el-button>
 </template>
 
@@ -16,19 +9,13 @@ import { ref } from 'vue'
 import { ElLoadingPro } from 'element-plus'
 
 const fullscreenLoading = ref(false)
-const openFullScreen1 = () => {
-  fullscreenLoading.value = true
-  setTimeout(() => {
-    fullscreenLoading.value = false
-  }, 2000)
-}
 
 const openFullScreen2 = () => {
   const loading = ElLoadingPro.service({
     lock: true,
     text: 'Loading',
-    background: 'rgba(0, 0, 0, 0.7)',
-    customClass: 'elastic-effect',
+    // background: 'rgba(0, 0, 0, 0.7)',
+    // customClass: 'loading-pro-dots',
   })
   setTimeout(() => {
     loading.close()

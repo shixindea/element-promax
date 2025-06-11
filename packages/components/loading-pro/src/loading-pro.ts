@@ -84,28 +84,40 @@ export function createLoadingProComponent(options: LoadingProOptionsResolved) {
         zIndex,
       })
 
+      const backgroundColor = data.backgroundColor
+      const theBorderColor = data.borderColor
+      const theColor = data.color
+      const theWidth = data.width || '40px'
+      const theHeight = data.height || '40px'
+      const theAnimation = data.animation
+
       return () => {
-        const svg = data.spinner || data.svg
         const spinner = h(
-          'svg',
+          'div',
           {
-            class: 'circular',
-            viewBox: data.svgViewBox ? data.svgViewBox : '0 0 50 50',
-            ...(svg ? { innerHTML: svg } : {}),
+            class: `loading-pro-${theAnimation}`,
+            style: {
+              borderColor: theBorderColor,
+              backgroundColor,
+              color: theColor,
+              width: theWidth,
+              height: theHeight,
+            },
           },
-          [
-            h('circle', {
-              class: 'path',
-              cx: '25',
-              cy: '25',
-              r: '20',
-              fill: 'none',
-            }),
-          ]
+          {}
         )
 
+        // h('div', { class: 'loading-pro-spinner-box' }, h('div', { class: 'loading-pro-spinner' },))
+
         const spinnerText = data.text
-          ? h('p', { class: ns.b('text') }, [data.text])
+          ? h(
+              'p',
+              {
+                class: ns.b('text'),
+                style: { color: theColor },
+              },
+              [data.text]
+            )
           : undefined
         return h(
           Transition,

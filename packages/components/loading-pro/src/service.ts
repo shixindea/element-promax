@@ -80,6 +80,7 @@ const resolveOptions = (
   } else {
     target = options.target || document.body
   }
+
   return {
     parent: target === document.body || options.body ? document.body : target,
     background: options.background || '',
@@ -94,6 +95,12 @@ const resolveOptions = (
     beforeClose: options.beforeClose,
     closed: options.closed,
     target,
+    animation: options.animation || '',
+    backgroundColor: options.backgroundColor || '',
+    borderColor: options.borderColor || '',
+    color: options.color || '',
+    width: options.width || '',
+    height: options.height || '',
   }
 }
 

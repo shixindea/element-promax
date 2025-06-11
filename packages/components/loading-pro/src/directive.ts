@@ -56,6 +56,13 @@ const createInstance = (
     target: getBindingProp('target') ?? (fullscreen ? undefined : el),
     body: getBindingProp('body') ?? binding.modifiers.body,
     lock: getBindingProp('lock') ?? binding.modifiers.lock,
+
+    animation: getProp('animation'),
+    backgroundColor: getProp('backgroundColor'),
+    borderColor: getProp('borderColor'),
+    color: getProp('color'),
+    width: getProp('width'),
+    height: getProp('height'),
   }
 
   el[INSTANCE_KEY] = {
@@ -82,12 +89,15 @@ export const vLoadingPro: Directive<ElementLoadingPro, LoadingProBinding> = {
   },
   updated(el, binding) {
     const instance = el[INSTANCE_KEY]
-    if (binding.oldValue !== binding.value) {
-      if (binding.value && !binding.oldValue) {
+    if (binding.oldValue.showLoading !== binding.value.showLoading) {
+      if (binding.value.showLoading && !binding.oldValue.showLoading) {
         createInstance(el, binding)
-      } else if (binding.value && binding.oldValue) {
-        if (isObject(binding.value))
-          updateOptions(binding.value, instance!.options)
+      } else if (binding.value.showLoading && binding.oldValue.showLoading) {
+        if (isObject(binding.value.showLoading))
+          updateOptions(binding.value.showLoading, {
+            ...instance!.options,
+            ...binding.value.showLoading,
+          })
       } else {
         instance?.instance.close()
       }

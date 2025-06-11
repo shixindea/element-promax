@@ -32,6 +32,13 @@ export type LoadingProOptionsResolved = {
   target: HTMLElement
   beforeClose?: () => boolean
   closed?: () => void
+
+  animation: MaybeRef<string>
+  backgroundColor: MaybeRef<string>
+  borderColor: MaybeRef<string>
+  color: MaybeRef<string>
+  width: MaybeRef<string>
+  height: MaybeRef<string>
 }
 export type LoadingProOptions = Partial<
   Omit<LoadingProOptionsResolved, 'parent' | 'target'> & {

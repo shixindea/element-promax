@@ -45,6 +45,46 @@ loading-pro/fullscreen
 
 :::
 
+## 全部用法 1
+
+Show a full screen animation while loading data.
+
+:::demo
+
+loading-pro/all-styles
+
+:::
+
+## 全部用法 2
+
+Show a full screen animation while loading data.
+
+:::demo
+
+loading-pro/interactive-tester
+
+:::
+
+## 全部用法 3
+
+Show a full screen animation while loading data.
+
+:::demo
+
+loading-pro/performance-showcase
+
+:::
+
+## 全部用法 4
+
+Show a full screen animation while loading data.
+
+:::demo
+
+loading-pro/style-gallery
+
+:::
+
 ## Service
 
 You can also invoke Loading with a service. Import Loading service:
