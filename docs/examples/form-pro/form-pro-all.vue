@@ -452,6 +452,27 @@ const onGetSchemaData = () => {
           src: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
         },
       },
+      {
+        field: 'DatePicker',
+        components: 'DatePicker',
+        label: '日期',
+      },
+      {
+        field: 'DateRangePicker',
+        components: 'DateRangePicker',
+        label: '日期范围',
+      },
+      {
+        field: 'Text',
+        components: 'Text',
+        label: '文本',
+        modelValue: '这是一个纯文本，直接可以显示的文本',
+        componentProps: {
+          // style: {
+          //   color: 'red',
+          // },
+        },
+      },
     ],
     showFooter: true,
     ...theLayoutData,

@@ -1,19 +1,21 @@
+import { THE_COMP_TYPE } from '../conf'
 import { Recordable } from './interface'
 import type { FormProProps } from '../props'
 
 export interface FormSchema {
   field: string
   label: string
-  components: string
+  components: THE_COMP_TYPE | string
   modelValue?: any
   ifShow?: (formValues: any, formValues2: any, formValues3: any) => boolean
   dynamicRules?: (formValues: any) => any
   message?: string
   componentProps?: any
-  slotName: string
-  end: object
-  before: object
-  after: object
+  slotName?: string
+  end?: object
+  before?: object
+  after?: object
+  fullWidth?: boolean // 在内联布局中是否独占一行
 }
 
 export interface FormProSchema {
@@ -41,6 +43,18 @@ export interface FormProSchema {
    * 表单底部布局
    */
   actionColOptions?: object
+  /**
+   * 表单布局类型
+   */
+  layout?: 'vertical' | 'horizontal' | 'inline' | string
+  /**
+   * 横向布局时每行显示的表单项数量
+   */
+  itemsPerRow?: number
+  /**
+   * 标签宽度
+   */
+  labelWidth?: string
 }
 
 export interface FormActionType {

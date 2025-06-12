@@ -39,6 +39,10 @@ export const formProProps: any = () => ({
       span: 24,
     }),
   },
+  layout: {
+    type: String, // 'vertical' | 'horizontal' | 'inline' | String,
+    default: 'vertical',
+  },
 })
 
 export type FormProProps = Partial<

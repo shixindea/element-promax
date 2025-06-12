@@ -2,47 +2,42 @@
 
 <template>
   <div>
-    <!-- 纯文本 -->
-    <el-text v-if="theProps.components === THE_COMP_TYPE.TEXT">adfs</el-text>
+    <el-text
+      v-if="theProps.components === THE_COMP_TYPE.TEXT"
+      v-bind="theProps.componentProps"
+      >{{ thePropsModelValue }}</el-text
+    >
 
-    <!-- 输入框 -->
     <template v-if="theProps.components === THE_COMP_TYPE.INPUT">
       <el-input
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="输入框"
         @input="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
-    <!-- 输入框 ElInputNumber -->
     <template v-if="theProps.components === THE_COMP_TYPE.INPUTNUMBER">
       <el-input-number
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="输入框 ElInputNumber"
         @input="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
-    <!-- 输入框 ElInputNumber -->
-    <!-- <template v-if="theProps.components === THE_COMP_TYPE.INPUTTAG">
-      <el-input-tag
-        v-bind="theProps.componentProps"
-        v-model="thePropsModelValue"
-        @input="($event:any) => onUpdateValue($event, theProps.components)"
-      />
-    </template> -->
-    <!-- 提及 mention  @someone -->
     <template v-if="theProps.components === THE_COMP_TYPE.MENTION">
       <el-mention
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="提及 mention  @someone"
         @input="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
 
-    <!-- 选择框 -->
     <template v-if="theProps.components === THE_COMP_TYPE.SELECT">
       <el-select
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="Select 组件"
         clearable
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       >
@@ -55,20 +50,20 @@
       </el-select>
     </template>
 
-    <!-- Radio 组件 -->
     <template v-if="theProps.components === THE_COMP_TYPE.RADIO">
       <el-radio
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="Radio 组件"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
 
-    <!-- RadioGroup 组件 -->
     <template v-if="theProps.components === THE_COMP_TYPE.RADIOGROUP">
       <el-radio-group
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="RadioGroup 组件"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       >
         <el-radio
@@ -79,11 +74,11 @@
         />
       </el-radio-group>
     </template>
-    <!-- RadioButton 组件 -->
     <template v-if="theProps.components === THE_COMP_TYPE.RADIOBUTTON">
       <el-radio-group
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="RadioButtonGroup 组件"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       >
         <el-radio-button
@@ -94,20 +89,20 @@
         />
       </el-radio-group>
     </template>
-    <!-- Checkbox 组件 -->
     <template v-if="theProps.components === THE_COMP_TYPE.CHECKBOX">
       <el-checkbox
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="Checkbox 组件"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
 
-    <!-- RadioGroup 组件 -->
     <template v-if="theProps.components === THE_COMP_TYPE.CHECKBOXGROUP">
       <el-checkbox-group
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="CheckboxGroup 组件"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       >
         <el-checkbox
@@ -118,11 +113,11 @@
         />
       </el-checkbox-group>
     </template>
-    <!-- CheckboxButton 组件 -->
     <template v-if="theProps.components === THE_COMP_TYPE.CHECKBOXBUTTON">
       <el-checkbox-group
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="CheckboxGroupButton 组件"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       >
         <el-checkbox-button
@@ -133,52 +128,71 @@
         />
       </el-checkbox-group>
     </template>
-    <!-- RATE 评分 -->
     <template v-if="theProps.components === THE_COMP_TYPE.RATE">
       <el-rate
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="Rate 评分"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
-    <!-- slider 滑块 -->
     <template v-if="theProps.components === THE_COMP_TYPE.SLIDER">
       <el-slider
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="Slider 滑块"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
-    <!-- SWITCH 开关 -->
     <template v-if="theProps.components === THE_COMP_TYPE.SWITCH">
       <el-switch
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="Switch 开关"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
-    <!-- ElTransfer 穿梭框 -->
     <template v-if="theProps.components === THE_COMP_TYPE.TRANSFER">
       <el-transfer
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="Transfer 穿梭框"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
 
-    <!-- TreeSelect 树形选择 -->
     <template v-if="theProps.components === THE_COMP_TYPE.TREESELECT">
       <el-tree-select
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder="TreeSelect 树形选择"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
-    <!-- Avatar 头像 -->
     <template v-if="theProps.components === THE_COMP_TYPE.AVATAR">
       <el-avatar
         v-bind="theProps.componentProps"
         v-model="thePropsModelValue"
+        data-placeholder=" Avatar 头像"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+
+    <template v-if="theProps.components === THE_COMP_TYPE.DATEPICKER">
+      <el-date-picker
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        data-placeholder="Date 日期"
+        @change="($event:any) => onUpdateValue($event, theProps.components)"
+      />
+    </template>
+
+    <template v-if="theProps.components === THE_COMP_TYPE.DATERANGEPICKER">
+      <el-date-picker
+        v-bind="theProps.componentProps"
+        v-model="thePropsModelValue"
+        data-placeholder="DateRange 日期范围"
+        type="daterange"
         @change="($event:any) => onUpdateValue($event, theProps.components)"
       />
     </template>
@@ -269,13 +283,17 @@ watch(
   }
 )
 
+// 默认值为数组的组件
+const theArrayComp: any = [
+  THE_COMP_TYPE.CHECKBOXGROUP,
+  THE_COMP_TYPE.CHECKBOXBUTTON,
+  THE_COMP_TYPE.DATERANGEPICKER,
+]
+//  theProps.modelValue
+//       ? theProps.modelValue
+//       :
 const thePropsModelValue = ref(
-  theProps.modelValue
-    ? theProps.modelValue
-    : theProps.components === THE_COMP_TYPE.CHECKBOXGROUP ||
-      theProps.components === THE_COMP_TYPE.CHECKBOXBUTTON
-    ? []
-    : theProps.modelValue
+  theArrayComp.includes(theProps.components) ? [] : theProps.modelValue
 )
 const theEmits = defineEmits(['update:modelValue'])
 const onUpdateValue = (value: any, theCompType: string) => {

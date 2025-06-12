@@ -1,57 +1,216 @@
 <!-- @format -->
 
 <template>
-  <ElSpace direction="vertical" fill style="width: 100%">
-    <ElRow
-      v-for="(theSchema, index) in thePropsSchemas.filter((res:any) => res.isShow)"
-      :key="index"
-      style="display: flex; align-content: flex-start; align-items: flex-start"
-      v-bind="theProps.rowOptions"
-    >
-      <ElCol
-        v-bind="theProps.labelCol"
-        style="display: flex; justify-content: flex-end"
+  <ElSpace direction="vertical" fill style="width: 100%" :size="20">
+    <!-- 纵向布局 -->
+    <template v-if="reactiveProps.layout === 'vertical'">
+      <ElRow
+        v-for="(theSchema, index) in thePropsSchemas.filter((res:any) => res.isShow)"
+        :key="index"
+        style="
+          display: flex;
+          align-content: flex-start;
+          align-items: flex-start;
+        "
+        v-bind="reactiveProps.rowOptions"
       >
-        <ElSpace style="line-height: 30px">
-          <span v-if="theSchema.isRequiredStar" style="color: red">*</span>
-          {{ theSchema?.label }}
-          <span>:</span>
-        </ElSpace>
-      </ElCol>
-      <ElCol v-bind="theProps.wrapperCol">
-        <div style="display: flex; align-items: flex-start">
-          <!-- 左侧 -->
-
-          <template v-if="!!theSchema.before">
-            <component :is="theSchema.before" />
-          </template>
-          <!-- 中间部分 -->
-          <div>
-            <FormItem
-              v-if="theSchema.components != THE_COMP_TYPE.SLOT"
-              v-bind="theSchema"
-              v-model="theSchema.modelValue"
-            />
-            <div v-if="theSchema.components == THE_COMP_TYPE.SLOT">
-              <slot
-                :name="theSchema.slotName"
-                v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
-                :model="thePropsModelValue"
+        <ElCol
+          v-bind="reactiveProps.labelCol"
+          style="display: flex; justify-content: flex-end"
+        >
+          <ElSpace style="line-height: 30px">
+            <span v-if="theSchema.isRequiredStar" style="color: red">*</span>
+            {{ theSchema?.label }}
+            <span>:</span>
+          </ElSpace>
+        </ElCol>
+        <ElCol v-bind="reactiveProps.wrapperCol">
+          <div style="display: flex; align-items: flex-start">
+            <!-- 左侧 -->
+            <template v-if="!!theSchema.before">
+              <component :is="theSchema.before" />
+            </template>
+            <!-- 中间部分 -->
+            <div>
+              <FormItem
+                v-if="theSchema.components != THE_COMP_TYPE.SLOT"
+                v-bind="theSchema"
+                v-model="theSchema.modelValue"
               />
+              <div v-if="theSchema.components == THE_COMP_TYPE.SLOT">
+                <slot
+                  :name="theSchema.slotName"
+                  v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
+                  :model="thePropsModelValue"
+                />
+              </div>
+              <template v-if="!!theSchema.end">
+                <component :is="theSchema.end" />
+              </template>
             </div>
-            <template v-if="!!theSchema.end">
-              <component :is="theSchema.end" />
+            <!-- 右侧 -->
+            <template v-if="!!theSchema.after">
+              <component :is="theSchema.after" />
             </template>
           </div>
-          <!-- 右侧 -->
-          <template v-if="!!theSchema.after">
-            <component :is="theSchema.after" />
-          </template>
+        </ElCol>
+      </ElRow>
+    </template>
+
+    <!-- 横向布局 -->
+    <template v-if="reactiveProps.layout === 'horizontal'">
+      <ElRow
+        v-for="(rowSchemas, rowIndex) in getHorizontalRows()"
+        :key="rowIndex"
+        v-bind="reactiveProps.rowOptions"
+      >
+        <ElCol
+          v-for="(theSchema, colIndex) in rowSchemas"
+          :key="colIndex"
+          :span="24 / reactiveProps.itemsPerRow"
+        >
+          <div style="display: flex; align-items: flex-start">
+            <div
+              style="
+                min-width: 80px;
+                text-align: right;
+                padding-right: 8px;
+                line-height: 32px;
+              "
+            >
+              <span v-if="theSchema.isRequiredStar" style="color: red">*</span>
+              {{ theSchema?.label }}:
+            </div>
+            <div style="flex: 1">
+              <!-- 左侧 -->
+              <template v-if="!!theSchema.before">
+                <component :is="theSchema.before" />
+              </template>
+              <!-- 中间部分 -->
+              <div>
+                <FormItem
+                  v-if="theSchema.components != THE_COMP_TYPE.SLOT"
+                  v-bind="theSchema"
+                  v-model="theSchema.modelValue"
+                />
+                <div v-if="theSchema.components == THE_COMP_TYPE.SLOT">
+                  <slot
+                    :name="theSchema.slotName"
+                    v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
+                    :model="thePropsModelValue"
+                  />
+                </div>
+                <template v-if="!!theSchema.end">
+                  <component :is="theSchema.end" />
+                </template>
+              </div>
+              <!-- 右侧 -->
+              <template v-if="!!theSchema.after">
+                <component :is="theSchema.after" />
+              </template>
+            </div>
+          </div>
+        </ElCol>
+      </ElRow>
+    </template>
+
+    <!-- 内联布局 -->
+    <template v-if="reactiveProps.layout === 'inline'">
+      <div
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: 16px;
+          align-items: center;
+          width: 100%;
+        "
+      >
+        <div
+          v-for="(theSchema, index) in thePropsSchemas.filter((res:any) => res.isShow)"
+          :key="index"
+          :style="{
+            display: 'flex',
+            alignItems: 'center',
+            marginBottom: '8px',
+            width: theSchema.fullWidth ? '100%' : 'auto',
+            flexBasis: theSchema.fullWidth ? '100%' : 'auto',
+          }"
+        >
+          <div
+            :style="{
+              minWidth:
+                typeof reactiveProps.labelWidth === 'number'
+                  ? reactiveProps.labelWidth + 'px'
+                  : reactiveProps.labelWidth,
+              textAlign: 'right',
+              paddingRight: '8px',
+              lineHeight: '32px',
+            }"
+          >
+            <span v-if="theSchema.isRequiredStar" style="color: red">*</span>
+            {{ theSchema?.label }}:
+          </div>
+          <div
+            style="display: flex; align-items: center; min-width: 200px"
+            :style="{
+              width: theSchema.fullWidth ? '100%' : 'auto',
+            }"
+          >
+            <!-- 左侧 -->
+            <template v-if="!!theSchema.before">
+              <component :is="theSchema.before" />
+            </template>
+            <!-- 中间部分 -->
+            <div style="width: 100%">
+              <FormItem
+                v-if="theSchema.components != THE_COMP_TYPE.SLOT"
+                v-bind="theSchema"
+                v-model="theSchema.modelValue"
+              />
+              <div v-if="theSchema.components == THE_COMP_TYPE.SLOT">
+                <slot
+                  :name="theSchema.slotName"
+                  v-bind="theSchema.compInfo?.[theSchema.slotName]?.()"
+                  :model="thePropsModelValue"
+                />
+              </div>
+              <template v-if="!!theSchema.end">
+                <component :is="theSchema.end" />
+              </template>
+            </div>
+            <!-- 右侧 -->
+            <template v-if="!!theSchema.after">
+              <component :is="theSchema.after" />
+            </template>
+          </div>
         </div>
-      </ElCol>
-    </ElRow>
-    <ElRow v-if="theProps?.showFooter" v-bind="theProps.rowOptions">
-      <ElCol v-bind="theProps.actionColOptions">
+
+        <!-- 内联布局时的按钮跟随在表单项后面 -->
+        <!-- 
+        :style="{
+            marginLeft:
+              typeof reactiveProps.labelWidth === 'number'
+                ? reactiveProps.labelWidth + 'px'
+                : reactiveProps.labelWidth,
+          }" -->
+        <div
+          v-if="reactiveProps?.showFooter"
+          style="display: flex; align-items: center; margin-bottom: 8px"
+        >
+          <ElSpace>
+            <ElButton type="primary" @click="onSubmit"> 提交 </ElButton>
+            <ElButton @click="onReset">重置</ElButton>
+          </ElSpace>
+        </div>
+      </div>
+    </template>
+
+    <!-- 底部按钮（纵向和横向布局） -->
+    <ElRow
+      v-if="reactiveProps?.showFooter && reactiveProps.layout !== 'inline'"
+      v-bind="reactiveProps.rowOptions"
+    >
+      <ElCol v-bind="reactiveProps.actionColOptions">
         <ElSpace>
           <ElButton type="primary" @click="onSubmit"> 提交 </ElButton>
           <ElButton @click="onReset">重置</ElButton>
@@ -82,6 +241,20 @@ defineOptions({
 })
 const theProps = defineProps(formProProps())
 const theEmits = defineEmits(['submit', 'submit-error', 'register', 'reset'])
+
+// 创建响应式的 props 副本以支持动态更新
+const reactiveProps = ref({
+  layout: theProps.layout,
+  itemsPerRow: theProps.itemsPerRow,
+  labelWidth: theProps.labelWidth,
+  showFooter: theProps.showFooter,
+  rowOptions: theProps.rowOptions,
+  labelCol: theProps.labelCol,
+  wrapperCol: theProps.wrapperCol,
+  actionColOptions: theProps.actionColOptions,
+  inlineActionCol: theProps.inlineActionCol, // 内联布局时的按钮跟随在表单项后面
+})
+
 const thePropsSchemas: any = ref(theProps.schemas)
 // 获取schemas中的modelvalue值 start
 const onSetModelValue = () => {
@@ -178,6 +351,19 @@ const onReset = () => {
 }
 // 重置 end
 
+// 获取横向布局的行数据
+const getHorizontalRows = () => {
+  const visibleSchemas = thePropsSchemas.value.filter((res: any) => res.isShow)
+  const rows = []
+  const itemsPerRow = reactiveProps.value.itemsPerRow || 3
+
+  for (let i = 0; i < visibleSchemas.length; i += itemsPerRow) {
+    rows.push(visibleSchemas.slice(i, i + itemsPerRow))
+  }
+
+  return rows
+}
+
 // 重新渲染数据 start
 const onRenderData = () => {
   thePropsModelValue.value = onGetModelValue()
@@ -205,7 +391,24 @@ const onRenderData = () => {
 
 // 暴露方法 start
 const setProps = (props: any) => {
-  thePropsSchemas.value = props.schemas
+  if (props.schemas) {
+    thePropsSchemas.value = props.schemas
+  }
+  // // 更新其他属性到 reactiveProps
+  // Object.keys(props).forEach((key) => {
+  //   if (key !== 'schemas' && reactiveProps.value.hasOwnProperty(key)) {
+  //     (reactiveProps.value as any)[key] = props[key];
+  //   }
+  // });
+  // 更新其他属性到 reactiveProps
+  Object.keys(props).forEach((key) => {
+    if (
+      key !== 'schemas' &&
+      Object.prototype.hasOwnProperty.call(reactiveProps.value, key)
+    ) {
+      ;(reactiveProps.value as any)[key] = props[key]
+    }
+  })
 }
 
 const setFieldsValue = (values: any) => {
