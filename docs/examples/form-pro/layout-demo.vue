@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <h2>Form Pro 布局演示</h2>
+    <h2>Form Pro 布局演示 <el-tag type="danger">new</el-tag></h2>
 
     <!-- 布局切换按钮 -->
     <el-space style="margin-bottom: 20px">
