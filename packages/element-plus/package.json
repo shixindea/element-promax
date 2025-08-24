@@ -10,7 +10,7 @@
     "ui",
     "vue"
   ],
-  "homepage": "https://element-plus.org/",
+  "homepage": "https://shixindea.github.io/element-promax-docs/",
   "bugs": {
     "url": "https://github.com/element-plus/element-plus/issues"
   },
@@ -63,7 +63,7 @@
   "jsdelivr": "dist/index.full.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/element-plus/element-plus.git"
+    "url": "https://shixindea.github.io/element-promax-docs/"
   },
   "publishConfig": {
     "access": "public"
